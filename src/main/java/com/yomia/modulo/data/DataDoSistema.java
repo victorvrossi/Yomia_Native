@@ -17,4 +17,20 @@ public class DataDoSistema {
         return data;
     }
 
+    int dia() {
+        return data.get(Calendar.DATE);
+    }
+    int hora() {
+        return data.get(Calendar.HOUR_OF_DAY);
+    }
+    int minuto() {
+        return data.get(Calendar.MINUTE);
+    }
+    EnumDataMes mes() {
+        return DataUtil.resgatarMes(data);
+    }
+    int ano() {
+        return DataUtil.resgatarAno(data);
+    }
+
 }

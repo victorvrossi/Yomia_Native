@@ -24,7 +24,7 @@ class DataUtil {
         return formatarDate.format(data);
     }
      public static String formatarDataYYYYMMDDHHMI(Date data) {
-        SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return formatarDate.format(data);
     }
 
