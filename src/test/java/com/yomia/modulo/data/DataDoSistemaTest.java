@@ -32,6 +32,18 @@ public class DataDoSistemaTest {
         DataDoSistema result = DataDoSistema.novaData(c);
         assertEquals(expResult.data(), result.data());
     }
+    @Test
+    public void testFimDeSemana_Sabado() {
+        DataDoSistema expResult =  DataUtil.dataManual(2019, EnumDataMes.AGOSTO, 10);
+        boolean finalDeSemana = expResult.finalDeSemana(expResult.dia(), expResult.mes());
+        assertTrue(finalDeSemana);
+    }
+    @Test
+    public void testFimDeSemana_Domingo() {
+        DataDoSistema expResult =  DataUtil.dataManual(2019, EnumDataMes.AGOSTO, 11);
+        boolean finalDeSemana = expResult.finalDeSemana(expResult.dia(), expResult.mes());
+        assertTrue(finalDeSemana);
+    }
 
     
 }

@@ -33,4 +33,16 @@ public class DataDoSistema {
         return DataUtil.resgatarAno(data);
     }
 
+    int ultimoDiaDoMes(EnumDataMes mes){
+        DataDoSistema atual = DataUtil.atual();
+        DataDoSistema manual = DataUtil.dataManual(atual.ano(), mes, atual.dia());
+        return manual.data.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+    
+    static boolean finalDeSemana(int dia,EnumDataMes fimDeSemana){
+        DataDoSistema atual = DataUtil.atual();
+        DataDoSistema manual = DataUtil.dataManual(atual.ano(), fimDeSemana, dia);
+        int diaSemana = manual.data.get(Calendar.DAY_OF_WEEK);
+        return diaSemana == 7 || diaSemana == 1;
+    }
 }

@@ -1,20 +1,86 @@
 package com.yomia.modulo.data;
 
+import com.yomia.modulo.falhas.FalhaDeDivisao;
 import java.util.Calendar;
 
 public class CalculoData {
 
-    int tamanhoDoDia;
-
-    int horaEntrada;
-    int horaSaida;
-    int horaAlmocoTotal;
-    int horaAlmocoSaida;
-    int horaAlmocoEntrada;
-    boolean consideraAlmoco = true;
+    private int tamanhoDoDia;
+    private int horaEntrada;
+    private int horaSaida;
+    private int horaAlmocoTotal;
+    private int horaAlmocoSaida;
+    private int horaAlmocoEntrada;
+    private boolean consideraAlmoco = false;
 
     public int restoTempo(int tempoEstimadoProjeto) {
-        return tempoEstimadoProjeto % tamanhoDoDia;
+        try {
+            return tempoEstimadoProjeto % tamanhoDoDia;
+        } catch (ArithmeticException e) {
+            throw new FalhaDeDivisao();
+        }
+    }
+
+    public DataDoSistema calculaDataEntregaDadoConfiguracao(DataDoSistema entrada, int limite) {
+        entrada = calculaDataEntrega(entrada, limite);
+        int totalDeDias = 0;
+        entrada.data().add(Calendar.DATE, totalDeDias);
+        return entrada;
+    }
+
+    public int calculaFeriadosNoPeriodo(DataDoSistema inicio, int totalDeDias, FeriadosCadastrados listaDeFeriados) {
+
+        int contaFeriadosNoPeriodo = 0;
+        EnumDataMes mesTemp;
+        ConfiguracaoCalculo conf = new ConfiguracaoCalculo(inicio, calculaDataEntrega(inicio, totalDeDias));
+
+        if (conf.periodoMesmoMes()) {
+            mesTemp = conf.mesInicial();
+            System.out.println("FOR:"+conf.diaInicial()+"/"+conf.diaFinal());
+            for (int diaTemp = conf.diaInicial(); diaTemp <= conf.diaFinal(); diaTemp++) {
+                contaFeriadosNoPeriodo += listaDeFeriados.verificaSeTemFeriado(diaTemp, mesTemp);
+            }
+        }
+        return contaFeriadosNoPeriodo;
+    }
+    
+    private DataDoSistema calculaDataEntrega(DataDoSistema s, int limite) {
+        DataDoSistema entrada = DataUtil.copiarData(s);
+        limite = ajusteLimiteCasoAntesDoExpediente(entrada, limite);
+        entrada = ajustaLimiteCasoDepoisDoExpediente(entrada);
+        int horas = restoTempo(limite);
+        int totalDeDias = calculaQuantidadeDeDiasDadoHora(limite);        
+        horas = calculaTempoDeAlmoco(horas);
+
+        entrada.data().add(Calendar.DATE, totalDeDias);
+        entrada.data().add(Calendar.HOUR_OF_DAY, horas);
+
+        return entrada;
+    }
+
+    public int calculaFimDeSemanaNoPeriodo(DataDoSistema inicio, int totalDeDias, FeriadosCadastrados listaDeFeriados) {
+
+        int contaFeriadosNoPeriodo = 0;
+        EnumDataMes mesTemp;
+        ConfiguracaoCalculo conf = new ConfiguracaoCalculo(inicio, calculaDataEntregaDadoConfiguracao(inicio, totalDeDias));
+        if (conf.periodoMesmoMes()) {
+            mesTemp = conf.mesInicial();
+            for (int diaTemp = conf.diaInicial(); diaTemp <= conf.diaFinal(); diaTemp++) {
+                if (DataDoSistema.finalDeSemana(diaTemp, mesTemp)) {
+                    contaFeriadosNoPeriodo++;
+                }
+            }
+        }
+        return contaFeriadosNoPeriodo;
+    }
+
+    int calculaTempoDeAlmoco(int horas) {
+        if ((horaEntrada + horas) > horaAlmocoEntrada) {
+            if (consideraAlmoco) {
+                horas += horaAlmocoTotal;
+            }
+        }
+        return horas;
     }
 
     void alterarTamanhoDeUmDia(int entrada, int saida, int almoco) {
@@ -30,27 +96,11 @@ public class CalculoData {
         return arredondaParaBaixoContagemDeDias(tempoEstimadoProjeto) / tamanhoDoDia;
     }
 
-    DataDoSistema calculaDataEntregaDadoConfiguracao(DataDoSistema entrada, int limite) {
-        limite = ajusteLimiteCasoAntesDoExpediente(entrada, limite);
-        entrada = ajustaLimiteCasoDepoisDoExpediente(entrada);
-        int horas = restoTempo(limite);
-        int totalDeDias = calculaQuantidadeDeDiasDadoHora(limite);
-        entrada.data().add(Calendar.DATE, totalDeDias);
-        if ((horaEntrada + horas) > horaAlmocoEntrada) {
-            if(consideraAlmoco){
-                horas += horaAlmocoTotal;
-            }
-        }
-        entrada.data().add(Calendar.HOUR_OF_DAY, horas);
-
-        return entrada;
-    }
-
-    public int ajusteLimiteCasoAntesDoExpediente(DataDoSistema entrada, int limite) {
+    int ajusteLimiteCasoAntesDoExpediente(DataDoSistema entrada, int limite) {
         int horaDantes = tempoAteHoraEntrada(entrada);
         if (horaDantes < 0) {
-                horaDantes = horaDantes * (-1);
-                limite += horaDantes;
+            horaDantes = horaDantes * (-1);
+            limite += horaDantes;
         }
         return limite;
     }
@@ -74,6 +124,10 @@ public class CalculoData {
 
     void consideraAlmoco(boolean b) {
         consideraAlmoco = b;
+    }
+
+    int tamanhoDoDia() {
+        return tamanhoDoDia;
     }
 
 }
