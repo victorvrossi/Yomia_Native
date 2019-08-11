@@ -14,17 +14,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Victor
- */
 public class DataDoSistemaTest {
     
-   
-
-    /**
-     * Test of novaData method, of class DataDoSistema.
-     */
     @Test
     public void testNovaData() {
         DataDoSistema expResult =  DataUtil.dataManual(2019, EnumDataMes.MAIO, 10);

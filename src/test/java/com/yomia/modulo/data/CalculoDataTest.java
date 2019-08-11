@@ -71,6 +71,11 @@ public class CalculoDataTest {
         DataDoSistema saida = calculaEntrega(19, 21,true);
         assertEquals("2019-05-13 15:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
     }
+     @Test
+    public void testDataDeEntregaDadoConfiguracaoComFolga() {
+        DataDoSistema saida = calculaEntregaConsiderandoFolga(8, 21);
+        assertEquals("2019-08-14 15:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+    }
 
     @Test
     public void testDataDeEntregaDadoConfiguracaoSemAlmoco() {
@@ -83,6 +88,10 @@ public class CalculoDataTest {
     }
     static DataDoSistema calculaEntrega(int horaEntrada, int limite) {
         return  EnvorimentData.calculaEntrega(horaEntrada, limite,false);
+    }
+    
+    static DataDoSistema calculaEntregaConsiderandoFolga(int horaEntrada, int limite) {
+        return  EnvorimentData.calculaEntregaConsiderandoFolga(horaEntrada, limite,true);
     }
 
 }

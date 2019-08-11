@@ -31,8 +31,23 @@ public class FeriadoTest {
         assertEquals(1, calculaFeriadosNoPeriodo);
     }
 
+    public int calculaFolga(FeriadosCadastrados a) {
+        int calculaFeriadosNoPeriodo = calc.calculaFolga(EnvorimentData.dataInicial(8,EnumDataMes.MAIO), 40, a);
+        return calculaFeriadosNoPeriodo;
+    }
+
     public int calculaFeriado(FeriadosCadastrados a) {
-        int calculaFeriadosNoPeriodo = calc.calculaFeriadosNoPeriodo(EnvorimentData.dataInicial(10), 16, a);
+        int calculaFeriadosNoPeriodo = calc.calculaFeriadosNoPeriodo(EnvorimentData.dataInicial(8,EnumDataMes.MAIO), 40, a);
+        return calculaFeriadosNoPeriodo;
+    }
+
+    public int calculaFeriadoNoFimDeSemana(FeriadosCadastrados a) {
+        int calculaFeriadosNoPeriodo = calc.calculaFeriadosNoFimDeSemanaNoPeriodo(EnvorimentData.dataInicial(8,EnumDataMes.MAIO), 40, a);
+        return calculaFeriadosNoPeriodo;
+    }
+
+    public int calculaFimDeSemana() {
+        int calculaFeriadosNoPeriodo = calc.calculaFimDeSemanaNoPeriodo(EnvorimentData.dataInicial(8,EnumDataMes.MAIO), 40);
         return calculaFeriadosNoPeriodo;
     }
 
@@ -51,9 +66,9 @@ public class FeriadoTest {
         int calculaFeriadosNoPeriodo = calculaFeriado(a);
         assertEquals(2, calculaFeriadosNoPeriodo);
     }
-    
+
     @Test
-    public void testCalculaComFeriadoNoPeriodoDoisFeriadosEFimDeSemana() {
+    public void testCalculaFeriadoNoPeriodoDoisFeriadosEFimDeSemana() {
         Feriado f = new Feriado();
         f.dataFeriado(EnumDataMes.MAIO, 11);
 
@@ -65,7 +80,29 @@ public class FeriadoTest {
         a.adicionarFeriado(d);
 
         int calculaFeriadosNoPeriodo = calculaFeriado(a);
+        int calculaFimDeSemanaNoPeriodo = calculaFimDeSemana();
+        int calculaFeriadoNoFimDeSemana = calculaFeriadoNoFimDeSemana(a);
+
         assertEquals(2, calculaFeriadosNoPeriodo);
+        assertEquals(2, calculaFimDeSemanaNoPeriodo);
+        assertEquals(2, calculaFeriadoNoFimDeSemana);
+    }
+
+    @Test
+    public void testCalculaFolga() {
+        Feriado f = new Feriado();
+        f.dataFeriado(EnumDataMes.MAIO, 11);
+
+        Feriado d = new Feriado();
+        d.dataFeriado(EnumDataMes.MAIO, 12);
+
+        FeriadosCadastrados a = new FeriadosCadastrados();
+        a.adicionarFeriado(f);
+        a.adicionarFeriado(d);
+
+        int calculo = calculaFolga(a);
+
+        assertEquals(2, calculo);
     }
 
     @Test

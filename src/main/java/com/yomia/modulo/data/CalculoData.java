@@ -21,35 +21,62 @@ public class CalculoData {
         }
     }
 
-    public DataDoSistema calculaDataEntregaDadoConfiguracao(DataDoSistema entrada, int limite) {
-        entrada = calculaDataEntrega(entrada, limite);
-        int totalDeDias = 0;
-        entrada.data().add(Calendar.DATE, totalDeDias);
-        return entrada;
+    public DataDoSistema calculaDataEntregaDadoPrazo(DataDoSistema entrada, int prazo) {
+        return calculaDataEntrega(entrada, prazo);
     }
 
-    public int calculaFeriadosNoPeriodo(DataDoSistema inicio, int totalDeDias, FeriadosCadastrados listaDeFeriados) {
+    public DataDoSistema calculaDataEntregaDadoPrazoConsiderandoFolga(DataDoSistema entrada, int prazo, FeriadosCadastrados listaDeFeriados) {
+        DataDoSistema saida = calculaDataEntrega(entrada, prazo);
+        int totalDeDias = 0;
+        totalDeDias = calculaFolga(entrada, prazo, listaDeFeriados);        
+        saida.data().add(Calendar.DATE, totalDeDias);
+        return saida;
+    }
 
+    int calculaFolga(DataDoSistema entrada, int prazo, FeriadosCadastrados listaDeFeriados) {
+        int totalDeDias = 0;
+        int feriados = calculaFeriadosNoPeriodo(entrada, prazo, listaDeFeriados);
+        int feriadosNoFDS = calculaFeriadosNoFimDeSemanaNoPeriodo(entrada, prazo, listaDeFeriados);
+        int fimDeSemana = calculaFimDeSemanaNoPeriodo(entrada, prazo);
+
+        totalDeDias = (feriados + fimDeSemana) - feriadosNoFDS;
+        return totalDeDias;
+    }
+
+    int calculaFeriadosNoPeriodo(DataDoSistema inicio, int totalDeDias, FeriadosCadastrados listaDeFeriados) {
         int contaFeriadosNoPeriodo = 0;
         EnumDataMes mesTemp;
         ConfiguracaoCalculo conf = new ConfiguracaoCalculo(inicio, calculaDataEntrega(inicio, totalDeDias));
 
         if (conf.periodoMesmoMes()) {
             mesTemp = conf.mesInicial();
-            System.out.println("FOR:"+conf.diaInicial()+"/"+conf.diaFinal());
             for (int diaTemp = conf.diaInicial(); diaTemp <= conf.diaFinal(); diaTemp++) {
                 contaFeriadosNoPeriodo += listaDeFeriados.verificaSeTemFeriado(diaTemp, mesTemp);
             }
         }
         return contaFeriadosNoPeriodo;
     }
-    
-    private DataDoSistema calculaDataEntrega(DataDoSistema s, int limite) {
+
+    int calculaFeriadosNoFimDeSemanaNoPeriodo(DataDoSistema inicio, int totalDeDias, FeriadosCadastrados listaDeFeriados) {
+        int contaFeriadosNoPeriodo = 0;
+        EnumDataMes mesTemp;
+        ConfiguracaoCalculo conf = new ConfiguracaoCalculo(inicio, calculaDataEntrega(inicio, totalDeDias));
+
+        if (conf.periodoMesmoMes()) {
+            mesTemp = conf.mesInicial();
+            for (int diaTemp = conf.diaInicial(); diaTemp <= conf.diaFinal(); diaTemp++) {
+                contaFeriadosNoPeriodo += listaDeFeriados.verificaSeTemFeriadoNoFimDeSemana(diaTemp, mesTemp);
+            }
+        }
+        return contaFeriadosNoPeriodo;
+    }
+
+    private DataDoSistema calculaDataEntrega(DataDoSistema s, int prazo) {
         DataDoSistema entrada = DataUtil.copiarData(s);
-        limite = ajusteLimiteCasoAntesDoExpediente(entrada, limite);
+        prazo = ajusteLimiteCasoAntesDoExpediente(entrada, prazo);
         entrada = ajustaLimiteCasoDepoisDoExpediente(entrada);
-        int horas = restoTempo(limite);
-        int totalDeDias = calculaQuantidadeDeDiasDadoHora(limite);        
+        int horas = restoTempo(prazo);
+        int totalDeDias = calculaQuantidadeDeDiasDadoHora(prazo);
         horas = calculaTempoDeAlmoco(horas);
 
         entrada.data().add(Calendar.DATE, totalDeDias);
@@ -58,11 +85,12 @@ public class CalculoData {
         return entrada;
     }
 
-    public int calculaFimDeSemanaNoPeriodo(DataDoSistema inicio, int totalDeDias, FeriadosCadastrados listaDeFeriados) {
+    int calculaFimDeSemanaNoPeriodo(DataDoSistema inicio, int totalDeDias) {
+        DataDoSistema entrada = DataUtil.copiarData(inicio);
 
         int contaFeriadosNoPeriodo = 0;
         EnumDataMes mesTemp;
-        ConfiguracaoCalculo conf = new ConfiguracaoCalculo(inicio, calculaDataEntregaDadoConfiguracao(inicio, totalDeDias));
+        ConfiguracaoCalculo conf = new ConfiguracaoCalculo(inicio, calculaDataEntregaDadoPrazo(entrada, totalDeDias));
         if (conf.periodoMesmoMes()) {
             mesTemp = conf.mesInicial();
             for (int diaTemp = conf.diaInicial(); diaTemp <= conf.diaFinal(); diaTemp++) {

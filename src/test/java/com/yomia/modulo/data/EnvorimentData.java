@@ -13,8 +13,8 @@ public class EnvorimentData {
         return new EnvorimentData().calc;
     }
     
-    public static DataDoSistema dataInicial(int horaEntrada) {
-        final DataDoSistema dataManual = DataUtil.dataManual(2019, EnumDataMes.MAIO, 10,horaEntrada,25);
+    public static DataDoSistema dataInicial(int horaEntrada,EnumDataMes mes) {
+        final DataDoSistema dataManual = DataUtil.dataManual(2019, mes, 10,horaEntrada,25);
         if(dataManual == null){
             throw new RuntimeException("Falha ao criar dataManual");
         }
@@ -24,7 +24,14 @@ public class EnvorimentData {
     public static DataDoSistema calculaEntrega(int horaEntrada,int limite, boolean temAlmoco) {
         CalculoData calc = EnvorimentData.calcula();
         calc.consideraAlmoco(temAlmoco);
-        DataDoSistema saida = calc.calculaDataEntregaDadoConfiguracao(EnvorimentData.dataInicial(horaEntrada), limite);
+        DataDoSistema saida = calc.calculaDataEntregaDadoPrazo(EnvorimentData.dataInicial(horaEntrada,EnumDataMes.MAIO), limite);
+        return saida;
+    }
+    public static DataDoSistema calculaEntregaConsiderandoFolga(int horaEntrada,int limite, boolean temAlmoco) {
+        CalculoData calc = EnvorimentData.calcula();
+        calc.consideraAlmoco(temAlmoco);
+        FeriadosCadastrados lista = new FeriadosCadastrados();
+        DataDoSistema saida = calc.calculaDataEntregaDadoPrazoConsiderandoFolga(EnvorimentData.dataInicial(horaEntrada,EnumDataMes.AGOSTO), limite, lista);
         return saida;
     }
     
