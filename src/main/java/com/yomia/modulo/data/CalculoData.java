@@ -13,7 +13,7 @@ public class CalculoData {
     private int horaAlmocoEntrada;
     private boolean consideraAlmoco = false;
 
-    public int restoTempo(int tempoEstimadoProjeto) {
+    public int restoTempoEstimadoParaTamanhoDoDia(int tempoEstimadoProjeto) {
         try {
             return tempoEstimadoProjeto % tamanhoDoDia;
         } catch (ArithmeticException e) {
@@ -75,7 +75,7 @@ public class CalculoData {
         DataDoSistema entrada = DataUtil.copiarData(s);
         prazo = ajusteLimiteCasoAntesDoExpediente(entrada, prazo);
         entrada = ajustaLimiteCasoDepoisDoExpediente(entrada);
-        int horas = restoTempo(prazo);
+        int horas = restoTempoEstimadoParaTamanhoDoDia(prazo);
         int totalDeDias = calculaQuantidadeDeDiasDadoHora(prazo);
         horas = calculaTempoDeAlmoco(horas);
 
@@ -134,7 +134,7 @@ public class CalculoData {
     }
 
     private int arredondaParaBaixoContagemDeDias(int tempoEstimadoProjeto) {
-        return tempoEstimadoProjeto - restoTempo(tempoEstimadoProjeto);
+        return tempoEstimadoProjeto - restoTempoEstimadoParaTamanhoDoDia(tempoEstimadoProjeto);
     }
 
     private int tempoAteHoraEntrada(DataDoSistema entrada) {

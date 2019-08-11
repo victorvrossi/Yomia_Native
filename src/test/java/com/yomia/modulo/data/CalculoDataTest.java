@@ -21,7 +21,7 @@ public class CalculoDataTest {
     public void testContagemDeDiasDadoHoraSemSobra() {
         tempoEstimadoProjeto = 40;
         int dias = calc.calculaQuantidadeDeDiasDadoHora(tempoEstimadoProjeto);
-        int resto = calc.restoTempo(tempoEstimadoProjeto);
+        int resto = calc.restoTempoEstimadoParaTamanhoDoDia(tempoEstimadoProjeto);
         assertEquals("Quantidade De dias esperados:", 5, dias);
         assertEquals("Sobra de tempo esperados(Horas):", 0, resto);
     }
@@ -29,7 +29,7 @@ public class CalculoDataTest {
     @Test
     public void testContagemDeDiasDadoHoraComSobra() {
         int dias = calc.calculaQuantidadeDeDiasDadoHora(tempoEstimadoProjeto);
-        int resto = calc.restoTempo(tempoEstimadoProjeto);
+        int resto = calc.restoTempoEstimadoParaTamanhoDoDia(tempoEstimadoProjeto);
         assertEquals("Quantidade De dias esperados:", 5, dias);
         assertEquals("Sobra de tempo esperados(Horas):", 5, resto);
     }
