@@ -1,4 +1,4 @@
-package com.yomia.webform.formularios;
+package com.yomia.webform.formularios.face;
 
 import com.yomia.webform.ExecutaAcaoParaRequisicaoDoFormulario;
 import java.io.IOException;

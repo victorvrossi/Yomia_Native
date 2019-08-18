@@ -23,7 +23,7 @@ public class Enviroment {
     public static AcaoParaObjetoRequisicaoDoFormularioSimples acaoParaObjetoDeTeste(final ObjetoTeste teste) {
         AcaoParaObjetoRequisicaoDoFormularioSimples objeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
             @Override
-            public void executarAcao(HttpServletRequest request, Iterator<String> asIterator) {
+            public void executarAcao(HttpServletRequest request) {
                 teste.setTexto("teste");
             }
         };
@@ -33,14 +33,8 @@ public class Enviroment {
     public static AcaoParaObjetoRequisicaoDoFormularioSimples acaoParaObjetoComplexo(final ObjetoTeste teste) {
         AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
             @Override
-            public void executarAcao(HttpServletRequest request, Iterator<String> asIterator) {
+            public void executarAcao(HttpServletRequest request) {
                 teste.setTexto("TesteDeForm");
-                String concat = "";
-                for (Iterator<String> iterator = asIterator; iterator.hasNext();) {
-                    String next = iterator.next();
-                    concat += next;
-                }
-                Assert.assertEquals("RamGopalVerma", concat);
             }
         };
         return formObjeto;

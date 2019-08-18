@@ -1,6 +1,6 @@
 package com.yomia.webform;
 
-import com.yomia.webform.formularios.FormularioGenerico;
+import com.yomia.webform.formularios.face.FormularioGenerico;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -23,12 +23,6 @@ public class WebFormTest {
 
     public HttpServletRequest getMockRequest() {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-        List<String> arrlist = new ArrayList<String>();
-        arrlist.add("Ram");
-        arrlist.add("Gopal");
-        arrlist.add("Verma");
-        Enumeration<String> e = Collections.enumeration(arrlist);
-        Mockito.when(request.getParameterNames()).thenReturn(e);
         return request;
     }
 

@@ -1,4 +1,4 @@
-package com.yomia.webform.formularios;
+package com.yomia.webform.formularios.face;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -11,9 +11,7 @@ public class FormularioProcessamento {
     public void request(HttpServletRequest request, AcaoParaObjetoRequisicaoDoFormularioSimples objeto)
             throws ServletException, IOException {
         validaParaProcessa(request, objeto);
-        Iterator<String> asIterator = request.getParameterNames().asIterator();
-
-        objeto.executarAcao(request,asIterator);
+        objeto.executarAcao(request);
     }
 
     public static void validaParaProcessa(HttpServletRequest request, AcaoParaObjetoRequisicaoDoFormularioSimples objeto) throws FalhaAoExecutarAcaoParaRequisicaoDoFormulario {

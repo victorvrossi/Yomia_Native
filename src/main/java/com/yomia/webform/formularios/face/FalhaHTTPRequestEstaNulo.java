@@ -1,5 +1,5 @@
 
-package com.yomia.webform.formularios;
+package com.yomia.webform.formularios.face;
 
 public class FalhaHTTPRequestEstaNulo extends RuntimeException {
 

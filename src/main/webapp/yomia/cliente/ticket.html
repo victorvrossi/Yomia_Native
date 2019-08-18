@@ -89,7 +89,7 @@
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
-                
+
 
                 <!-- Sidebar Toggler (Sidebar) -->
                 <div class="text-center d-none d-md-inline">
@@ -312,7 +312,7 @@
                                                     <label class="col-md control-label" for="lb_titulo">Titulo da Atividade</label>  
                                                     <div class="col-md">
                                                         <input id="lb_titulo" name="lb_n_titulo" type="text" placeholder="" class="form-control input-md" required="">
-                                                        
+
                                                     </div>
                                                 </div>
 
@@ -343,7 +343,7 @@
 
 
                                             <fieldset>
-                                             
+
                                                 <!-- Multiple Radios -->
                                                 <div class="form-group">
                                                     <label class="col-md control-label" for="radios">Nivel de atividade</label>
@@ -363,7 +363,7 @@
                                                     </div>
                                                 </div>
 
-                                               
+
 
                                                 <!-- Multiple Checkboxes (inline) -->
                                                 <div class="form-group">
@@ -457,8 +457,8 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
 
         <!-- Bootstrap core JavaScript-->
         <script src="/vendor/jquery/jquery.min.js"></script>
@@ -470,13 +470,13 @@
         <!-- Custom scripts for all pages-->
         <script src="/js/sb-admin-2.min.js"></script>
         <script>
-            $(document).ready(function (){
-                
+            $(document).ready(function () {
+
                 $("#btn_salvar").click(
-                        function (){
-                            
+                        function () {
+
                             var campo = 'teste';
-                            
+
                             var $form = $("#formid");
 
                             // Let's select and cache all the fields
@@ -490,17 +490,26 @@
                             // Disabled form elements will not be serialized.
                             $inputs.prop("disabled", true);
 
-                            // Fire off the request to /form.php
-                            request = $.ajax({
-                                url:'/DeskTask/forms',
+//                            // Fire off the request to /form.php
+//                            request = $.ajax({
+//                                url: '/form/cadticket.form',
+//                                type: "post",
+//                                data: serializedData
+//                            });
+
+
+                            $.ajax({
+                                url: '/form/cadticket.form',
                                 type: "post",
                                 data: serializedData
+                            }).done(function (data) {
+                                alert(data);
                             });
                         }
-                        );
-                
-                
-                
+                );
+
+
+
             });
         </script>
 

@@ -1,7 +1,7 @@
 
 package com.yomia.webform;
 
-import com.yomia.webform.formularios.FormularioGenerico;
+import com.yomia.webform.formularios.face.FormularioGenerico;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,9 +15,12 @@ public class ServletWebForm extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/plain;charset=UTF-8");
-        String URI = request.getRequestURI().replace("/forms/", "");
+//        ola(response, request);
+        String URI = request.getRequestURI().replace("/form/", "");
         FormularioGenerico formulario = EnumeracaoFormulariosSistema.retornaFormPorURI(URI);
-        new ExecutaAcaoParaRequisicaoDoFormulario(formulario).processaRequest(request);
+        final ExecutaAcaoParaRequisicaoDoFormulario forms = new ExecutaAcaoParaRequisicaoDoFormulario(formulario);
+        forms.processaRequest(request);
+        forms.processaResponse(response);
     }
 
     public void ola(HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -30,7 +33,7 @@ public class ServletWebForm extends HttpServlet {
             out.println("<title>Servlet ServletWebForm</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletWebForm at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletWebForm at >" + request.getRequestURI().replace("/form/", "") + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

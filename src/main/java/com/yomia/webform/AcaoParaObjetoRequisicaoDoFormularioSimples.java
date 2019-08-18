@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface AcaoParaObjetoRequisicaoDoFormularioSimples {
 
-    public void executarAcao(HttpServletRequest request,Iterator<String> asIterator);
+    public void executarAcao(HttpServletRequest request);
 
 }

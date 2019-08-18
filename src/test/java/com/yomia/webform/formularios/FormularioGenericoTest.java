@@ -5,6 +5,7 @@
  */
 package com.yomia.webform.formularios;
 
+import com.yomia.webform.formularios.face.FormularioGenerico;
 import com.yomia.webform.Enviroment;
 import java.util.ArrayList;
 import java.util.Collections;
