@@ -17,9 +17,14 @@ public class FormularioParaTeste extends FormularioGenerico {
     }
 
     @Override
-    public void processaEntradaRequest(final HttpServletRequest request) {
+    public void processaRequest(final HttpServletRequest request) {
         AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = Enviroment.acaoParaObjetoComplexo(teste);
         processaRequest(request, formObjeto);
+    }
+
+    @Override
+    public void processaResponse(HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ExecutaAcaoParaRequisicaoDoFormulario<T extends FormularioGenerico> {
 
     public void processaRequest(HttpServletRequest request) {
-        ((FormularioGenerico) var).processaEntradaRequest(request);
+        ((FormularioGenerico) var).processaRequest(request);
     }
 
     private T var;
@@ -23,10 +23,6 @@ public class ExecutaAcaoParaRequisicaoDoFormulario<T extends FormularioGenerico>
     }
 
     void processaResponse(HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("OK Estou no response");
-            System.out.println("Passei pelo out");
-        }
+         ((FormularioGenerico) var).processaResponse(response);
     }
 }
