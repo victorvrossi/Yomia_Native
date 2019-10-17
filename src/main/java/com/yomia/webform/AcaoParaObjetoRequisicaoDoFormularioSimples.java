@@ -1,6 +1,5 @@
 package com.yomia.webform;
 
-import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 
 public interface AcaoParaObjetoRequisicaoDoFormularioSimples {

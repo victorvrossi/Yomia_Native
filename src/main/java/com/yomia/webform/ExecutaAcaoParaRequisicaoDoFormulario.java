@@ -18,10 +18,6 @@ public class ExecutaAcaoParaRequisicaoDoFormulario<T extends FormularioGenerico>
         this.var = var;
     }
 
-    public void see() {
-
-    }
-
     void processaResponse(HttpServletResponse response) throws IOException {
          ((FormularioGenerico) var).processaResponse(response);
     }
