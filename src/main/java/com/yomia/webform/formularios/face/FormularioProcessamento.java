@@ -1,7 +1,6 @@
 package com.yomia.webform.formularios.face;
 
 import java.io.IOException;
-import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;

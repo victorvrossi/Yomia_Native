@@ -307,24 +307,7 @@
 
 
                                             <fieldset>
-                                                <!-- Text input-->
-                                                <div class="form-group">
-                                                    <label class="col-md control-label" for="lb_titulo">Titulo da Atividade</label>  
-                                                    <div class="col-md">
-                                                        <input id="lb_titulo" name="lb_n_titulo" type="text" placeholder="" class="form-control input-md" required="">
-
-                                                    </div>
-                                                </div>
-
-                                                <!-- Textarea -->
-                                                <div class="form-group">
-                                                    <label class="col-md control-label" for="tx_descricao">Descrição</label>
-                                                    <div class="col-md">                     
-                                                        <textarea class="form-control" id="tx_descricao" name="tx_n_descricao"></textarea>
-                                                    </div>
-                                                </div>
-
-
+                                               <canvas id="canvas"></canvas>
                                             </fieldset>
 
 
@@ -344,55 +327,9 @@
 
                                             <fieldset>
 
-                                                <!-- Multiple Radios -->
-                                                <div class="form-group">
-                                                    <label class="col-md control-label" for="radios">Nivel de atividade</label>
-                                                    <div class="col-md">
-                                                        <div class="radio">
-                                                            <label for="radios-0">
-                                                                <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-                                                                Estratégico
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label for="radios-1">
-                                                                <input type="radio" name="radios" id="radios-1" value="2">
-                                                                Operacional
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <!-- Multiple Checkboxes (inline) -->
-                                                <div class="form-group">
-                                                    <label class="col-md control-label" for="checkboxes">Estimativa</label>
-                                                    <div class="col-md">
-                                                        <label class="checkbox-inline" for="checkboxes-0">
-                                                            <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
-                                                            PP
-                                                        </label>
-                                                        <label class="checkbox-inline" for="checkboxes-1">
-                                                            <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
-                                                            P
-                                                        </label>
-                                                        <label class="checkbox-inline" for="checkboxes-2">
-                                                            <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3">
-                                                            M
-                                                        </label>
-                                                        <label class="checkbox-inline" for="checkboxes-3">
-                                                            <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4">
-                                                            G
-                                                        </label>
-                                                        <label class="checkbox-inline" for="checkboxes-4">
-                                                            <input type="checkbox" name="checkboxes" id="checkboxes-4" value="5">
-                                                            GG
-                                                        </label>
-                                                    </div>
-                                                </div>
-
+                                               <canvas id="canvas2"></canvas>
                                             </fieldset>
+
 
 
                                         </div>
@@ -469,47 +406,65 @@
 
         <!-- Custom scripts for all pages-->
         <script src="/js/sb-admin-2.min.js"></script>
+        
+        <script src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+        
+        
         <script>
-            $(document).ready(function () {
+            var conjunto1 = [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()];
+            var conjunto2 = [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()];
+            var setData_1 ={label: 'Unfilled', fill: false, backgroundColor: window.chartColors.blue, borderColor: window.chartColors.blue, data: conjunto1};
+            var setData_2 ={label: 'Dashed',fill: false,backgroundColor: window.chartColors.green,borderColor: window.chartColors.green,borderDash: [5, 5],data: conjunto2};
+            var setData_3 ={label: 'Filled',backgroundColor: window.chartColors.red,borderColor: window.chartColors.red,data: conjunto2,fill: true};
+               
+		var config = {
+			type: 'line',
+			data: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+				datasets: [setData_1, setData_2,setData_3 ]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Chart.js Line Chart'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Mês ordenado'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}]
+				}
+			}
+		};
 
-                $("#btn_salvar").click(
-                        function () {
-
-                            var $form = $("#formid");
-
-                            // Let's select and cache all the fields
-                            var $inputs = $form.find("input, select, button, textarea");
-
-                            // Serialize the data in the form
-                            var serializedData = $form.serialize();
-
-                            // Let's disable the inputs for the duration of the Ajax request.
-                            // Note: we disable elements AFTER the form data has been serialized.
-                            // Disabled form elements will not be serialized.
-                            $inputs.prop("disabled", true);
-
-//                            // Fire off the request to /form.php
-//                            request = $.ajax({
-//                                url: '/form/cadticket.form',
-//                                type: "post",
-//                                data: serializedData
-//                            });
-
-
-                            $.ajax({
-                                url: '/form/cadticket.form',
-                                type: "post",
-                                data: serializedData
-                            }).done(function (data) {
-                                alert(data);
-                            });
-                        }
-                );
-
-
-
-            });
-        </script>
+		window.onload = function() {
+                    var ctx = document.getElementById('canvas').getContext('2d');
+                        
+			window.myLine = new Chart(ctx, config);
+                        ctx = document.getElementById('canvas2').getContext('2d');
+                        window.myLine = new Chart(ctx, config);
+		};
+	</script>
 
     </body>
 
