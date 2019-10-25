@@ -1,7 +1,7 @@
 package com.yomia.webform;
 
 import com.yomia.webform.formularios.ClienteListaTicket;
-import com.yomia.webform.formularios.face.FormularioGenerico;
+import com.yomia.webform.service.face.FormularioGenerico;
 import com.yomia.webform.formularios.FormularioParaAtividade;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,7 @@ import java.util.Map;
 public enum EnumeracaoFormulariosSistema {
 
     CAD_TICKET(new Object[]{"cadticket.form", new FormularioParaAtividade()}),
+    CAD_ATIVIDADE(new Object[]{"cadatividade.form", new FormularioParaAtividade()}),
     LISTA_TICKET(new Object[]{"ticket.list", new ClienteListaTicket()});
 
     public Object[] uri_obj;

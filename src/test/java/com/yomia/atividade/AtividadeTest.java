@@ -1,6 +1,8 @@
-package com.yomia.webform;
+package com.yomia.atividade;
 
+import com.yomia.webform.*;
 import com.yomia.envoriment.Enviroment;
+import com.yomia.modulo.atividade.Atividade;
 import com.yomia.webform.service.face.FormularioGenerico;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,19 +22,12 @@ import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-public class WebFormTest {
+public class AtividadeTest {
 
-    public HttpServletRequest getMockRequest() {
-        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-        return request;
-    }
-
-    Enviroment.ObjetoTeste teste = new Enviroment().get();
     @Test
-    public void testProcessRequest() throws Exception {
-        new ExecutaAcaoParaRequisicaoDoFormulario(new FormularioParaTeste(teste)).processaRequest(getMockRequest());
+    public void testAtividadeCriacao() throws Exception {
+        Atividade a = new Atividade();
         
-        assertEquals("TesteDeForm",teste.getTexto() );
     }
 
 }

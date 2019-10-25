@@ -1,6 +1,6 @@
 package com.yomia.webform.formularios;
 
-import com.yomia.webform.formularios.face.FormularioGenerico;
+import com.yomia.webform.service.face.FormularioGenerico;
 import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

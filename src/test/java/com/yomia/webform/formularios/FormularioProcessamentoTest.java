@@ -1,7 +1,7 @@
 package com.yomia.webform.formularios;
 
-import com.yomia.webform.formularios.face.FormularioProcessamento;
-import com.yomia.webform.Enviroment;
+import com.yomia.webform.service.face.FormularioProcessamento;
+import com.yomia.envoriment.Enviroment;
 import javax.servlet.http.HttpServletRequest;
 import org.junit.After;
 import org.junit.AfterClass;

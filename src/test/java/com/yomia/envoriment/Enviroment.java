@@ -1,19 +1,18 @@
-package com.yomia.webform;
+package com.yomia.envoriment;
 
+import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import org.junit.Assert;
 import org.mockito.Mockito;
 
 public class Enviroment {
 
     public static HttpServletRequest getMockRequest() {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-        List<String> arrlist = new ArrayList<String>();
+        List<String> arrlist = new ArrayList<>();
         arrlist.add("Ram");
         Enumeration<String> e = Collections.enumeration(arrlist);
         Mockito.when(request.getParameterNames()).thenReturn(e);

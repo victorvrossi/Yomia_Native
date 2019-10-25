@@ -1,4 +1,4 @@
-package com.yomia.webform.formularios.face;
+package com.yomia.webform.service.face;
 
 public class FalhaAoExecutarAcaoParaRequisicaoDoFormulario extends RuntimeException {
 

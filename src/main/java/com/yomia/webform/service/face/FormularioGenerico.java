@@ -1,4 +1,4 @@
-package com.yomia.webform.formularios.face;
+package com.yomia.webform.service.face;
 
 import com.yomia.webform.ExecutaAcaoParaRequisicaoDoFormulario;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public abstract class FormularioGenerico implements InterfaceFormularioHTTP {
 
     static void validaParaProcessa(HttpServletRequest request,AcaoParaObjetoRequisicaoDoFormularioSimples objeto) throws FalhaAoExecutarAcaoParaRequisicaoDoFormulario {
         if (objeto == null) {
-            throw new FalhaAoExecutarAcaoParaRequisicaoDoFormulario("Acao para executar o Objeto do Formulario Invalido." );
+            throw new FalhaAoExecutarAcaoParaRequisicaoDoFormulario("Acao para executar o Objeto do Serviço Inválido." );
         }
         if (request == null) {
             throw new FalhaHTTPRequestEstaNulo();

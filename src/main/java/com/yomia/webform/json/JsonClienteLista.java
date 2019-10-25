@@ -3,11 +3,14 @@ package com.yomia.webform.json;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.yomia.modulo.atividade.Atividade;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class JsonClienteLista {
+
     
     String titulo;
     String descricao;
@@ -22,8 +25,8 @@ public class JsonClienteLista {
         this.descricao = descricao;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setData(Calendar data) {
+        this.data = data.toString();
     }
 
     public void setStatus(String status) {

@@ -1,7 +1,8 @@
 
 package com.yomia.webform.formularios;
 
-import com.yomia.webform.formularios.face.FormularioGenerico;
+import com.yomia.modulo.atividade.Atividade;
+import com.yomia.webform.service.face.FormularioGenerico;
 import com.yomia.webform.json.JsonClienteLista;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,19 +26,12 @@ public class ClienteListaTicket extends FormularioGenerico{
 
     private void t(HttpServletResponse response) {
         try (PrintWriter out = response.getWriter()) {
-            JsonClienteLista user = new JsonClienteLista();
-            user.setData("hoje");
-            user.setDescricao("ok");
-            user.setStatus("Aberto");
-            user.setTitulo("Teste");
-            String t = new JsonClienteLista().json(user);
-            
-            
+            String t;
             ArrayList<JsonClienteLista>aa = new ArrayList<>();
-            for(int k=0;k<100;k++){
-                aa.add(user);
+            ArrayList<Atividade> lista = null;
+            for (Atividade atividade : lista) {
+                //aa.add(JsonClienteLista.converte(atividade));
             }
-            
             
             t = new JsonClienteLista().jsonList(aa);
             out.println(""+t);

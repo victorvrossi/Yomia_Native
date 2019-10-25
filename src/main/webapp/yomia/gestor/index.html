@@ -3,11 +3,11 @@
 
     <head>
 
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <meta name="description" content=""/>
-        <meta name="author" content=""/>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
         <title>SB Admin 2 - Blank</title>
 
@@ -28,7 +28,7 @@
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                <!-- Sidebar - Brand -->
+                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index.html" />
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
@@ -37,47 +37,57 @@
                 </a>
 
                 <!-- Divider -->
-                <hr class="sidebar-divider my-0" >
+                <hr class="sidebar-divider my-0">
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
                     <a class="nav-link" href="index.html">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Painel de Controle</span></a>
+                        <span>Dashboard</span></a>
                 </li>
 
                 <!-- Divider -->
-                <hr class="sidebar-divider" >
+                <hr class="sidebar-divider">
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
                     Interface
                 </div>
-                <!-- Nav Item - Charts -->
-                <li class="nav-item">
-                    <a class="nav-link" href="ticket.html" >
-                        <i class="fas fa-ticket-alt"></i>
-                        <span>Ticket</span></a>
-                </li>
-
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
-                        <span>Reportar Problema</span>
+                        <span>Components</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Em qual ambiente?</h6>
-                            <a class="collapse-item" href="ticket.html">Produção</a>
-                            <a class="collapse-item" href="ticket.html">Homologação</a>
+                            <h6 class="collapse-header">Custom Components:</h6>
+                            <a class="collapse-item" href="buttons.html">Buttons</a>
+                            <a class="collapse-item" href="cards.html">Cards</a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>Utilities</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Custom Utilities:</h6>
+                            <a class="collapse-item" href="utilities-color.html">Colors</a>
+                            <a class="collapse-item" href="utilities-border.html">Borders</a>
+                            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                            <a class="collapse-item" href="utilities-other.html">Other</a>
                         </div>
                     </div>
                 </li>
 
                 <!-- Divider -->
-                <hr class="sidebar-divider"/>
+                <hr class="sidebar-divider">
 
 
 
@@ -282,51 +292,61 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-4 text-gray-800">Painel de Controle</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Nova atividade</h1>
+                        <!-- Form -->
+                        <form class="form-horizontal" id="formid">
+                            <div class="row">
+                                <div class="col-lg-6">
 
 
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Meus Tickets </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Titulo do Ticket </th>
-                                                <th>Status</th>
-                                                <th>Detalhes</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody id="tabls">
-                                            <tr>
-                                                <td>Desenvolver novo botão na tela de negociação </td>                                                
-                                                <td><a href="#" class="btn btn-block btn-primary btn-icon-split"><span class="text">Cancelado</span></a> </td>
-                                                <td><a href="#" class="btn btn-info btn-icon-split"><span class="icon text-white-100"><i class="fas fa-plus"></i></span></a></td>
-                                            </tr>
-                                              <tr>
-                                                <td>Desenvolver novo botão na tela de negociação </td>                                                
-                                                <td><a href="#" class="btn btn-block btn-primary btn-icon-split"><span class="text">Cancelado</span></a> </td>
-                                                <td><a href="#" class="btn btn-info btn-icon-split"><span class="icon text-white-100"><i class="fas fa-plus"></i></span></a></td>
-                                            </tr>
-                                            
+                                    <div class="card shadow mb-4"><!-- Card -->
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Configuração inicial</h6>
+                                        </div>
+                                        <div class="card-body">
 
 
+                                            <fieldset>
+                                               <canvas id="canvas"></canvas>
+                                            </fieldset>
 
 
-                                        </tbody>
-                                    </table>
+                                        </div>
+                                    </div><!-- End Card -->
+                                    <!--                                </form>-->
                                 </div>
+
+                                <div class="col-lg-6">
+
+                                    <div class="card shadow mb-4"><!-- Card -->
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Configuração e Estimativa</h6>
+                                        </div>
+                                        <div class="card-body">
+
+
+                                            <fieldset>
+
+                                               <canvas id="canvas2"></canvas>
+                                            </fieldset>
+
+
+
+                                        </div>
+                                    </div><!-- End Card -->
+
+                                </div>
+                                
                             </div>
-                        </div>
+                        </form>
+
+
+
 
                     </div>
-                </div>
-                <!-- /.container-fluid -->
+                    <!-- /.container-fluid -->
 
+                </div>
                 <!-- End of Main Content -->
 
                 <!-- Footer -->
@@ -350,9 +370,6 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-
-
-
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -372,66 +389,6 @@
             </div>
         </div>
 
-       
-
-
-
-
-
-        <!-- Modal Detalhe de ATIVIDADE-->
-        <div class="modal fade" id="modalDetalhe" tabindex="-1" role="dialog" aria-labelledby="modalDetalhe" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modTitulo" >Mais informações sobre o Ticket</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-
-                            <div class="row mb-2">
-                                <div class="col-md-5 col-lg-2 align-self-center  ">
-                                    <span class="h5 font-weight-bold "  >Titulo</span>      
-                                </div>
-                                <div class="col-md-7 col-lg ">
-                                    <span class=" font-weight-bold " id="modTituloAtividade">Criar botão na interface genrenciadora</span>
-
-                                </div>
-                            </div>
-
-                            <div class="row mb-2">
-                                <div class="col-md-5 col-lg-2 align-self-center  ">
-                                    <span class="h5 font-weight-bold " >Descricao</span>      
-                                </div>
-                                <div class="col-md-7 col-lg ">
-                                    <p class=" font-weight-bold " id="modDescricao">Criar botão na interface genrenciadora para ajustar de forma correta o tamanho da linha vertical de uma onda que vem chegando</p>
-
-                                </div>
-                            </div>
-
-                            <div class="row mb-2">
-                                <div class="col-md-5 col-lg-2 align-self-center ">
-                                    <span class="h5 font-weight-bold " >Data da criação</span>      
-                                </div>
-                                <div class="col-sm col-md col-lg">
-                                    <span class="btn btn-warning  btn-block" id="modDataCriacao">20 de Março de 2019</span>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
 
         <!-- Bootstrap core JavaScript-->
@@ -441,87 +398,80 @@
         <!-- Core plugin JavaScript-->
         <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-         <!-- Custom scripts for all pages-->
+        <!-- Custom scripts for all pages-->
         <script src="/js/sb-admin-2.min.js"></script>
-         <!-- Page level plugins -->
+        
+        <script src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+        
         
         <script>
-            var ItemNLista = function () {
-                var i_titulo;
-                var i_descricao;
-                var i_dataCriacao;
-                var i_status;
-                var i_botaonome;
-                this.novo = function (titulo, descricao, dataCriacao, status, botaonome) {
-                    var item = "";
-                    item += "<tr role='row' class='odd'>  ";
-                    item += "   <td class='sorting_1'>" + titulo + " </td>";
-                    item += "   <td><a href='#' class='btn btn-block btn-success btn-icon-split'><span class='text'>" + status + "</span></a> </td>";
-                    item += "   <td><a href='#' id='" + botaonome + "' data-toggle='modal' data-target='#modalDetalhe' class='btn btn-info btn-icon-split'><span class='icon text-white-100'><i class='fas fa-plus'></i></span></a></td>";
-                    item += "</tr>";
-
-                    $("#tabls").html($("#tabls").html() + item);
-                    i_titulo = titulo;
-                    i_descricao = descricao;
-                    i_dataCriacao = dataCriacao;
-                    i_status = status;
-                    i_botaonome = botaonome;
-
-                };
-                this.nomebtn = function () {
-                    return i_botaonome;
-                };
-                this.clickAcao = function () {
-                    event.preventDefault();
-                    $("#modTituloAtividade").text(i_titulo);
-                    $("#modDataCriacao").text(i_dataCriacao);
-                    $("#modDescricao").text(i_descricao);
-                };
-            };
             
-            var ajax = $.ajax({
-                    url: '/form/ticket.list',
-                    type: "post"
-                }).done(function (data) {
-                    var json = JSON.parse(data);                   
-                    
-                var elementos = [];
-                var listaExibe = []; 
-                    for (var i = 1; i < json.length; i++) {
-                    elementos.push(new ItemNLista());
-                }
-                elementos.forEach(function (item, i, array) {
-                    item.novo(json[i].titulo, json[i].descricao, json[i].data, json[i].status, "item" + i);
-                    listaExibe.push(item.nomebtn());
-                });
+            var labelGrafico = ['Sem. 1', 'Sem. 2', 'Sem. 3', 'Sem. 4', 'Sem. 5', 'Sem. 6', 'Sem. 7'];
+            
+            
+            var conjunto1 = [0,10,20,30,50,0,0];
+            
+            
+            var conjunto2 = [100,200,260,280,290,300,310];
+            
+            
+            var conjunto3 = [90,120,240,250,260,280,285];
+            
+            
+            
+            
+            var setData_1 ={label: 'Canceladas', fill: false, backgroundColor: window.chartColors.blue, borderColor: window.chartColors.blue, data: conjunto1};
+            var setData_2 ={label: 'Abertas',fill: false,backgroundColor: window.chartColors.green,borderColor: window.chartColors.green,borderDash: [5, 5],data: conjunto2};   
+            var setData_3 ={label: 'Concluidas',backgroundColor: window.chartColors.red,borderColor: window.chartColors.red,data: conjunto3,fill: true};
+		var config = {
+			type: 'line',
+			data: {
+				labels: labelGrafico,
+				datasets: [setData_1, setData_2,setData_3 ]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Chart.js Line Chart'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Mês ordenado'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}]
+				}
+			}
+		};
 
-                listaExibe.forEach(function (item, i, array) {
-                    $("#" + item).click(function () {
-                        elementos[i].clickAcao();
-                    });
-
-                });
-                    
-                });
-            $(document).ready(function () {
-                $('#dataTable').DataTable();                
-            });
-
-
-
-
-        </script>
-        
-        
-       <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-       <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-        
+		window.onload = function() {
+                    var ctx = document.getElementById('canvas').getContext('2d');
+                        
+			window.myLine = new Chart(ctx, config);
+                        ctx = document.getElementById('canvas2').getContext('2d');
+                        window.myLine = new Chart(ctx, config);
+		};
+	</script>
 
     </body>
 
-
-
-
-
 </html>
-
