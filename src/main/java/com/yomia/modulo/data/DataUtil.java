@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-class DataUtil {
+public class DataUtil {
 
     public static DataDoSistema atual() {
         Calendar c = Calendar.getInstance();

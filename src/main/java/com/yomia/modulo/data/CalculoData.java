@@ -29,7 +29,7 @@ public class CalculoData {
         DataDoSistema saida = calculaDataEntrega(entrada, prazo);
         int totalDeDias = 0;
         totalDeDias = calculaFolga(entrada, prazo, listaDeFeriados);        
-        saida.data().add(Calendar.DATE, totalDeDias);
+        saida.calendario().add(Calendar.DATE, totalDeDias);
         return saida;
     }
 
@@ -79,8 +79,8 @@ public class CalculoData {
         int totalDeDias = calculaQuantidadeDeDiasDadoHora(prazo);
         horas = calculaTempoDeAlmoco(horas);
 
-        entrada.data().add(Calendar.DATE, totalDeDias);
-        entrada.data().add(Calendar.HOUR_OF_DAY, horas);
+        entrada.calendario().add(Calendar.DATE, totalDeDias);
+        entrada.calendario().add(Calendar.HOUR_OF_DAY, horas);
 
         return entrada;
     }

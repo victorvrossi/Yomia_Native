@@ -16,7 +16,6 @@ public final class FeriadosCadastrados {
                 contaFeriadosNoPeriodo++;
             }
         }
-        System.out.println("Andando pela Feriado?:" + contaFeriadosNoPeriodo);
         return contaFeriadosNoPeriodo;
     }
     
@@ -29,8 +28,7 @@ public final class FeriadosCadastrados {
             if (feriado.verificaDataFeriado(diaTemp, mesTemp)) {
                 contaFeriadosNoPeriodo++;
             }
-        }
-        System.out.println("Andando pela Feriado?:" + contaFeriadosNoPeriodo);
+        }        
         return contaFeriadosNoPeriodo;
     }
 

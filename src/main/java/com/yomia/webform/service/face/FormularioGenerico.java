@@ -1,5 +1,7 @@
 package com.yomia.webform.service.face;
 
+import com.yomia.modulo.falhas.FalhaAoExecutarAcaoParaRequisicaoDoFormulario;
+import com.yomia.modulo.falhas.FalhaHTTPRequestEstaNulo;
 import com.yomia.webform.ExecutaAcaoParaRequisicaoDoFormulario;
 import java.io.IOException;
 import java.util.logging.Level;
