@@ -7,10 +7,6 @@ package com.yomia.modulo.data;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,7 +17,7 @@ public class DataDoSistemaTest {
         DataDoSistema expResult =  DataUtil.dataManual(2019, EnumDataMes.MAIO, 10);
         Calendar c = new GregorianCalendar(2019, EnumDataMes.MAIO.valorMes, 10);
         DataDoSistema result = DataDoSistema.novaData(c);
-        assertEquals(expResult.data(), result.data());
+        assertEquals(expResult.calendario(), result.calendario());
     }
     @Test
     public void testFimDeSemana_Sabado() {

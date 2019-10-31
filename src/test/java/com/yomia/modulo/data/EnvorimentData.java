@@ -1,6 +1,8 @@
 
 package com.yomia.modulo.data;
 
+import org.junit.experimental.categories.Category;
+
 public class EnvorimentData {
     
     private int tempoEstimadoProjeto = new Modelo().tempoEstimadoProjeto;

@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -39,13 +41,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TbAtividade.findByCodigoAtividade", query = "SELECT t FROM TbAtividade t WHERE t.codigoAtividade = :codigoAtividade")})
 public class TbAtividade implements BaseEntidade {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAtividade")
-    private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
-
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -70,10 +69,11 @@ public class TbAtividade implements BaseEntidade {
     @JoinColumn(name = "id_projeto", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TbProjeto idProjeto;
-    
     @JoinColumn(name = "id_tipo_atividade", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TbTipoAtividade idTipoAtividade;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAtividade")
+    private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
 
     public TbAtividade() {
     }
@@ -145,6 +145,15 @@ public class TbAtividade implements BaseEntidade {
         this.idTipoAtividade = idTipoAtividade;
     }
 
+    @XmlTransient
+    public List<TbHistoricoStatusAtv> getTbHistoricoStatusAtvList() {
+        return tbHistoricoStatusAtvList;
+    }
+
+    public void setTbHistoricoStatusAtvList(List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList) {
+        this.tbHistoricoStatusAtvList = tbHistoricoStatusAtvList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -168,15 +177,6 @@ public class TbAtividade implements BaseEntidade {
     @Override
     public String toString() {
         return "com.yomia.jpa.entidade.TbAtividade[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public List<TbHistoricoStatusAtv> getTbHistoricoStatusAtvList() {
-        return tbHistoricoStatusAtvList;
-    }
-
-    public void setTbHistoricoStatusAtvList(List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList) {
-        this.tbHistoricoStatusAtvList = tbHistoricoStatusAtvList;
     }
     
 }

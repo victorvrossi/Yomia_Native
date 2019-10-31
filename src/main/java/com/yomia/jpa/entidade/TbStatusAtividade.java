@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,13 +37,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TbStatusAtividade.findByTitulo", query = "SELECT t FROM TbStatusAtividade t WHERE t.titulo = :titulo")})
 public class TbStatusAtividade implements BaseEntidade {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
-    private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
-
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -50,7 +49,7 @@ public class TbStatusAtividade implements BaseEntidade {
     @Column(name = "titulo")
     private String titulo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
-    private List<TbAtividade> tbAtividadeList;
+    private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
 
     public TbStatusAtividade() {
     }
@@ -81,12 +80,12 @@ public class TbStatusAtividade implements BaseEntidade {
     }
 
     @XmlTransient
-    public List<TbAtividade> getTbAtividadeList() {
-        return tbAtividadeList;
+    public List<TbHistoricoStatusAtv> getTbHistoricoStatusAtvList() {
+        return tbHistoricoStatusAtvList;
     }
 
-    public void setTbAtividadeList(List<TbAtividade> tbAtividadeList) {
-        this.tbAtividadeList = tbAtividadeList;
+    public void setTbHistoricoStatusAtvList(List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList) {
+        this.tbHistoricoStatusAtvList = tbHistoricoStatusAtvList;
     }
 
     @Override
@@ -112,15 +111,6 @@ public class TbStatusAtividade implements BaseEntidade {
     @Override
     public String toString() {
         return "com.yomia.jpa.entidade.TbStatusAtividade[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public List<TbHistoricoStatusAtv> getTbHistoricoStatusAtvList() {
-        return tbHistoricoStatusAtvList;
-    }
-
-    public void setTbHistoricoStatusAtvList(List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList) {
-        this.tbHistoricoStatusAtvList = tbHistoricoStatusAtvList;
     }
     
 }

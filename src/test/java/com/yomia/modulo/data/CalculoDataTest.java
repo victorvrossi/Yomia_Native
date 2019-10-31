@@ -1,11 +1,8 @@
 package com.yomia.modulo.data;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class CalculoDataTest {
 
@@ -38,49 +35,49 @@ public class CalculoDataTest {
     public void testDataDeEntregaDoisDias() {
 
         DataDoSistema saida = calculaEntrega(8, 16);
-        assertEquals("2019-05-12 08:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+        assertEquals("2019-05-12 08:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.calendario().getTime()));
     }
 
     @Test
     public void testDataDeEntregaDoisDiasQuatroHoras() {
         DataDoSistema saida = calculaEntrega(8, 20);
-        assertEquals("2019-05-12 12:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+        assertEquals("2019-05-12 12:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.calendario().getTime()));
 
     }
 
     @Test
     public void testDataDeEntregaDadoConfiguracaoDoisDiasAntesExpediente() {
         DataDoSistema saida = calculaEntrega(7, 16);
-        assertEquals("2019-05-12 08:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+        assertEquals("2019-05-12 08:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.calendario().getTime()));
     }
 
     @Test
     public void testDataDeEntregaDadoConfiguracaoDoisDiasDepoisExpediente() {
         DataDoSistema saida = calculaEntrega(19, 16);
-        assertEquals("2019-05-13 08:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+        assertEquals("2019-05-13 08:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.calendario().getTime()));
     }
 
     @Test
     public void testDataDeEntregaDadoConfiguracao() {
         DataDoSistema saida = calculaEntrega(19, 20);
-        assertEquals("2019-05-13 12:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+        assertEquals("2019-05-13 12:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.calendario().getTime()));
     }
 
     @Test
     public void testDataDeEntregaDadoConfiguracaoComAlmoco() {
         DataDoSistema saida = calculaEntrega(19, 21,true);
-        assertEquals("2019-05-13 15:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+        assertEquals("2019-05-13 15:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.calendario().getTime()));
     }
      @Test
     public void testDataDeEntregaDadoConfiguracaoComFolga() {
         DataDoSistema saida = calculaEntregaConsiderandoFolga(8, 21);
-        assertEquals("2019-08-14 15:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+        assertEquals("2019-08-14 15:25", DataUtil.formatarDataYYYYMMDDHHMI(saida.calendario().getTime()));
     }
 
     @Test
     public void testDataDeEntregaDadoConfiguracaoSemAlmoco() {
         DataDoSistema saida = calculaEntrega(19, 21,false);
-        assertEquals("2019-05-13 13:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.data().getTime()));
+        assertEquals("2019-05-13 13:00", DataUtil.formatarDataYYYYMMDDHHMI(saida.calendario().getTime()));
     }
 
     static DataDoSistema calculaEntrega(int horaEntrada, int limite,boolean temAlmoco) {

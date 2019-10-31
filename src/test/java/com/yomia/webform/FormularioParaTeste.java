@@ -1,19 +1,16 @@
 package com.yomia.webform;
 
 import com.yomia.envoriment.Enviroment;
+import com.yomia.envoriment.ObjetoTeste;
 import com.yomia.webform.service.face.FormularioGenerico;
-import com.yomia.webform.formularios.*;
-import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.junit.Assert;
-import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 
 public class FormularioParaTeste extends FormularioGenerico {
 
-    Enviroment.ObjetoTeste teste;
+    ObjetoTeste teste;
 
-    FormularioParaTeste(Enviroment.ObjetoTeste teste) {
+    FormularioParaTeste(ObjetoTeste teste) {
         this.teste = teste;
     }
 
