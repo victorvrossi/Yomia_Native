@@ -17,7 +17,9 @@ import javax.persistence.Query;
 public class DaoAtividade extends DaoGenerico<TbAtividade> {
 
     public void novaAtividade( String titulo,String codigoAtividade,
-            String descricao, TbProjeto projeto){
+            String descricao,String tipo, TbProjeto projeto){
+        
+        new DaoTipoAtividade().carregaTipoAtividade();
         TbAtividade nova = new TbAtividade();
         
         nova.setTitulo(titulo);

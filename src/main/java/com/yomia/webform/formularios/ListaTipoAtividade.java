@@ -22,7 +22,7 @@ public class ListaTipoAtividade extends FormularioGenerico{
             out.println(new TipoAtividade().carregaLista(response));
             System.out.println("Passei pelo out");
         } catch (IOException ex) {
-            Logger.getLogger(FormularioParaAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListaTipoAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

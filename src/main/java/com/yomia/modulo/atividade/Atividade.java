@@ -3,16 +3,9 @@ package com.yomia.modulo.atividade;
 import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbProjeto;
-import com.yomia.webform.formularios.AcaoFormulario;
-import com.yomia.webform.formularios.FormularioParaAtividade;
 import com.yomia.webform.json.JsonAtividade;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Atividade {
@@ -72,7 +65,7 @@ public class Atividade {
 
     }
 
-    public void cadastrarNovaAtividade(String titulo,String descricao ) {
-        new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao, new TbProjeto(1));
+    public void cadastrarNovaAtividade(String titulo,String descricao,String tipo ) {
+        new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao,tipo, new TbProjeto(1));
     }
 }
