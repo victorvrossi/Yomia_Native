@@ -2,7 +2,7 @@ package com.yomia.jpa.controler;
 
 public enum Persistencia {
     YOMIA_TEST("test_yomia"),
-    YOMIA_PERSISTENCE("persistence_yomia");
+    YOMIA_PERSISTENCE("producao_yomia");
     private String nome;
 
     public String getNome() {

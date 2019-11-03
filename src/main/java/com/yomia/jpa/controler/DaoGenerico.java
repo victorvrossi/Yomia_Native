@@ -14,7 +14,7 @@ import javax.persistence.Persistence;
  */
 public class DaoGenerico<T extends BaseEntidade> {
 
-    Persistencia conexao = Persistencia.YOMIA_TEST;
+    Persistencia conexao = Persistencia.YOMIA_PERSISTENCE;
 
     public void setConexao(Persistencia conexao) {
         this.conexao = conexao;
@@ -26,17 +26,6 @@ public class DaoGenerico<T extends BaseEntidade> {
         return factory.createEntityManager();
     }
 
-    /**
-     * Ação Salvar.
-     * <br>
-     * O Objeto quando efetuar a ação salvar, será feita uma verificação para
-     * saber se o objeto existe, caso exista será feita Update, caso não exista
-     * será feito o Insert.
-     *
-     * @param obj Objeto a ser adicionado ou atualizado
-     * @return Objeto resultante da operação
-     * @throws Exception Caso exista problemas de conexção com o banco de dados.
-     */
     public T salvar(T obj) throws Exception {
 
         EntityManager manager = getEntityManager();

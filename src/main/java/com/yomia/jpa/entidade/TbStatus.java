@@ -29,14 +29,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Victor
  */
 @Entity
-@Table(name = "tb_projeto")
+@Table(name = "tb_status")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TbProjeto.findAll", query = "SELECT t FROM TbProjeto t"),
-    @NamedQuery(name = "TbProjeto.findById", query = "SELECT t FROM TbProjeto t WHERE t.id = :id"),
-    @NamedQuery(name = "TbProjeto.findByTitulo", query = "SELECT t FROM TbProjeto t WHERE t.titulo = :titulo"),
-    @NamedQuery(name = "TbProjeto.findBySigla", query = "SELECT t FROM TbProjeto t WHERE t.sigla = :sigla")})
-public class TbProjeto implements BaseEntidade {
+    @NamedQuery(name = "TbStatus.findAll", query = "SELECT t FROM TbStatus t"),
+    @NamedQuery(name = "TbStatus.findById", query = "SELECT t FROM TbStatus t WHERE t.id = :id"),
+    @NamedQuery(name = "TbStatus.findByTitulo", query = "SELECT t FROM TbStatus t WHERE t.titulo = :titulo")})
+public class TbStatus implements BaseEntidade {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,28 +45,24 @@ public class TbProjeto implements BaseEntidade {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
+    @Size(min = 1, max = 50)
     @Column(name = "titulo")
     private String titulo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "sigla")
-    private String sigla;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProjeto")
-    private List<TbAtividade> tbAtividadeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    private List<TbStatusAtividade> tbStatusAtividadeList;
 
-    public TbProjeto() {
+    public TbStatus() {
     }
 
-    public TbProjeto(Integer id) {
+    public TbStatus(Integer id) {
         this.id = id;
     }
 
-    public TbProjeto(Integer id, String titulo, String sigla) {
+    public TbStatus(Integer id, String titulo) {
         this.id = id;
         this.titulo = titulo;
-        this.sigla = sigla;
     }
 
     public Integer getId() {
@@ -86,21 +81,22 @@ public class TbProjeto implements BaseEntidade {
         this.titulo = titulo;
     }
 
-    public String getSigla() {
-        return sigla;
+    @XmlTransient
+    public List<TbHistoricoStatusAtv> getTbHistoricoStatusAtvList() {
+        return tbHistoricoStatusAtvList;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public void setTbHistoricoStatusAtvList(List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList) {
+        this.tbHistoricoStatusAtvList = tbHistoricoStatusAtvList;
     }
 
     @XmlTransient
-    public List<TbAtividade> getTbAtividadeList() {
-        return tbAtividadeList;
+    public List<TbStatusAtividade> getTbStatusAtividadeList() {
+        return tbStatusAtividadeList;
     }
 
-    public void setTbAtividadeList(List<TbAtividade> tbAtividadeList) {
-        this.tbAtividadeList = tbAtividadeList;
+    public void setTbStatusAtividadeList(List<TbStatusAtividade> tbStatusAtividadeList) {
+        this.tbStatusAtividadeList = tbStatusAtividadeList;
     }
 
     @Override
@@ -113,10 +109,10 @@ public class TbProjeto implements BaseEntidade {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TbProjeto)) {
+        if (!(object instanceof TbStatus)) {
             return false;
         }
-        TbProjeto other = (TbProjeto) object;
+        TbStatus other = (TbStatus) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -125,7 +121,7 @@ public class TbProjeto implements BaseEntidade {
 
     @Override
     public String toString() {
-        return "com.yomia.jpa.entidade.TbProjeto[ id=" + id + " ]";
+        return "com.yomia.jpa.entidade.TbStatus[ id=" + id + " ]";
     }
     
 }

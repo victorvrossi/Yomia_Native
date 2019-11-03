@@ -53,7 +53,7 @@ public class TbHistoricoStatusAtv implements BaseEntidade {
     private TbAtividade idAtividade;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private TbStatusAtividade idStatus;
+    private TbStatus idStatus;
 
     public TbHistoricoStatusAtv() {
     }
@@ -91,11 +91,11 @@ public class TbHistoricoStatusAtv implements BaseEntidade {
         this.idAtividade = idAtividade;
     }
 
-    public TbStatusAtividade getIdStatus() {
+    public TbStatus getIdStatus() {
         return idStatus;
     }
 
-    public void setIdStatus(TbStatusAtividade idStatus) {
+    public void setIdStatus(TbStatus idStatus) {
         this.idStatus = idStatus;
     }
 

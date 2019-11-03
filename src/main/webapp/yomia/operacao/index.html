@@ -469,7 +469,7 @@
                     item += "<td>"+ titulo + " </td>";
                     item += "<td>"+ cod_atividade + " </td>";
                     item += "<td><a href='#' class='btn btn-block btn-success btn-icon-split'><span class='text'>"+status+"</span></a> </td>";
-                    item += "<td><a href='#' class='btn btn-primary btn-icon-split'>";
+                    item += "<td><a href='#' class='btn  btn-primary btn-icon-split'>";
                     item += "<span class='icon text-white-50'><i class='fas fa-flag'></i></span>";
                     item += "<span class='text'>"+tipo+"</span>";
                     item += "</a></td>";
@@ -500,7 +500,6 @@
                 url: '/form/atividade.form.lista',
                 type: "post"
             }).done(function (data) {
-                //alert(data);
                 if(data == null || data == ""){
                     alert("Data NULL");
                     return;
@@ -514,7 +513,7 @@
                     elementos.push(new ItemNLista());
                 }
                 elementos.forEach(function (item, i, array) {
-                    item.novo(json[i].codigoAtividade,json[i].titulo, json[i].descricao, "hoje", json[i].status,json[i].tipo, "item" + i);
+                    item.novo(json[i].codigoAtividade,json[i].titulo, json[i].descricao, json[i].dataCriacao, json[i].status,json[i].tipo, "item" + i);
                     listaExibe.push(item.nomebtn());
                 });
 

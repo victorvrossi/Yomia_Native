@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.modulo.atividade.Atividade;
+import com.yomia.modulo.data.DataUtil;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +17,15 @@ public class JsonAtividade {
         nv.codigoAtividade = atividade.getCodigoAtividade();
         nv.descricao = atividade.getDescricao();
         nv.tipo = atividade.getTipo();
+        nv.status = atividade.getStatus();
+        
+        nv.dataCriacao = DataUtil.formatarData(atividade.getDataCriacao(),"HH:mm dd/MM/yyyy");
         return nv;
     }
     public String formarJsonComLista(ArrayList<JsonAtividade> user){
         Gson gson = new Gson();
         Type listType = new TypeToken<List<JsonAtividade>>() {}.getType();
         String userJSONString = gson.toJson(user,listType);
-        System.out.println("JSON:"+userJSONString);
         return userJSONString;
     }
     String codigoAtividade;
@@ -30,6 +33,7 @@ public class JsonAtividade {
     String descricao;
     String status = "aberto";
     String tipo ;
+    String dataCriacao = "";
 
     public String getCodigoAtividade() {
         return codigoAtividade;

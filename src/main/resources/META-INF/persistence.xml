@@ -11,6 +11,24 @@
     <class>com.yomia.jpa.entidade.TbHistoricoStatusAtv</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/yomiateste?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="producao_yomia" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.yomia.jpa.entidade.EntidadeAtividade</class>
+    <class>com.yomia.jpa.entidade.TbAtividade</class>
+    <class>com.yomia.jpa.entidade.TbFunci
+        onario</class>
+    <class>com.yomia.jpa.entidade.TbStatusAtividade</class>
+    <class>com.yomia.jpa.entidade.TbProjeto</class>
+    <class>com.yomia.jpa.entidade.TbTipoAtividade</class>
+    <class>com.yomia.jpa.entidade.TbHistoricoStatusAtv</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/yomia?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
