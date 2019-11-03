@@ -6,7 +6,9 @@ import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbHistoricoStatusAtv;
 import com.yomia.jpa.entidade.TbProjeto;
+import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.modulo.data.DataUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,9 +31,11 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
         nova.setIdProjeto(projeto);
         nova.setIdResponsavel(new TbFuncionario(1));
         nova.setIdTipoAtividade(new TbTipoAtividade(1));
+        nova.setDataCriacao(DataUtil.atual().data());
         
         List<TbHistoricoStatusAtv> semHistorico = new ArrayList<>();
         nova.setTbHistoricoStatusAtvList(semHistorico);
+        
         
         try {
             salvar(nova);

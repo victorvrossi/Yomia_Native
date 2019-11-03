@@ -5,11 +5,14 @@
  */
 package com.yomia.modulo.data;
 
+import com.yomia.envoriment.Unitario;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.experimental.categories.Category;
 
+@Category(Unitario.class)
 public class DataDoSistemaTest {
     
     @Test

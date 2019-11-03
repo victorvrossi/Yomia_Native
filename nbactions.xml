@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-teste de Banco</actionName>
+            <displayName>teste de Banco</displayName>
+            <goals>
+                <goal>test</goal>
+                <goal>-Dgroups="junit.conf.TesteBancoDeDados"</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-Teste Unitario</actionName>
+            <displayName>Teste Unitario</displayName>
+            <goals>
+                <goal>-Dgroups="junit.conf.TesteUnitario"</goal>
+            </goals>
+        </action>
+    </actions>

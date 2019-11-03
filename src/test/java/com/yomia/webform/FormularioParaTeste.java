@@ -2,10 +2,13 @@ package com.yomia.webform;
 
 import com.yomia.envoriment.Enviroment;
 import com.yomia.envoriment.ObjetoTeste;
+import com.yomia.envoriment.Unitario;
 import com.yomia.webform.service.face.FormularioGenerico;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.junit.experimental.categories.Category;
 
+@Category(Unitario.class)
 public class FormularioParaTeste extends FormularioGenerico {
 
     ObjetoTeste teste;
