@@ -1,5 +1,6 @@
 package com.yomia.modulo.data;
 
+import com.yomia.envoriment.Unitario;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -7,6 +8,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.experimental.categories.Category;
+
+@Category(Unitario.class)
 public class FeriadoTest {
 
     int tempoEstimadoProjeto = EnvorimentData.tempoEstimado();

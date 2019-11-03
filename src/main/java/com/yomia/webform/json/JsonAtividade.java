@@ -19,7 +19,7 @@ public class JsonAtividade {
         nv.tipo = atividade.getTipo();
         nv.status = atividade.getStatus();
         
-        nv.dataCriacao = DataUtil.formatarData(atividade.getDataCriacao(),"HH:mm dd/MM/yyyy");
+        nv.dataCriacao = DataUtil.formatarData(atividade.getDataCriacao());
         return nv;
     }
     public String formarJsonComLista(ArrayList<JsonAtividade> user){

@@ -1,9 +1,11 @@
 package com.yomia.modulo.data;
 
+import com.yomia.envoriment.Unitario;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
+@Category(Unitario.class)
 public class CalculoDataTest {
 
     int tempoEstimadoProjeto = EnvorimentData.tempoEstimado();
