@@ -6,6 +6,7 @@ import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbHistoricoStatusAtv;
 import com.yomia.jpa.entidade.TbProjeto;
+import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.modulo.data.DataUtil;
@@ -36,6 +37,8 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
         List<TbHistoricoStatusAtv> semHistorico = new ArrayList<>();
         nova.setTbHistoricoStatusAtvList(semHistorico);
         
+        TbStatusAtividade novoStatus = new DaoStatusAtividade().novoStatus(nova,new TbStatus(1));
+        nova.setTbStatusAtividade(novoStatus);
         
         try {
             salvar(nova);
@@ -53,5 +56,6 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
         }
         
     }
+
     
 }

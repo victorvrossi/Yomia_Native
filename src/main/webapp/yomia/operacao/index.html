@@ -303,7 +303,7 @@
                                                 </thead>
 
                                                 <tbody id="tabls">
-                                                   
+
 
 
 
@@ -386,8 +386,8 @@
                 </div>
             </div>
         </div>
-        
-         <!-- Modal Detalhe de ATIVIDADE-->
+
+        <!-- Modal Detalhe de ATIVIDADE-->
         <div class="modal fade" id="modalDetalhe" tabindex="-1" role="dialog" aria-labelledby="modalDetalhe" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
@@ -402,7 +402,7 @@
 
                             <div class="row mb-2">
                                 <div class="col-md-5 col-lg-2 align-self-center  ">
-                                    <span class="h5 font-weight-bold "  >Titulo</span>      
+                                    <span class="h5 font-weight-bold "  >Atividade: </span>      
                                 </div>
                                 <div class="col-md-7 col-lg ">
                                     <span class=" font-weight-bold " id="modTituloAtividade">Criar botão na interface genrenciadora</span>
@@ -412,10 +412,23 @@
 
                             <div class="row mb-2">
                                 <div class="col-md-5 col-lg-2 align-self-center  ">
-                                    <span class="h5 font-weight-bold " >Descricao</span>      
+                                    <span class="h5 font-weight-bold " >Descrição</span>      
                                 </div>
                                 <div class="col-md-7 col-lg ">
                                     <p class=" font-weight-bold " id="modDescricao">Criar botão na interface genrenciadora para ajustar de forma correta o tamanho da linha vertical de uma onda que vem chegando</p>
+
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-5 col-lg-2 align-self-center ">
+                                    <span class="h5 font-weight-bold " >Status da Atividade</span>      
+                                </div>
+                                <div class="col-sm col-md col-lg">
+                                    <span class="btn btn-primary  btn-block" id="modStatus">20 de Março de 2019</span>
+
+                                </div>
+                                <div class="col-sm col-md col-lg">
+                                    <span class="btn btn-info  btn-block" id="modavancastatus"><i class='fas fa-plus'></i> Avançar Status</span>
 
                                 </div>
                             </div>
@@ -429,7 +442,7 @@
 
                                 </div>
                             </div>
-                            
+
                         </div>
 
 
@@ -463,15 +476,16 @@
                 var i_status;
                 var i_tipo;
                 var i_botaonome;
-                this.novo = function (cod_atividade,titulo, descricao, dataCriacao, status,tipo, botaonome) {
+                var i_cod_atividade;
+                this.novo = function (cod_atividade, titulo, descricao, dataCriacao, status, tipo, botaonome) {
                     var item = "";
                     item += "<tr role='row' class='odd'>  ";
-                    item += "<td>"+ titulo + " </td>";
-                    item += "<td>"+ cod_atividade + " </td>";
-                    item += "<td><a href='#' class='btn btn-block btn-success btn-icon-split'><span class='text'>"+status+"</span></a> </td>";
+                    item += "<td>" + titulo + " </td>";
+                    item += "<td>" + cod_atividade + " </td>";
+                    item += "<td><a href='#' class='btn btn-block btn-success btn-icon-split'><span class='text'>" + status + "</span></a> </td>";
                     item += "<td><a href='#' class='btn  btn-primary btn-icon-split'>";
                     item += "<span class='icon text-white-50'><i class='fas fa-flag'></i></span>";
-                    item += "<span class='text'>"+tipo+"</span>";
+                    item += "<span class='text'>" + tipo + "</span>";
                     item += "</a></td>";
                     item += "<td><a href='#' id='" + botaonome + "' data-toggle='modal' data-target='#modalDetalhe' class='btn btn-info btn-icon-split'><span class='icon text-white-100'><i class='fas fa-plus'></i></span></a></td>";
                     item += "</tr>";
@@ -481,18 +495,32 @@
                     i_descricao = descricao;
                     i_dataCriacao = dataCriacao;
                     i_status = status;
-                    i_tipo=tipo;
+                    i_tipo = tipo;
                     i_botaonome = botaonome;
+                    i_cod_atividade = cod_atividade;
 
                 };
                 this.nomebtn = function () {
                     return i_botaonome;
                 };
-                this.clickAcao = function () {
+                this.clickAcao = function (evento) {
+                    console.log("ClikAcao:"+i_botaonome);
                     event.preventDefault();
-                    $("#modTituloAtividade").text(i_titulo);
+                    $("#modTituloAtividade").text(i_cod_atividade + " " + i_titulo);
                     $("#modDataCriacao").text(i_dataCriacao);
                     $("#modDescricao").text(i_descricao);
+                    $("#modStatus").text(i_status);
+                    $("#modavancastatus").click(function () {
+                        console.log("ClikAcao:"+i_botaonome);
+                        alert(i_cod_atividade);
+                        $.ajax({
+                            url: '/form/atividade.avanca.status',
+                            type: "post",
+                            data: {atividade: i_cod_atividade}
+                        }).done(function (data) {
+
+                        });
+                    });
                 };
             };
 
@@ -500,12 +528,13 @@
                 url: '/form/atividade.form.lista',
                 type: "post"
             }).done(function (data) {
-                if(data == null || data == ""){
+                
+                if (data == null || data == "") {
                     alert("Data NULL");
                     return;
                 }
                 var json = JSON.parse(data);
-                
+
 
                 var elementos = [];
                 var listaExibe = [];
@@ -513,13 +542,15 @@
                     elementos.push(new ItemNLista());
                 }
                 elementos.forEach(function (item, i, array) {
-                    item.novo(json[i].codigoAtividade,json[i].titulo, json[i].descricao, json[i].dataCriacao, json[i].status,json[i].tipo, "item" + i);
+                    item.novo(json[i].codigoAtividade, json[i].titulo, json[i].descricao, json[i].dataCriacao, json[i].status, json[i].tipo, "item" + i);
                     listaExibe.push(item.nomebtn());
                 });
 
                 listaExibe.forEach(function (item, i, array) {
+                    console.log("botao:"+item);
                     $("#" + item).click(function () {
-                        elementos[i].clickAcao();
+                        console.log("Clik:"+item);
+                        elementos[i].clickAcao(item);
                     });
 
                 });

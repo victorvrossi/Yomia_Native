@@ -19,4 +19,19 @@ public class DaoStatus extends DaoGenerico<TbStatus> {
         }
     }
     
+    public TbStatus pesquisaPorTitulo(String titulo){
+        EntityManager manager = getEntityManager();
+        try {
+             Query createNamedQuery = manager.createNamedQuery("TbStatus.findByTitulo");
+             manager.setProperty("", titulo);
+            List<TbStatus> resultList = createNamedQuery.getResultList();
+            if(resultList == null || resultList.size()!= 1){
+                throw new NullPointerException("Falha ao carregar apenas um status");
+            }
+            return resultList.get(0);
+        } finally {
+            manager.close();
+        }
+    }
+    
 }

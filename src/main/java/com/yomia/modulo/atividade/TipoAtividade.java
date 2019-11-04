@@ -1,10 +1,7 @@
 package com.yomia.modulo.atividade;
 
-import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.jpa.dao.DaoTipoAtividade;
-import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
-import com.yomia.webform.json.JsonAtividade;
 import com.yomia.webform.json.JsonResponse;
 import com.yomia.webform.json.JsonTipoAtividade;
 import java.util.ArrayList;

@@ -22,6 +22,7 @@ public class FormularioAtividade extends FormularioGenerico {
     @Override
     public void processaRequest(final HttpServletRequest request) {
         acaoCadastroRequest(request);
+        avancaStatus(request);
     }
 
     @Override
@@ -61,6 +62,26 @@ public class FormularioAtividade extends FormularioGenerico {
         } catch (IOException ex) {
             Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void avancaStatus(HttpServletRequest request) {
+        if (!AcaoFormulario.AVANCAR_STATUS.equals(acao)) {
+            return;
+        }
+        AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
+            @Override
+            public void executarAcao(HttpServletRequest request) {
+                try {
+                    final String titulo = request.getParameter("atividade");
+                    System.out.println("Avanca Status atividade:"+titulo);
+                } catch (Exception ex) {
+                    Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        };
+        processaRequest(request, formObjeto);
+        
     }
 
 }
