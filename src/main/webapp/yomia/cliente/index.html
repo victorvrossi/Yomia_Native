@@ -483,6 +483,10 @@
                     url: '/form/ticket.list',
                     type: "post"
                 }).done(function (data) {
+                    
+                    if(data == null || data == ''){
+                        return;
+                    }
                     var json = JSON.parse(data);                   
                     
                 var elementos = [];

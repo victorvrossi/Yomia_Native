@@ -72,7 +72,9 @@ public class FormularioAtividade extends FormularioGenerico {
             @Override
             public void executarAcao(HttpServletRequest request) {
                 try {
-                    final String titulo = request.getParameter("atividade");
+                    String titulo = request.getParameter("atividade");
+                    System.out.println("Avanca Status atividade:"+titulo);
+                    titulo = request.getParameter("tvt");
                     System.out.println("Avanca Status atividade:"+titulo);
                 } catch (Exception ex) {
                     Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);

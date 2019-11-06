@@ -469,15 +469,26 @@
 
 
         <script>
-            var ItemNLista = function () {
-                var i_titulo;
-                var i_descricao;
-                var i_dataCriacao;
-                var i_status;
-                var i_tipo;
-                var i_botaonome;
-                var i_cod_atividade;
-                this.novo = function (cod_atividade, titulo, descricao, dataCriacao, status, tipo, botaonome) {
+
+
+
+            class AvancaStatus{
+                constructor(atividade){
+                    this.ativ = atividade;
+                }
+                envia(){
+                     $.ajax({
+                            url: '/form/atividade.avanca.status',
+                            type: "post",
+                            data: {tvt: this.ativ}
+                        });
+                }
+                
+            }
+
+            class listaItem {
+
+                novo(cod_atividade, titulo, descricao, dataCriacao, status, tipo, botaonome) {
                     var item = "";
                     item += "<tr role='row' class='odd'>  ";
                     item += "<td>" + titulo + " </td>";
@@ -491,44 +502,38 @@
                     item += "</tr>";
 
                     $("#tabls").html($("#tabls").html() + item);
-                    i_titulo = titulo;
-                    i_descricao = descricao;
-                    i_dataCriacao = dataCriacao;
-                    i_status = status;
-                    i_tipo = tipo;
-                    i_botaonome = botaonome;
-                    i_cod_atividade = cod_atividade;
+                    this.i_titulo = titulo;
+                    this.i_descricao = descricao;
+                    this.i_dataCriacao = dataCriacao;
+                    this.i_status = status;
+                    this.i_tipo = tipo;
+                    this.i_botaonome = botaonome;
+                    this.i_cod_atividade = cod_atividade;
+                }
+                get nomeBotao() {
+                    return this.i_botaonome;
+                }
 
-                };
-                this.nomebtn = function () {
-                    return i_botaonome;
-                };
-                this.clickAcao = function (evento) {
-                    console.log("ClikAcao:"+i_botaonome);
-                    event.preventDefault();
-                    $("#modTituloAtividade").text(i_cod_atividade + " " + i_titulo);
-                    $("#modDataCriacao").text(i_dataCriacao);
-                    $("#modDescricao").text(i_descricao);
-                    $("#modStatus").text(i_status);
-                    $("#modavancastatus").click(function () {
-                        console.log("ClikAcao:"+i_botaonome);
-                        alert(i_cod_atividade);
-                        $.ajax({
-                            url: '/form/atividade.avanca.status',
-                            type: "post",
-                            data: {atividade: i_cod_atividade}
-                        }).done(function (data) {
+                acao() {
+                    $("#modTituloAtividade").text(this.i_cod_atividade + " " + this.i_titulo);
+                    $("#modDataCriacao").text(this.i_dataCriacao);
+                    $("#modDescricao").text(this.i_descricao);
+                    $("#modStatus").text(this._status);
 
-                        });
+                    var enviaAcao = new AvancaStatus(this.i_botaonome);
+                    $("#modavancastatus").click(function(){
+                        enviaAcao.envia();
                     });
-                };
-            };
+                           
+                }
+
+            }
 
             var ajax = $.ajax({
                 url: '/form/atividade.form.lista',
                 type: "post"
             }).done(function (data) {
-                
+
                 if (data == null || data == "") {
                     alert("Data NULL");
                     return;
@@ -539,18 +544,19 @@
                 var elementos = [];
                 var listaExibe = [];
                 for (var i = 1; i <= json.length; i++) {
-                    elementos.push(new ItemNLista());
+                    elementos.push(new listaItem());
                 }
                 elementos.forEach(function (item, i, array) {
                     item.novo(json[i].codigoAtividade, json[i].titulo, json[i].descricao, json[i].dataCriacao, json[i].status, json[i].tipo, "item" + i);
-                    listaExibe.push(item.nomebtn());
+                    listaExibe.push(item.nomeBotao);
                 });
 
                 listaExibe.forEach(function (item, i, array) {
-                    console.log("botao:"+item);
-                    $("#" + item).click(function () {
-                        console.log("Clik:"+item);
-                        elementos[i].clickAcao(item);
+                    console.log("botao:" + item);
+                    $("#" + item).click(function (event) {
+                        event.preventDefault();
+                        console.log("Clik:" + item);
+                        elementos[i].acao(item);
                     });
 
                 });
