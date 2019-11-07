@@ -1,16 +1,14 @@
 package com.yomia.modulo.atividade;
 
+import com.yomia.webform.json.CarregaListaJson;
+import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatusAtividade;
-import com.yomia.webform.json.JsonAtividade;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.servlet.http.HttpServletResponse;
 
-public class Atividade {
+public class Atividade extends Entidade {
 
     String titulo;
     String descricao;
@@ -54,20 +52,18 @@ public class Atividade {
         return status;
     }
 
-    public String listaAtividade(HttpServletResponse response) {
-        ArrayList<JsonAtividade> listaDeAtividadeJson = new ArrayList<>();
-        DaoAtividade daoAtividade = new DaoAtividade();
-        List<TbAtividade> atividadesCarregadasBancoDeDados = daoAtividade.carregarTodasAtividades();
-        System.out.println("Lista atividade:" + atividadesCarregadasBancoDeDados.toString());
-        for (TbAtividade atividade : atividadesCarregadasBancoDeDados) {
-            Atividade atv = new Atividade().converteTabelaParaObjeto(atividade);
-            listaDeAtividadeJson.add(JsonAtividade.converte(atv));
-        }
-        return new JsonAtividade().formarJsonComLista(listaDeAtividadeJson);
+    public String listaAtividade() {
+        return new CarregaListaJson().listaTodosElementoEmJson(new DaoAtividade());
 
     }
 
-    public Atividade converteTabelaParaObjeto(TbAtividade tb) {
+    public void cadastrarNovaAtividade(String titulo, String descricao, String tipo) {
+        new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao, tipo, new TbProjeto(1));
+    }
+
+    @Override
+    public Atividade converteTabelaParaObjeto(BaseEntidade bt) {
+        TbAtividade tb = (TbAtividade) bt;
         titulo = tb.getTitulo();
         descricao = tb.getDescricao();
         codigoAtividade = tb.getCodigoAtividade();
@@ -76,8 +72,11 @@ public class Atividade {
 
         TbStatusAtividade statusAtividade = tb.getTbStatusAtividade();
 
-        if (statusAtividade != null ) {
+        if (statusAtividade != null) {
             status = statusAtividade.getIdStatus().getTitulo();
+        }
+        if (status.equals("")) {
+            throw new NullPointerException("Falha ao carregar Status da atividade");
         }
 
         String nomeResponsavel = tb.getIdResponsavel().getNome();
@@ -86,7 +85,4 @@ public class Atividade {
         return this;
     }
 
-    public void cadastrarNovaAtividade(String titulo, String descricao, String tipo) {
-        new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao, tipo, new TbProjeto(1));
-    }
 }

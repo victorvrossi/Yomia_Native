@@ -2,17 +2,15 @@ package com.yomia.jpa.controler;
 
 
 import com.yomia.jpa.controler.Persistencia;
+import com.yomia.jpa.entidade.TbAtividade;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
-/**
- *
- * @author Victor
- * @param <T>
- * @since 03/11/2016
- */
-public class DaoGenerico<T extends BaseEntidade> {
+
+public abstract class DaoGenerico<T extends BaseEntidade> {
 
     Persistencia conexao = Persistencia.YOMIA_PERSISTENCE;
 
@@ -20,6 +18,8 @@ public class DaoGenerico<T extends BaseEntidade> {
         this.conexao = conexao;
     }
     
+    
+    public abstract Class<T> getClasseTabela(); 
     protected EntityManager getEntityManager() {
         validaPersistencia();
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(conexao.getNome());
@@ -83,6 +83,19 @@ public class DaoGenerico<T extends BaseEntidade> {
             throw new NullPointerException("Objeto de persistência está null"); 
         }
         
+    }
+    
+     public List<BaseEntidade> carregarTodas(Class<T> t) {        
+         EntityManager manager = getEntityManager();
+        try {
+             Query createNamedQuery = manager.createNamedQuery(t.getSimpleName()+".findAll");
+             if(createNamedQuery == null){
+                 throw new NullPointerException("Não existe query");
+             }
+             return createNamedQuery.getResultList();
+        } finally {
+            manager.close();
+        }        
     }
 
 }

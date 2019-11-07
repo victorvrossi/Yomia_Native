@@ -1,4 +1,3 @@
-
 package com.yomia.jpa.dao;
 
 import com.yomia.jpa.controler.DaoGenerico;
@@ -10,11 +9,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-public class DaoStatusAtividade extends DaoGenerico<TbStatusAtividade>{
+public class DaoStatusAtividade extends DaoGenerico<TbStatusAtividade> {
 
-    void consultaPorTitulo(TbAtividade atividade,String aberto) {
+    void consultaPorTitulo(TbAtividade atividade, String aberto) {
         TbStatus statusPesquisado = new DaoStatus().pesquisaPorTitulo(aberto);
-         EntityManager manager = getEntityManager(); 
+        EntityManager manager = getEntityManager();
     }
 
     TbStatusAtividade novoStatus(TbAtividade idAtividade, TbStatus tbStatus) {
@@ -24,5 +23,10 @@ public class DaoStatusAtividade extends DaoGenerico<TbStatusAtividade>{
         tbStatusAtividade.setDataEntrada(DataUtil.atual().data());
         return tbStatusAtividade;
     }
-    
+
+    @Override
+    public Class<TbStatusAtividade> getClasseTabela() {
+        return TbStatusAtividade.class;
+    }
+
 }

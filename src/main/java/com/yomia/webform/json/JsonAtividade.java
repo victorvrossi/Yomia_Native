@@ -9,31 +9,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonAtividade {
+public class JsonAtividade extends JsonResponse {
 
     public static JsonAtividade converte(Atividade atividade) {
-        JsonAtividade nv = new JsonAtividade();
-        nv.titulo = atividade.getTitulo();
-        nv.codigoAtividade = atividade.getCodigoAtividade();
-        nv.descricao = atividade.getDescricao();
-        nv.tipo = atividade.getTipo();
-        nv.status = atividade.getStatus();
-        
-        nv.dataCriacao = DataUtil.formatarData(atividade.getDataCriacao());
-        return nv;
+        return (JsonAtividade) new JsonAtividade().converteParaJson(atividade);
     }
-    public String formarJsonComLista(ArrayList<JsonAtividade> user){
-        Gson gson = new Gson();
-        Type listType = new TypeToken<List<JsonAtividade>>() {}.getType();
-        String userJSONString = gson.toJson(user,listType);
-        return userJSONString;
-    }
-    String codigoAtividade;
-    String titulo;
-    String descricao;
-    String status = "aberto";
-    String tipo ;
-    String dataCriacao = "";
 
     public String getCodigoAtividade() {
         return codigoAtividade;
@@ -43,7 +23,6 @@ public class JsonAtividade {
         this.codigoAtividade = codigoAtividade;
     }
 
-    
     public String getTitulo() {
         return titulo;
     }
@@ -59,5 +38,25 @@ public class JsonAtividade {
     public String getTipo() {
         return tipo;
     }
+
+    @Override
+    public JsonResponse converteParaJson(Object atv) {
+        Atividade atividade = (Atividade) atv;
+        JsonAtividade nv = new JsonAtividade();
+        nv.titulo = atividade.getTitulo();
+        nv.codigoAtividade = atividade.getCodigoAtividade();
+        nv.descricao = atividade.getDescricao();
+        nv.tipo = atividade.getTipo();
+        nv.status = atividade.getStatus();
+        nv.dataCriacao = DataUtil.formatarData(atividade.getDataCriacao());
+        return nv;
+    }
+
+    String codigoAtividade;
+    String titulo;
+    String descricao;
+    String status = "aberto";
+    String tipo;
+    String dataCriacao = "";
 
 }

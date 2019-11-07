@@ -1,4 +1,3 @@
-
 package com.yomia.jpa.dao;
 
 import com.yomia.jpa.controler.DaoGenerico;
@@ -19,43 +18,48 @@ import javax.persistence.Query;
 
 public class DaoAtividade extends DaoGenerico<TbAtividade> {
 
-    public void novaAtividade( String titulo,String codigoAtividade,
-            String descricao,String tipo, TbProjeto projeto){
-        
+    public void novaAtividade(String titulo, String codigoAtividade,
+            String descricao, String tipo, TbProjeto projeto) {
+
         new DaoTipoAtividade().carregaTipoAtividade();
         TbAtividade nova = new TbAtividade();
-        
+
         nova.setTitulo(titulo);
-        nova.setDescricao(descricao);        
+        nova.setDescricao(descricao);
         nova.setCodigoAtividade(codigoAtividade);
-        
+
         nova.setIdProjeto(projeto);
         nova.setIdResponsavel(new TbFuncionario(1));
         nova.setIdTipoAtividade(new TbTipoAtividade(1));
         nova.setDataCriacao(DataUtil.atual().data());
-        
+
         List<TbHistoricoStatusAtv> semHistorico = new ArrayList<>();
         nova.setTbHistoricoStatusAtvList(semHistorico);
-        
-        TbStatusAtividade novoStatus = new DaoStatusAtividade().novoStatus(nova,new TbStatus(1));
+
+        TbStatusAtividade novoStatus = new DaoStatusAtividade().novoStatus(nova, new TbStatus(1));
         nova.setTbStatusAtividade(novoStatus);
-        
+
         try {
             salvar(nova);
         } catch (Exception ex) {
             Logger.getLogger(DaoAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public List<TbAtividade> carregarTodasAtividades() {        
-         EntityManager manager = getEntityManager();
+
+    public List<TbAtividade> carregarTodasAtividades() {
+        EntityManager manager = getEntityManager();
         try {
-             Query createNamedQuery = manager.createNamedQuery("TbAtividade.findAll");
-             return createNamedQuery.getResultList();
+            Query createNamedQuery = manager.createNamedQuery("TbAtividade.findAll");
+            return createNamedQuery.getResultList();
         } finally {
             manager.close();
         }
-        
+
     }
 
-    
+    @Override
+    public Class<TbAtividade> getClasseTabela() {
+        return TbAtividade.class;
+    }
+
 }

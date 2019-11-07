@@ -1,6 +1,8 @@
 package com.yomia.webform.formularios;
 
+import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.modulo.atividade.Atividade;
+import com.yomia.webform.json.CarregaListaJson;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 import com.yomia.webform.service.face.FormularioGenerico;
 import static com.yomia.webform.service.face.FormularioGenerico.processaRequest;
@@ -58,7 +60,7 @@ public class FormularioAtividade extends FormularioGenerico {
             return;
         }
         try (PrintWriter out = response.getWriter()) {
-            out.println(new Atividade().listaAtividade(response));
+            out.println(new CarregaListaJson().listaTodosElementoEmJson(new DaoAtividade()));
         } catch (IOException ex) {
             Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }

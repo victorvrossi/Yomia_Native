@@ -19,7 +19,7 @@ public class ListaTipoAtividade extends FormularioGenerico{
     public void processaResponse(HttpServletResponse response) {
          response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println(new TipoAtividade().carregaLista(response));
+            out.println(new TipoAtividade().carregaLista());
             System.out.println("Passei pelo out");
         } catch (IOException ex) {
             Logger.getLogger(ListaTipoAtividade.class.getName()).log(Level.SEVERE, null, ex);

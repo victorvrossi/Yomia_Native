@@ -1,9 +1,7 @@
-
 package com.yomia.webform;
 
 import com.yomia.webform.service.face.FormularioGenerico;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,17 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ServletWebForm extends HttpServlet {
 
-   
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    FormularioGenerico processaUrlRetornaFormularioParaExecucao(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/plain;charset=UTF-8");
         String URI = request.getRequestURI().replace("/form/", "");
-        FormularioGenerico formulario = EnumeracaoFormulariosSistema.retornaFormPorURI(URI);
-        final ExecutaAcaoParaRequisicaoDoFormulario forms = new ExecutaAcaoParaRequisicaoDoFormulario(formulario);
+        return EnumeracaoFormulariosSistema.retornaFormPorURI(URI);
+    }
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        final FormularioGenerico formularioParaExecutar = processaUrlRetornaFormularioParaExecucao(request, response);
+        final ExecutaAcaoParaRequisicaoDoFormulario forms = new ExecutaAcaoParaRequisicaoDoFormulario(formularioParaExecutar);
         forms.processaRequest(request);
         forms.processaResponse(response);
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

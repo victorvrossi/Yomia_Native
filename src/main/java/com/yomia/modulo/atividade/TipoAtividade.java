@@ -26,7 +26,7 @@ public class TipoAtividade {
         return this;
     }
 
-    public String carregaLista(HttpServletResponse response) {
+    public String carregaLista() {
         ArrayList<JsonResponse> listaDeAtividadeJson = new ArrayList<>();
         DaoTipoAtividade daoAtividade = new DaoTipoAtividade();
         List<TbTipoAtividade> atividadesCarregadasBancoDeDados = daoAtividade.carregaTipoAtividade();

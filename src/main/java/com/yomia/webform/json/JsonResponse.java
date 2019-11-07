@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class JsonResponse {
-    abstract JsonResponse converteParaJson( Object atividade) ;
+    public abstract JsonResponse converteParaJson( Object atividade) ;
     
     public String formarJsonComLista(ArrayList<JsonResponse> user){
         Gson gson = new Gson();
