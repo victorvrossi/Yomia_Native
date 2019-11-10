@@ -1,7 +1,12 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,12 +18,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Victor
+ */
 @Entity
 @Table(name = "tb_status_atividade")
 @XmlRootElement
@@ -34,16 +43,14 @@ public class TbStatusAtividade implements BaseEntidade {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "data_entrada")
     @Temporal(TemporalType.DATE)
     private Date dataEntrada;
     @JoinColumn(name = "id_atividade", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @OneToOne
     private TbAtividade idAtividade;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private TbStatus idStatus;
 
     public TbStatusAtividade() {
@@ -51,11 +58,6 @@ public class TbStatusAtividade implements BaseEntidade {
 
     public TbStatusAtividade(Integer id) {
         this.id = id;
-    }
-
-    public TbStatusAtividade(Integer id, Date dataEntrada) {
-        this.id = id;
-        this.dataEntrada = dataEntrada;
     }
 
     public Integer getId() {

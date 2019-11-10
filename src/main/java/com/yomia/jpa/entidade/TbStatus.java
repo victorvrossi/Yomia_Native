@@ -1,3 +1,4 @@
+
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
@@ -13,7 +14,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -37,14 +37,12 @@ public class TbStatus implements BaseEntidade {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 255)
     @Column(name = "titulo")
     private String titulo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    @OneToMany(mappedBy = "idStatus", cascade = CascadeType.PERSIST)
     private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    @OneToMany(mappedBy = "idStatus", cascade = CascadeType.PERSIST)
     private List<TbStatusAtividade> tbStatusAtividadeList;
 
     public TbStatus() {
@@ -52,11 +50,6 @@ public class TbStatus implements BaseEntidade {
 
     public TbStatus(Integer id) {
         this.id = id;
-    }
-
-    public TbStatus(Integer id, String titulo) {
-        this.id = id;
-        this.titulo = titulo;
     }
 
     public Integer getId() {

@@ -4,6 +4,7 @@ import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.modulo.atividade.Atividade;
 import com.yomia.webform.json.CarregaListaJson;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
+import com.yomia.webform.json.JsonAtividade;
 import com.yomia.webform.service.face.FormularioGenerico;
 import static com.yomia.webform.service.face.FormularioGenerico.processaRequest;
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class FormularioAtividade extends FormularioGenerico {
             return;
         }
         try (PrintWriter out = response.getWriter()) {
-            out.println(new CarregaListaJson().listaTodosElementoEmJson(new DaoAtividade()));
+            out.println(new Atividade().geraListaJsonDeAtividades());
         } catch (IOException ex) {
             Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,10 +75,9 @@ public class FormularioAtividade extends FormularioGenerico {
             @Override
             public void executarAcao(HttpServletRequest request) {
                 try {
-                    String titulo = request.getParameter("atividade");
-                    System.out.println("Avanca Status atividade:"+titulo);
-                    titulo = request.getParameter("tvt");
-                    System.out.println("Avanca Status atividade:"+titulo);
+                    String codigoAtividade = request.getParameter("codAtividade");
+                    
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
                 }

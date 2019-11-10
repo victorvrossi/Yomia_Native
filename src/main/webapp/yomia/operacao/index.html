@@ -480,7 +480,7 @@
                      $.ajax({
                             url: '/form/atividade.avanca.status',
                             type: "post",
-                            data: {tvt: this.ativ}
+                            data: {codAtividade: this.ativ}
                         });
                 }
                 
@@ -520,7 +520,7 @@
                     $("#modDescricao").text(this.i_descricao);
                     $("#modStatus").text(this._status);
 
-                    var enviaAcao = new AvancaStatus(this.i_botaonome);
+                    var enviaAcao = new AvancaStatus(this.i_cod_atividade);
                     $("#modavancastatus").click(function(){
                         enviaAcao.envia();
                     });
@@ -552,10 +552,8 @@
                 });
 
                 listaExibe.forEach(function (item, i, array) {
-                    console.log("botao:" + item);
                     $("#" + item).click(function (event) {
                         event.preventDefault();
-                        console.log("Clik:" + item);
                         elementos[i].acao(item);
                     });
 

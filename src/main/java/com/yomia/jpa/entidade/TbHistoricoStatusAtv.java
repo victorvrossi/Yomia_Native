@@ -1,6 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,7 +21,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -37,16 +42,14 @@ public class TbHistoricoStatusAtv implements BaseEntidade {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "data_efetivado")
     @Temporal(TemporalType.DATE)
     private Date dataEfetivado;
     @JoinColumn(name = "id_atividade", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private TbAtividade idAtividade;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private TbStatus idStatus;
 
     public TbHistoricoStatusAtv() {
@@ -54,11 +57,6 @@ public class TbHistoricoStatusAtv implements BaseEntidade {
 
     public TbHistoricoStatusAtv(Integer id) {
         this.id = id;
-    }
-
-    public TbHistoricoStatusAtv(Integer id, Date dataEfetivado) {
-        this.id = id;
-        this.dataEfetivado = dataEfetivado;
     }
 
     public Integer getId() {

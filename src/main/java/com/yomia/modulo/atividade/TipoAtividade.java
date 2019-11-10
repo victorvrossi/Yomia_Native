@@ -6,7 +6,6 @@ import com.yomia.webform.json.JsonResponse;
 import com.yomia.webform.json.JsonTipoAtividade;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpServletResponse;
 
 public class TipoAtividade {
 

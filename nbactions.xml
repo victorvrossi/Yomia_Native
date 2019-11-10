@@ -15,4 +15,11 @@
                 <goal>-Dgroups="junit.conf.TesteUnitario"</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-Teste Funcional</actionName>
+            <displayName>Teste Funcional</displayName>
+            <activatedProfiles>
+                <activatedProfile>testFuncional</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>

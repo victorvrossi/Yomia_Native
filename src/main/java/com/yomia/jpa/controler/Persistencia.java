@@ -1,7 +1,7 @@
 package com.yomia.jpa.controler;
 
 public enum Persistencia {
-    YOMIA_TEST("test_yomia"),
+    YOMIA_TEST("homologacao_yomia"),
     YOMIA_PERSISTENCE("producao_yomia");
     private String nome;
 

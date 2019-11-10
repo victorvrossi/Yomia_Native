@@ -13,10 +13,17 @@ public abstract class JsonResponse {
     public abstract JsonResponse converteParaJson( Object atividade) ;
     
     public String formarJsonComLista(ArrayList<JsonResponse> user){
+        validaLista(user);
         Gson gson = new Gson();
         Type listType = new TypeToken<List<JsonResponse>>() {}.getType();
         String userJSONString = gson.toJson(user,listType);
         return userJSONString;
+    }
+
+    private void validaLista(ArrayList<JsonResponse> user) {
+        if(user == null | user.size()<1){
+            throw new NullPointerException("Sem dados para formar JSON");
+        }
     }
     
 }

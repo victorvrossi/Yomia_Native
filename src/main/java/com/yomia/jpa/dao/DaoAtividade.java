@@ -18,32 +18,34 @@ import javax.persistence.Query;
 
 public class DaoAtividade extends DaoGenerico<TbAtividade> {
 
-    public void novaAtividade(String titulo, String codigoAtividade,
-            String descricao, String tipo, TbProjeto projeto) {
-
-        new DaoTipoAtividade().carregaTipoAtividade();
+    public TbAtividade novaAtividade(String titulo, String codigoAtividade,
+            String descricao, TbProjeto projeto,TbStatus status,
+            TbTipoAtividade novoTipoAtividade,TbFuncionario func) {
+        
         TbAtividade nova = new TbAtividade();
-
+        
         nova.setTitulo(titulo);
         nova.setDescricao(descricao);
         nova.setCodigoAtividade(codigoAtividade);
 
         nova.setIdProjeto(projeto);
-        nova.setIdResponsavel(new TbFuncionario(1));
-        nova.setIdTipoAtividade(new TbTipoAtividade(1));
+        nova.setIdResponsavel(func);
+        nova.setIdTipoAtividade(novoTipoAtividade);
         nova.setDataCriacao(DataUtil.atual().data());
 
         List<TbHistoricoStatusAtv> semHistorico = new ArrayList<>();
         nova.setTbHistoricoStatusAtvList(semHistorico);
 
-        TbStatusAtividade novoStatus = new DaoStatusAtividade().novoStatus(nova, new TbStatus(1));
-        nova.setTbStatusAtividade(novoStatus);
+        TbStatusAtividade novoStatus = new DaoStatusAtividade().novoStatus(nova, status);
+        nova.setTbStatusAtividade(novoStatus);        
+        
 
         try {
             salvar(nova);
         } catch (Exception ex) {
             Logger.getLogger(DaoAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return nova;
     }
 
     public List<TbAtividade> carregarTodasAtividades() {

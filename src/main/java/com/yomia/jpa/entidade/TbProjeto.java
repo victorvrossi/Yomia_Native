@@ -1,9 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,19 +18,22 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Victor
+ */
 @Entity
 @Table(name = "tb_projeto")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TbProjeto.findAll", query = "SELECT t FROM TbProjeto t"),
     @NamedQuery(name = "TbProjeto.findById", query = "SELECT t FROM TbProjeto t WHERE t.id = :id"),
-    @NamedQuery(name = "TbProjeto.findByTitulo", query = "SELECT t FROM TbProjeto t WHERE t.titulo = :titulo"),
-    @NamedQuery(name = "TbProjeto.findBySigla", query = "SELECT t FROM TbProjeto t WHERE t.sigla = :sigla")})
+    @NamedQuery(name = "TbProjeto.findBySigla", query = "SELECT t FROM TbProjeto t WHERE t.sigla = :sigla"),
+    @NamedQuery(name = "TbProjeto.findByTitulo", query = "SELECT t FROM TbProjeto t WHERE t.titulo = :titulo")})
 public class TbProjeto implements BaseEntidade {
 
     private static final long serialVersionUID = 1L;
@@ -34,17 +42,13 @@ public class TbProjeto implements BaseEntidade {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "titulo")
-    private String titulo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 255)
     @Column(name = "sigla")
     private String sigla;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProjeto")
+    @Size(max = 255)
+    @Column(name = "titulo")
+    private String titulo;
+    @OneToMany(mappedBy = "idProjeto")
     private List<TbAtividade> tbAtividadeList;
 
     public TbProjeto() {
@@ -52,12 +56,6 @@ public class TbProjeto implements BaseEntidade {
 
     public TbProjeto(Integer id) {
         this.id = id;
-    }
-
-    public TbProjeto(Integer id, String titulo, String sigla) {
-        this.id = id;
-        this.titulo = titulo;
-        this.sigla = sigla;
     }
 
     public Integer getId() {
@@ -68,20 +66,20 @@ public class TbProjeto implements BaseEntidade {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
     public String getSigla() {
         return sigla;
     }
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     @XmlTransient
