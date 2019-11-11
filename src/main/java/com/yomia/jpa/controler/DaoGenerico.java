@@ -54,12 +54,12 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
 
     }
 
-    public T consultarPorId(Class<T> clazz, Integer id) {
+    public T consultarPorId( Integer id) {
         EntityManager manager = getEntityManager();
         T obj = null;
         try {
             manager.getTransaction().begin();
-            obj = manager.find(clazz, id);
+            obj = manager.find(getClasseTabela(), id);
             manager.getTransaction().commit();
         } finally {
             manager.close();
@@ -70,7 +70,7 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
     public List<BaseEntidade> carregarTodas(Class<T> t, String queryNomeada) {
         EntityManager manager = getEntityManager();
         try {
-            Query createNamedQuery = manager.createNamedQuery(t.getSimpleName() + "." + queryNomeada);
+            Query createNamedQuery = manager.createNamedQuery(getClasseTabela().getSimpleName() + "." + queryNomeada);
             if (createNamedQuery == null) {
                 throw new NullPointerException("Não existe query");
             }

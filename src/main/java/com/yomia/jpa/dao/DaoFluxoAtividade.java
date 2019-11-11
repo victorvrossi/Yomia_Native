@@ -20,6 +20,11 @@ public class DaoFluxoAtividade extends DaoGenerico<TbFluxoAtividade> {
 
         fluxo.setTbFluxoSequenciaList(tbFluxoSequenciaList);
         fluxo.setTbTipoAtividadeList(tbTipoAtividadeList);
+        try {
+            salvar(fluxo);
+        } catch (Exception ex) {
+            Logger.getLogger(DaoFluxoAtividade.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return fluxo;
     }
 

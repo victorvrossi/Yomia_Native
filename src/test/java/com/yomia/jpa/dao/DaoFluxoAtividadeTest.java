@@ -67,8 +67,12 @@ public class DaoFluxoAtividadeTest extends MainFuncionalTest{
         System.out.println("removerFluxo");
         String titulo = "";
         DaoFluxoAtividade instance = new DaoFluxoAtividade();
+        TbFluxoAtividade novoFluxo = instance.novoFluxo(titulo);
+        Integer id = novoFluxo.getId();
         instance.removerFluxo(titulo);
-
+        
+        TbFluxoAtividade consultarPorId = instance.consultarPorId(id);
+        assertNull(consultarPorId);
     }
 
     /**
