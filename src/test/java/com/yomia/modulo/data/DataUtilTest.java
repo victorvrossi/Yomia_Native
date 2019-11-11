@@ -1,7 +1,7 @@
 
 package com.yomia.modulo.data;
 
-import com.yomia.envoriment.Unitario;
+import com.yomia.test.Unitario;
 import java.util.Calendar;
 import java.util.Date;
 import org.junit.After;

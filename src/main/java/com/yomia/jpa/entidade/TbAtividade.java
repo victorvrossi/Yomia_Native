@@ -71,11 +71,11 @@ public class TbAtividade implements BaseEntidade {
     @ManyToOne
     private TbFuncionario idResponsavel;
     @JoinColumn(name = "id_tipo_atividade", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private TbTipoAtividade idTipoAtividade;
-    @OneToMany(mappedBy = "idAtividade", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "idAtividade",cascade = CascadeType.PERSIST)
     private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
-    @OneToOne(mappedBy = "idAtividade", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "idAtividade",cascade = CascadeType.PERSIST)
     private TbStatusAtividade tbStatusAtividade;
 
     public TbAtividade() {

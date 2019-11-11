@@ -3,7 +3,7 @@ package com.yomia.webform.formularios;
 import com.yomia.webform.service.face.FormularioProcessamento;
 import com.yomia.envoriment.Enviroment;
 import com.yomia.envoriment.ObjetoTeste;
-import com.yomia.envoriment.Unitario;
+import com.yomia.test.Unitario;
 import javax.servlet.http.HttpServletRequest;
 import org.junit.Test;
 import static org.junit.Assert.*;

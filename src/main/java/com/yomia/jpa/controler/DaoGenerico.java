@@ -65,7 +65,6 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
             manager.close();
         }
         return obj;
-
     }
 
     public List<BaseEntidade> carregarTodas(Class<T> t, String queryNomeada) {

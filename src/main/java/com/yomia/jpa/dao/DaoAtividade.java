@@ -37,9 +37,8 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
         nova.setTbHistoricoStatusAtvList(semHistorico);
 
         TbStatusAtividade novoStatus = new DaoStatusAtividade().novoStatus(nova, status);
-        nova.setTbStatusAtividade(novoStatus);        
+        nova.setTbStatusAtividade(novoStatus);
         
-
         try {
             salvar(nova);
         } catch (Exception ex) {

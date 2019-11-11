@@ -7,7 +7,6 @@ package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,24 +18,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Victor
  */
 @Entity
-@Table(name = "tb_tipo_atividade")
+@Table(name = "tb_fluxo_sequencia")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TbTipoAtividade.findAll", query = "SELECT t FROM TbTipoAtividade t"),
-    @NamedQuery(name = "TbTipoAtividade.findById", query = "SELECT t FROM TbTipoAtividade t WHERE t.id = :id"),
-    @NamedQuery(name = "TbTipoAtividade.findByTitulo", query = "SELECT t FROM TbTipoAtividade t WHERE t.titulo = :titulo")})
-public class TbTipoAtividade implements BaseEntidade {
+    @NamedQuery(name = "TbFluxoSequencia.findAll", query = "SELECT t FROM TbFluxoSequencia t"),
+    @NamedQuery(name = "TbFluxoSequencia.findById", query = "SELECT t FROM TbFluxoSequencia t WHERE t.id = :id")})
+public class TbFluxoSequencia implements BaseEntidade {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,19 +39,20 @@ public class TbTipoAtividade implements BaseEntidade {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 255)
-    @Column(name = "titulo")
-    private String titulo;
-    @OneToMany(mappedBy = "idTipoAtividade",cascade = CascadeType.PERSIST)
-    private List<TbAtividade> tbAtividadeList;
-    @JoinColumn(name = "id_fluxo_atividade", referencedColumnName = "id")
+    @JoinColumn(name = "id_fluxo", referencedColumnName = "id")
     @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
-    private TbFluxoAtividade idFluxoAtividade;
+    private TbFluxoAtividade idFluxo;
+    @JoinColumn(name = "id_status_chegada", referencedColumnName = "id")
+    @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
+    private TbStatus idStatusChegada;
+    @JoinColumn(name = "id_status_partida", referencedColumnName = "id")
+    @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
+    private TbStatus idStatusPartida;
 
-    public TbTipoAtividade() {
+    public TbFluxoSequencia() {
     }
 
-    public TbTipoAtividade(Integer id) {
+    public TbFluxoSequencia(Integer id) {
         this.id = id;
     }
 
@@ -68,29 +64,28 @@ public class TbTipoAtividade implements BaseEntidade {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public TbFluxoAtividade getIdFluxo() {
+        return idFluxo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setIdFluxo(TbFluxoAtividade idFluxo) {
+        this.idFluxo = idFluxo;
     }
 
-    @XmlTransient
-    public List<TbAtividade> getTbAtividadeList() {
-        return tbAtividadeList;
+    public TbStatus getIdStatusChegada() {
+        return idStatusChegada;
     }
 
-    public void setTbAtividadeList(List<TbAtividade> tbAtividadeList) {
-        this.tbAtividadeList = tbAtividadeList;
+    public void setIdStatusChegada(TbStatus idStatusChegada) {
+        this.idStatusChegada = idStatusChegada;
     }
 
-    public TbFluxoAtividade getIdFluxoAtividade() {
-        return idFluxoAtividade;
+    public TbStatus getIdStatusPartida() {
+        return idStatusPartida;
     }
 
-    public void setIdFluxoAtividade(TbFluxoAtividade idFluxoAtividade) {
-        this.idFluxoAtividade = idFluxoAtividade;
+    public void setIdStatusPartida(TbStatus idStatusPartida) {
+        this.idStatusPartida = idStatusPartida;
     }
 
     @Override
@@ -103,10 +98,10 @@ public class TbTipoAtividade implements BaseEntidade {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TbTipoAtividade)) {
+        if (!(object instanceof TbFluxoSequencia)) {
             return false;
         }
-        TbTipoAtividade other = (TbTipoAtividade) object;
+        TbFluxoSequencia other = (TbFluxoSequencia) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -115,7 +110,7 @@ public class TbTipoAtividade implements BaseEntidade {
 
     @Override
     public String toString() {
-        return "com.yomia.jpa.entidade.TbTipoAtividade[ id=" + id + " ]";
+        return "com.yomia.jpa.entidade.TbFluxoSequencia[ id=" + id + " ]";
     }
     
 }

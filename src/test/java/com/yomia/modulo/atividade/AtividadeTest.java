@@ -1,21 +1,22 @@
 
 package com.yomia.modulo.atividade;
 
-import com.yomia.envoriment.Funcional;
+import com.yomia.test.util.AtividadeUtil;
+import com.yomia.test.util.MainFuncionalTest;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
+import static org.junit.Assert.*;
 
-@Category(Funcional.class)
-public class AtividadeTest {
+public class AtividadeTest extends MainFuncionalTest{
     
     @Test
     public void testListaAtividade() {
         System.out.println("listaAtividade");
+        new AtividadeUtil().novaAtividade();
+        new AtividadeUtil().novaAtividade();
         Atividade instance = new Atividade();
-        String expResult = "[{\"codigoAtividade\":\"PARIO-005\",\"titulo\":\"dfgdfg\",\"descricao\":\"default textdfgdfg\",\"status\":\"Aberto\",\"tipo\":\"Backlog\",\"dataCriacao\":\"2019-11-04\"},{\"codigoAtividade\":\"PARIO-005\",\"titulo\":\"gfhjnfgh\",\"descricao\":\"fghfgh\",\"status\":\"Aberto\",\"tipo\":\"Backlog\",\"dataCriacao\":\"2019-11-04\"},{\"codigoAtividade\":\"PARIO-005\",\"titulo\":\"sdfsdfsd\",\"descricao\":\"sdfsdfsdfsd\",\"status\":\"Aberto\",\"tipo\":\"Backlog\",\"dataCriacao\":\"2019-11-05\"},{\"codigoAtividade\":\"PARIO-005\",\"titulo\":\"Caiu na lata\",\"descricao\":\"default text\",\"status\":\"Aberto\",\"tipo\":\"Backlog\",\"dataCriacao\":\"2019-11-05\"},{\"codigoAtividade\":\"PARIO-005\",\"titulo\":\"dgrfgdf\",\"descricao\":\"dfgdfgdf\",\"status\":\"Aberto\",\"tipo\":\"Backlog\",\"dataCriacao\":\"2019-11-06\"}]";
-       // String result = instance.geraListaJsonDeAtividades();
-       // System.out.println(""+result);
-//        assertEquals(expResult, result);
+        String expResult = "[{\"codigoAtividade\":\"TESTE-001\",\"titulo\":\"TESTE\",\"descricao\":\"TESTE\",\"status\":\"aberto\",\"tipo\":\"Tipo\",\"dataCriacao\":\"2019-11-10\"},{\"codigoAtividade\":\"TESTE-001\",\"titulo\":\"TESTE\",\"descricao\":\"TESTE\",\"status\":\"aberto\",\"tipo\":\"Tipo\",\"dataCriacao\":\"2019-11-10\"}]";
+        String result = instance.geraListaJsonDeAtividades();
+        assertEquals(expResult, result);
     }
 
 

@@ -1,6 +1,6 @@
 package com.yomia.jpa.dao;
 
-import com.yomia.test.util.MainTest;
+import com.yomia.test.util.MainFuncionalTest;
 import com.yomia.jpa.entidade.TbFuncionario;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class DaoFuncionarioTest extends MainTest{
+public class DaoFuncionarioTest extends MainFuncionalTest{
     
     
 

@@ -1,17 +1,18 @@
 package com.yomia.jpa.dao;
 
-import com.yomia.test.util.MainTest;
+import com.yomia.test.util.MainFuncionalTest;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.test.util.AtividadeUtil;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class DaoAtividadeTest extends MainTest{
+public class DaoAtividadeTest extends MainFuncionalTest{
 
     /**
      * Test of novaAtividade method, of class DaoAtividade.
@@ -19,8 +20,7 @@ public class DaoAtividadeTest extends MainTest{
     @Test
     public void testNovaAtividade() {
         System.out.println("novaAtividade");
-        TbAtividade novaAtividade = novaAtividade();
-        System.out.println("END:" + novaAtividade.toString());
+        TbAtividade novaAtividade = new AtividadeUtil().novaAtividade();
         assertNotNull(novaAtividade.getId());
 
     }
@@ -31,7 +31,7 @@ public class DaoAtividadeTest extends MainTest{
     @Test
     public void testCarregarTodasAtividades() {
         System.out.println("carregarTodasAtividades");
-        novaAtividade();
+        new AtividadeUtil().novaAtividade();
         DaoAtividade instance = new DaoAtividade();
         List<TbAtividade> result = instance.carregarTodasAtividades();
         assertTrue(result.size() == 1);
@@ -49,42 +49,5 @@ public class DaoAtividadeTest extends MainTest{
         assertEquals(expResult, result);
     }
 
-    private TbAtividade novaAtividade() {
-        TbProjeto projeto = novoProjeto();
-        TbStatus novoStatus = novoStatus();
-        TbTipoAtividade novoTipoAtividade = novoTipoAtividade();
-        TbFuncionario novoFuncionario = novoFuncionario();
-        
-        String titulo = "TESTE";
-        String codigoAtividade = "TESTE-001";
-        String descricao = "TESTE";
-        DaoAtividade instance = new DaoAtividade();
-        
-        TbAtividade novaAtividade = instance.novaAtividade(titulo, codigoAtividade, descricao, projeto, novoStatus, novoTipoAtividade, novoFuncionario);
-        return novaAtividade;
-    }
-
-    private TbFuncionario novoFuncionario() {
-        TbFuncionario novoFuncionario = new DaoFuncionario().novoFuncionario("func");
-        assertNotNull(novoFuncionario.getId());
-        return novoFuncionario;
-    }
-
-    private TbTipoAtividade novoTipoAtividade() {
-        TbTipoAtividade novoTipoAtividade = new DaoTipoAtividade().novoTipoAtividade("Tipo");
-        assertNotNull(novoTipoAtividade.getId());
-        return novoTipoAtividade;
-    }
-
-    private TbStatus novoStatus() {
-        TbStatus novoStatus = new DaoStatus().novoStatus("aberto");
-        assertNotNull(novoStatus.getId());
-        return novoStatus;
-    }
-
-    private TbProjeto novoProjeto() {
-        TbProjeto projeto = new DaoProjeto().novoProjeto("Yomia", "YMA");
-        assertNotNull(projeto.getId());
-        return projeto;
-    }
+   
 }

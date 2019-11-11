@@ -1,14 +1,13 @@
 package com.yomia.test.util;
 
-import com.yomia.test.util.UtilHarnessDatabase;
-import com.yomia.envoriment.Funcional;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.experimental.categories.Category;
+import com.yomia.test.DatabaseTest;
 
-@Category(Funcional.class)
-public class MainTest {
+@Category(DatabaseTest.class)
+public class MainFuncionalTest {
     @BeforeClass
     public static void setUpClass() {
     }

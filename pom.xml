@@ -130,7 +130,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.15</version>
                         <configuration>
-                            <groups>com.yomia.envoriment.Funcional</groups>
+                            <groups>com.yomia.test.AllTest</groups>
                         </configuration>
                         
                     </plugin>
@@ -167,7 +167,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.15</version>
                         <configuration>
-                            <groups>com.yomia.envoriment.Unitario</groups>
+                            <groups>com.yomia.test.Unitario</groups>
                         </configuration>
                         
                     </plugin>

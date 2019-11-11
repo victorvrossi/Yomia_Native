@@ -8,7 +8,6 @@ public class YomiaResource {
         try {
             Properties properties = new Properties();
             properties.load(YomiaResource.class.getResourceAsStream("yomia.properties"));
-            System.out.println("*************************>" + properties.getProperty("ambiente"));
             String ambiente = properties.getProperty("ambiente");
             if("dev".equals(ambiente)){
                 return Persistencia.YOMIA_TEST;

@@ -1,7 +1,12 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -40,9 +45,13 @@ public class TbStatus implements BaseEntidade {
     @Size(max = 255)
     @Column(name = "titulo")
     private String titulo;
-    @OneToMany(mappedBy = "idStatus", cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatusChegada")
+    private List<TbFluxoSequencia> tbFluxoSequenciaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatusPartida")
+    private List<TbFluxoSequencia> tbFluxoSequenciaList1;
+    @OneToMany(mappedBy = "idStatus",cascade = CascadeType.PERSIST)
     private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
-    @OneToMany(mappedBy = "idStatus", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "idStatus",cascade = CascadeType.PERSIST)
     private List<TbStatusAtividade> tbStatusAtividadeList;
 
     public TbStatus() {
@@ -66,6 +75,24 @@ public class TbStatus implements BaseEntidade {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    @XmlTransient
+    public List<TbFluxoSequencia> getTbFluxoSequenciaList() {
+        return tbFluxoSequenciaList;
+    }
+
+    public void setTbFluxoSequenciaList(List<TbFluxoSequencia> tbFluxoSequenciaList) {
+        this.tbFluxoSequenciaList = tbFluxoSequenciaList;
+    }
+
+    @XmlTransient
+    public List<TbFluxoSequencia> getTbFluxoSequenciaList1() {
+        return tbFluxoSequenciaList1;
+    }
+
+    public void setTbFluxoSequenciaList1(List<TbFluxoSequencia> tbFluxoSequenciaList1) {
+        this.tbFluxoSequenciaList1 = tbFluxoSequenciaList1;
     }
 
     @XmlTransient
