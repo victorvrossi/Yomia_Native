@@ -41,9 +41,9 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
         return obj;
     }
 
-    public void remover(Class<T> clazz, Integer id) throws Exception {
+    public void remover(Integer id) throws Exception {
         EntityManager manager = getEntityManager();
-        T obj = manager.find(clazz, id);
+        T obj = manager.find(getClasseTabela(), id);
         try {
             manager.getTransaction().begin();
             manager.remove(obj);
@@ -67,7 +67,7 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
         return obj;
     }
 
-    public List<BaseEntidade> carregarTodas(Class<T> t, String queryNomeada) {
+    public List<BaseEntidade> carregarTodas(String queryNomeada) {
         EntityManager manager = getEntityManager();
         try {
             Query createNamedQuery = manager.createNamedQuery(getClasseTabela().getSimpleName() + "." + queryNomeada);

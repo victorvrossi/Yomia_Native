@@ -41,7 +41,7 @@ public class DaoFluxoAtividade extends DaoGenerico<TbFluxoAtividade> {
         List<TbFluxoAtividade> resultList = query.getResultList();
         try {
             for (TbFluxoAtividade tbFluxoAtividade : resultList) {
-                remover(TbFluxoAtividade.class, tbFluxoAtividade.getId());
+                remover(tbFluxoAtividade.getId());
             }
             
         } catch (Exception ex) {

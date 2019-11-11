@@ -39,7 +39,7 @@ public class CarregaListaJson {
     }
 
     private List<BaseEntidade> converteParaEntidade(DaoGenerico e) {
-        List<BaseEntidade> carregarTodasAtividades = e.carregarTodas(e.getClasseTabela(),"findAll");
+        List<BaseEntidade> carregarTodasAtividades = e.carregarTodas("findAll");
         if(carregarTodasAtividades == null || carregarTodasAtividades.size()<1){
             throw new NullPointerException("Nenhuma Atividade carregada");
         }

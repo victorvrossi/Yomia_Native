@@ -5,6 +5,7 @@ import com.yomia.jpa.controler.DaoGenerico;
 import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.modulo.atividade.Atividade;
 import com.yomia.modulo.atividade.Entidade;
+import com.yomia.modulo.data.DataUtil;
 import com.yomia.test.util.AtividadeUtil;
 import com.yomia.test.util.MainFuncionalTest;
 import org.junit.BeforeClass;
@@ -26,7 +27,9 @@ public class CarregaListaJsonTest extends MainFuncionalTest{
         CarregaListaJson instance = new CarregaListaJson();
         String result = instance.listaTodosElementoEmJson(daoClass, jsonClass, entidadeClass);        
         assertNotNull(result);
-        String exp = "[{\"codigoAtividade\":\"TESTE-001\",\"titulo\":\"TESTE\",\"descricao\":\"TESTE\",\"status\":\"aberto\",\"tipo\":\"Tipo\",\"dataCriacao\":\"2019-11-10\"},{\"codigoAtividade\":\"TESTE-001\",\"titulo\":\"TESTE\",\"descricao\":\"TESTE\",\"status\":\"aberto\",\"tipo\":\"Tipo\",\"dataCriacao\":\"2019-11-10\"}]";
+        
+        String dataCriacao = DataUtil.formatarData(DataUtil.atual().data());
+        String exp = "[{\"codigoAtividade\":\"TESTE-001\",\"titulo\":\"TESTE\",\"descricao\":\"TESTE\",\"status\":\"aberto\",\"tipo\":\"Tipo\",\"dataCriacao\":\""+dataCriacao+"\"},{\"codigoAtividade\":\"TESTE-001\",\"titulo\":\"TESTE\",\"descricao\":\"TESTE\",\"status\":\"aberto\",\"tipo\":\"Tipo\",\"dataCriacao\":\""+dataCriacao+"\"}]";
         assertEquals(exp, result);
     }
     
