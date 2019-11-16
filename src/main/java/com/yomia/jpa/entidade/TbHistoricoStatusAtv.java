@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,10 +19,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Victor
- */
 @Entity
 @Table(name = "tb_historico_status_atv")
 @XmlRootElement
@@ -46,10 +38,10 @@ public class TbHistoricoStatusAtv implements BaseEntidade {
     @Temporal(TemporalType.DATE)
     private Date dataEfetivado;
     @JoinColumn(name = "id_atividade", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private TbAtividade idAtividade;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private TbStatus idStatus;
 
     public TbHistoricoStatusAtv() {
@@ -115,5 +107,5 @@ public class TbHistoricoStatusAtv implements BaseEntidade {
     public String toString() {
         return "com.yomia.jpa.entidade.TbHistoricoStatusAtv[ id=" + id + " ]";
     }
-    
+
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
@@ -23,10 +18,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Victor
- */
 @Entity
 @Table(name = "tb_status")
 @XmlRootElement
@@ -45,14 +36,8 @@ public class TbStatus implements BaseEntidade {
     @Size(max = 255)
     @Column(name = "titulo")
     private String titulo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatusChegada")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
     private List<TbFluxoSequencia> tbFluxoSequenciaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatusPartida")
-    private List<TbFluxoSequencia> tbFluxoSequenciaList1;
-    @OneToMany(mappedBy = "idStatus",cascade = CascadeType.PERSIST)
-    private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
-    @OneToMany(mappedBy = "idStatus",cascade = CascadeType.PERSIST)
-    private List<TbStatusAtividade> tbStatusAtividadeList;
 
     public TbStatus() {
     }
@@ -86,33 +71,6 @@ public class TbStatus implements BaseEntidade {
         this.tbFluxoSequenciaList = tbFluxoSequenciaList;
     }
 
-    @XmlTransient
-    public List<TbFluxoSequencia> getTbFluxoSequenciaList1() {
-        return tbFluxoSequenciaList1;
-    }
-
-    public void setTbFluxoSequenciaList1(List<TbFluxoSequencia> tbFluxoSequenciaList1) {
-        this.tbFluxoSequenciaList1 = tbFluxoSequenciaList1;
-    }
-
-    @XmlTransient
-    public List<TbHistoricoStatusAtv> getTbHistoricoStatusAtvList() {
-        return tbHistoricoStatusAtvList;
-    }
-
-    public void setTbHistoricoStatusAtvList(List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList) {
-        this.tbHistoricoStatusAtvList = tbHistoricoStatusAtvList;
-    }
-
-    @XmlTransient
-    public List<TbStatusAtividade> getTbStatusAtividadeList() {
-        return tbStatusAtividadeList;
-    }
-
-    public void setTbStatusAtividadeList(List<TbStatusAtividade> tbStatusAtividadeList) {
-        this.tbStatusAtividadeList = tbStatusAtividadeList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -137,5 +95,5 @@ public class TbStatus implements BaseEntidade {
     public String toString() {
         return "com.yomia.jpa.entidade.TbStatus[ id=" + id + " ]";
     }
-    
+
 }

@@ -1,7 +1,6 @@
 package com.yomia.test.util;
 
 import com.yomia.jpa.controler.BaseEntidade;
-import com.yomia.jpa.controler.Persistencia;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbHistoricoStatusAtv;
@@ -13,8 +12,6 @@ import com.yomia.resource.YomiaResource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.Table;
 
 public class UtilHarnessDatabase {
 

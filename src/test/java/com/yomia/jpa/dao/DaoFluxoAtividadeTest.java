@@ -11,10 +11,6 @@ import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.test.util.MainFuncionalTest;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

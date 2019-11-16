@@ -2,10 +2,6 @@ package com.yomia.jpa.dao;
 
 import com.yomia.test.util.MainFuncionalTest;
 import com.yomia.jpa.entidade.TbAtividade;
-import com.yomia.jpa.entidade.TbFuncionario;
-import com.yomia.jpa.entidade.TbProjeto;
-import com.yomia.jpa.entidade.TbStatus;
-import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.test.util.AtividadeUtil;
 import java.util.List;
 import org.junit.Test;

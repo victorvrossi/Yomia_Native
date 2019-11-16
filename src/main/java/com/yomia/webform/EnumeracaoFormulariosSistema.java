@@ -28,6 +28,13 @@ public enum EnumeracaoFormulariosSistema {
     }
 
     private static Map<String, EnumeracaoFormulariosSistema> relacao;
+    
+    static {
+        relacao = new HashMap<>();
+        for (EnumeracaoFormulariosSistema s : values()) {
+            relacao.put((String) s.uri_obj[0], s);
+        }
+    }
 
     public static FormularioGenerico retornaFormPorURI(String URI) {
         if(!relacao.containsKey(URI)){
@@ -38,11 +45,6 @@ public enum EnumeracaoFormulariosSistema {
         return (FormularioGenerico) var;
     }
 
-    static {
-        relacao = new HashMap<>();
-        for (EnumeracaoFormulariosSistema s : values()) {
-            relacao.put((String) s.uri_obj[0], s);
-        }
-    }
+    
 
 }

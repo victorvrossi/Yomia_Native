@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
@@ -30,10 +25,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Victor
- */
 @Entity
 @Table(name = "tb_atividade")
 @XmlRootElement
@@ -65,10 +56,10 @@ public class TbAtividade implements BaseEntidade {
     @Column(name = "titulo")
     private String titulo;
     @JoinColumn(name = "id_projeto", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private TbProjeto idProjeto;
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private TbFuncionario idResponsavel;
     @JoinColumn(name = "id_tipo_atividade", referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -190,5 +181,5 @@ public class TbAtividade implements BaseEntidade {
     public String toString() {
         return "com.yomia.jpa.entidade.TbAtividade[ id=" + id + " ]";
     }
-    
+
 }

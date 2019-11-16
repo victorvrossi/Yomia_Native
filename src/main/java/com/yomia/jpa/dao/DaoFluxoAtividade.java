@@ -17,9 +17,7 @@ public class DaoFluxoAtividade extends DaoGenerico<TbFluxoAtividade> {
         TbFluxoAtividade fluxo = new TbFluxoAtividade();
         fluxo.setTitulo(titulo);
         fluxo.setVisibilidadePublica(true);
-
         fluxo.setTbFluxoSequenciaList(tbFluxoSequenciaList);
-        fluxo.setTbTipoAtividadeList(tbTipoAtividadeList);
         try {
             salvar(fluxo);
         } catch (Exception ex) {

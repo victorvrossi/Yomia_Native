@@ -3,6 +3,7 @@ package com.yomia.jpa.entidade;
 import com.yomia.jpa.controler.BaseEntidade;
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,12 +17,12 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name = "tb_fluxo_sequencia")
+@Table(name = "tb_fluxo_desvio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TbFluxoSequencia.findAll", query = "SELECT t FROM TbFluxoSequencia t"),
-    @NamedQuery(name = "TbFluxoSequencia.findById", query = "SELECT t FROM TbFluxoSequencia t WHERE t.id = :id")})
-public class TbFluxoSequencia implements BaseEntidade{
+    @NamedQuery(name = "TbFluxoDesvio.findAll", query = "SELECT t FROM TbFluxoDesvio t"),
+    @NamedQuery(name = "TbFluxoDesvio.findById", query = "SELECT t FROM TbFluxoDesvio t WHERE t.id = :id")})
+public class TbFluxoDesvio implements BaseEntidade {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,17 +30,17 @@ public class TbFluxoSequencia implements BaseEntidade{
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "id_fluxo", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private TbFluxoAtividade idFluxo;
-    @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private TbStatus idStatus;
+    @JoinColumn(name = "id_sequencia_chegada", referencedColumnName = "id")
+    @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
+    private TbFluxoSequencia idSequenciaChegada;
+    @JoinColumn(name = "id_sequencia_partida", referencedColumnName = "id")
+    @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
+    private TbFluxoSequencia idSequenciaPartida;
 
-    public TbFluxoSequencia() {
+    public TbFluxoDesvio() {
     }
 
-    public TbFluxoSequencia(Integer id) {
+    public TbFluxoDesvio(Integer id) {
         this.id = id;
     }
 
@@ -51,20 +52,20 @@ public class TbFluxoSequencia implements BaseEntidade{
         this.id = id;
     }
 
-    public TbFluxoAtividade getIdFluxo() {
-        return idFluxo;
+    public TbFluxoSequencia getIdSequenciaChegada() {
+        return idSequenciaChegada;
     }
 
-    public void setIdFluxo(TbFluxoAtividade idFluxo) {
-        this.idFluxo = idFluxo;
+    public void setIdSequenciaChegada(TbFluxoSequencia idSequenciaChegada) {
+        this.idSequenciaChegada = idSequenciaChegada;
     }
 
-    public TbStatus getIdStatus() {
-        return idStatus;
+    public TbFluxoSequencia getIdSequenciaPartida() {
+        return idSequenciaPartida;
     }
 
-    public void setIdStatus(TbStatus idStatus) {
-        this.idStatus = idStatus;
+    public void setIdSequenciaPartida(TbFluxoSequencia idSequenciaPartida) {
+        this.idSequenciaPartida = idSequenciaPartida;
     }
 
     @Override
@@ -77,10 +78,10 @@ public class TbFluxoSequencia implements BaseEntidade{
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TbFluxoSequencia)) {
+        if (!(object instanceof TbFluxoDesvio)) {
             return false;
         }
-        TbFluxoSequencia other = (TbFluxoSequencia) object;
+        TbFluxoDesvio other = (TbFluxoDesvio) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -89,7 +90,7 @@ public class TbFluxoSequencia implements BaseEntidade{
 
     @Override
     public String toString() {
-        return "com.yomia.jpa.entidade.TbFluxoSequencia[ id=" + id + " ]";
+        return "com.yomia.jpa.entidade.TbFluxoDesvio[ id=" + id + " ]";
     }
 
 }
