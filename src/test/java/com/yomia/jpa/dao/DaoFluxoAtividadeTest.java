@@ -22,23 +22,14 @@ public class DaoFluxoAtividadeTest extends MainFuncionalTest{
     
     
     @Test
-    public void testNovoFluxo_3args() {
+    public void testNovoFluxo_args() {
         System.out.println("novoFluxo");
         String titulo = "Teste";
-        DaoTipoAtividade k = new DaoTipoAtividade();
-        
-        DaoFluxoAtividade flx = new DaoFluxoAtividade();
-        TbFluxoAtividade fluxo =flx.novoFluxo("Teste");
-        
-        TbTipoAtividade novoTipoAtividade = k.novoTipoAtividade("teste",fluxo);
-        
         List<TbFluxoSequencia> tbFluxoSequenciaList = new ArrayList<>();
-        List<TbTipoAtividade> tbTipoAtividadeList = new ArrayList<>();
-        tbTipoAtividadeList.add(novoTipoAtividade);
         
         DaoFluxoAtividade instance = new DaoFluxoAtividade();
         String expResult = "Teste";
-        TbFluxoAtividade result = instance.novoFluxo(titulo, tbFluxoSequenciaList, tbTipoAtividadeList);
+        TbFluxoAtividade result = instance.novoFluxo(titulo, tbFluxoSequenciaList);
         assertEquals(expResult, result.getTitulo());
     }
 

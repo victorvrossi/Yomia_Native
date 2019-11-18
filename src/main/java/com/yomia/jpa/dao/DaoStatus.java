@@ -16,7 +16,7 @@ public class DaoStatus extends DaoGenerico<TbStatus> {
         try {
             salvar(st);
         } catch (Exception ex) {
-            Logger.getLogger(DaoStatus.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Falha:"+ex);
         }
         return st;
     }

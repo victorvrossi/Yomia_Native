@@ -1,7 +1,6 @@
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -39,7 +38,7 @@ public class TbStatusAtividade implements BaseEntidade {
     @Temporal(TemporalType.DATE)
     private Date dataEntrada;
     @JoinColumn(name = "id_atividade", referencedColumnName = "id")
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     private TbAtividade idAtividade;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.PERSIST)

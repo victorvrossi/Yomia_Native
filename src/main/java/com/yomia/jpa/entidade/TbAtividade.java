@@ -1,7 +1,6 @@
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -62,7 +61,7 @@ public class TbAtividade implements BaseEntidade {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private TbFuncionario idResponsavel;
     @JoinColumn(name = "id_tipo_atividade", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private TbTipoAtividade idTipoAtividade;
     @OneToMany(mappedBy = "idAtividade",cascade = CascadeType.PERSIST)
     private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;

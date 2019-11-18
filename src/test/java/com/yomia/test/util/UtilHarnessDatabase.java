@@ -2,8 +2,10 @@ package com.yomia.test.util;
 
 import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.entidade.TbAtividade;
+import com.yomia.jpa.entidade.TbFluxoAtividade;
+import com.yomia.jpa.entidade.TbFluxoDesvio;
+import com.yomia.jpa.entidade.TbFluxoSequencia;
 import com.yomia.jpa.entidade.TbFuncionario;
-import com.yomia.jpa.entidade.TbHistoricoStatusAtv;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbStatusAtividade;
@@ -26,12 +28,14 @@ public class UtilHarnessDatabase {
         try {
             manager.getTransaction().begin();
             truncateTabela(manager, nomeDaTabela(TbAtividade.class));
-            truncateTabela(manager, nomeDaTabela(TbFuncionario.class));
-            truncateTabela(manager, nomeDaTabela(TbHistoricoStatusAtv.class));
+            truncateTabela(manager, nomeDaTabela(TbFluxoAtividade.class));            
+            truncateTabela(manager, nomeDaTabela(TbFluxoSequencia.class));
+            truncateTabela(manager, nomeDaTabela(TbFuncionario.class));            
             truncateTabela(manager, nomeDaTabela(TbProjeto.class));
             truncateTabela(manager, nomeDaTabela(TbStatus.class));
             truncateTabela(manager, nomeDaTabela(TbStatusAtividade.class));
             truncateTabela(manager, nomeDaTabela(TbTipoAtividade.class));
+            
             
             manager.getTransaction().commit();
         } finally {

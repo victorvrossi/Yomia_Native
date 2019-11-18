@@ -1,7 +1,6 @@
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
-import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

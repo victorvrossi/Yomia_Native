@@ -22,4 +22,15 @@
                 <activatedProfile>testFuncional</activatedProfile>
             </activatedProfiles>
         </action>
+        <action>
+            <actionName>CUSTOM-Clean Install NoTest</actionName>
+            <displayName>Clean Install NoTest</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </action>
     </actions>

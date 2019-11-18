@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -20,8 +21,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TbFluxoSequencia.findAll", query = "SELECT t FROM TbFluxoSequencia t"),
-    @NamedQuery(name = "TbFluxoSequencia.findById", query = "SELECT t FROM TbFluxoSequencia t WHERE t.id = :id")})
-public class TbFluxoSequencia implements BaseEntidade{
+    @NamedQuery(name = "TbFluxoSequencia.findById", query = "SELECT t FROM TbFluxoSequencia t WHERE t.id = :id"),
+    @NamedQuery(name = "TbFluxoSequencia.findByOrdem", query = "SELECT t FROM TbFluxoSequencia t WHERE t.ordem = :ordem")})
+public class TbFluxoSequencia implements BaseEntidade {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,6 +31,10 @@ public class TbFluxoSequencia implements BaseEntidade{
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ordem")
+    private int ordem;
     @JoinColumn(name = "id_fluxo", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TbFluxoAtividade idFluxo;
@@ -43,12 +49,25 @@ public class TbFluxoSequencia implements BaseEntidade{
         this.id = id;
     }
 
+    public TbFluxoSequencia(Integer id, int ordem) {
+        this.id = id;
+        this.ordem = ordem;
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getOrdem() {
+        return ordem;
+    }
+
+    public void setOrdem(int ordem) {
+        this.ordem = ordem;
     }
 
     public TbFluxoAtividade getIdFluxo() {

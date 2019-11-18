@@ -3,10 +3,14 @@ package com.yomia.modulo.atividade;
 import com.yomia.webform.json.CarregaListaJson;
 import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoAtividade;
+import com.yomia.jpa.dao.DaoFuncionario;
+import com.yomia.jpa.dao.DaoTipoAtividade;
 import com.yomia.jpa.entidade.TbAtividade;
+import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbStatusAtividade;
+import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.webform.json.JsonAtividade;
 import java.util.Date;
 
@@ -61,7 +65,16 @@ public class Atividade extends Entidade {
     }
 
     public void cadastrarNovaAtividade(String titulo, String descricao, String tipo) {
-        new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao,  new TbProjeto(1),null,null,null);
+        final TbTipoAtividade tipoAtividade = new DaoTipoAtividade().carregaTipoAtividadePorTitulo(tipo);
+
+        TbFuncionario l = new TbFuncionario(1);
+        TbStatus status = new TbStatus(1);
+        if (tipoAtividade != null) {
+            new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao, new TbProjeto(1), status, tipoAtividade, l);
+            return;
+        }
+        throw new NullPointerException("Falha ao Criar nova atividade: Tipo NULL");
+
     }
 
     @Override
@@ -74,7 +87,7 @@ public class Atividade extends Entidade {
         dataCriacao = tb.getDataCriacao();
         status = tb.getTbStatusAtividade().getIdStatus().getTitulo();
         if (status == null || status.equals("")) {
-            throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId()+" StatusTB:"+tb.getTbStatusAtividade().getId()+">>"+tb.getTbStatusAtividade().getIdStatus());
+            throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId() + " StatusTB:" + tb.getTbStatusAtividade().getId() + ">>" + tb.getTbStatusAtividade().getIdStatus());
         }
 
         String nomeResponsavel = tb.getIdResponsavel().getNome();

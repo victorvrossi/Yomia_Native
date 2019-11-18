@@ -13,7 +13,7 @@ import javax.persistence.Query;
 
 public class DaoFluxoAtividade extends DaoGenerico<TbFluxoAtividade> {
 
-    public TbFluxoAtividade novoFluxo(String titulo, List<TbFluxoSequencia> tbFluxoSequenciaList, List<TbTipoAtividade> tbTipoAtividadeList) {
+    public TbFluxoAtividade novoFluxo(String titulo, List<TbFluxoSequencia> tbFluxoSequenciaList) {
         TbFluxoAtividade fluxo = new TbFluxoAtividade();
         fluxo.setTitulo(titulo);
         fluxo.setVisibilidadePublica(true);
@@ -21,15 +21,14 @@ public class DaoFluxoAtividade extends DaoGenerico<TbFluxoAtividade> {
         try {
             salvar(fluxo);
         } catch (Exception ex) {
-            Logger.getLogger(DaoFluxoAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Falha:"+ex);
         }
         return fluxo;
     }
 
     public TbFluxoAtividade novoFluxo(String titulo) {
         List<TbFluxoSequencia> tbFluxoSequenciaList = new ArrayList<>();
-        List<TbTipoAtividade> tbTipoAtividadeList = new ArrayList<>();
-        return novoFluxo(titulo, tbFluxoSequenciaList, tbTipoAtividadeList);
+        return novoFluxo(titulo, tbFluxoSequenciaList);
     }
     
     public void removerFluxo(String titulo){

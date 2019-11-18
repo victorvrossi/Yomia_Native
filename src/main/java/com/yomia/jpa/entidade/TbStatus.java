@@ -1,7 +1,6 @@
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -38,6 +37,10 @@ public class TbStatus implements BaseEntidade {
     private String titulo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
     private List<TbFluxoSequencia> tbFluxoSequenciaList;
+    @OneToMany(mappedBy = "idStatus")
+    private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
+    @OneToMany(mappedBy = "idStatus")
+    private List<TbStatusAtividade> tbStatusAtividadeList;
 
     public TbStatus() {
     }
@@ -69,6 +72,24 @@ public class TbStatus implements BaseEntidade {
 
     public void setTbFluxoSequenciaList(List<TbFluxoSequencia> tbFluxoSequenciaList) {
         this.tbFluxoSequenciaList = tbFluxoSequenciaList;
+    }
+
+    @XmlTransient
+    public List<TbHistoricoStatusAtv> getTbHistoricoStatusAtvList() {
+        return tbHistoricoStatusAtvList;
+    }
+
+    public void setTbHistoricoStatusAtvList(List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList) {
+        this.tbHistoricoStatusAtvList = tbHistoricoStatusAtvList;
+    }
+
+    @XmlTransient
+    public List<TbStatusAtividade> getTbStatusAtividadeList() {
+        return tbStatusAtividadeList;
+    }
+
+    public void setTbStatusAtividadeList(List<TbStatusAtividade> tbStatusAtividadeList) {
+        this.tbStatusAtividadeList = tbStatusAtividadeList;
     }
 
     @Override

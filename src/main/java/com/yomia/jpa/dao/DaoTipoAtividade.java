@@ -18,7 +18,6 @@ public class DaoTipoAtividade extends DaoGenerico<TbTipoAtividade> {
         n.setTitulo(titulo);
         List<TbAtividade> tbAtividadeList = new ArrayList<>();
         n.setTbAtividadeList(tbAtividadeList);
-        n.setIdFluxoAtividade(idFluxoAtividade);
         try {
             salvar(n);
         } catch (Exception ex) {
@@ -37,15 +36,19 @@ public class DaoTipoAtividade extends DaoGenerico<TbTipoAtividade> {
         }
     }
 
-    public List carregaTipoAtividadePorTitulo(String titulo) {
+    public TbTipoAtividade carregaTipoAtividadePorTitulo(String titulo) {
         EntityManager manager = getEntityManager();
         try {
             Query createNamedQuery = manager.createNamedQuery("TbTipoAtividade.findByTitulo");
             createNamedQuery.setParameter("titulo", titulo);
-            return createNamedQuery.getResultList();
+            final List resultList = createNamedQuery.getResultList();
+            if(resultList.size()>0){
+                return (TbTipoAtividade)resultList.get(0);
+            }
         } finally {
             manager.close();
         }
+        return null;
     }
 
     @Override
