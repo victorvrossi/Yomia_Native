@@ -13,10 +13,10 @@ import java.util.logging.Logger;
 
 public class CarregaListaJson {
 
-    public String listaTodosElementoEmJson(Class<? extends DaoGenerico> daoClass, Class<? extends JsonAtividade> jsonClass, Class<? extends Entidade> entidadeClass) {
+    public String listaTodosElementoEmJson(Class<? extends DaoGenerico> daoClass, Class<? extends JsonListarAtividades> jsonClass, Class<? extends Entidade> entidadeClass) {
         Entidade entidade = (Entidade) geraObjetoApartirDeClasse(entidadeClass);
         DaoGenerico daoObjeto = (DaoGenerico) geraObjetoApartirDeClasse(daoClass);
-        JsonAtividade jsonObjeto = (JsonAtividade) geraObjetoApartirDeClasse(jsonClass);
+        JsonListarAtividades jsonObjeto = (JsonListarAtividades) geraObjetoApartirDeClasse(jsonClass);
         ArrayList<JsonResponse> listaDeObjetoJson;
         List<BaseEntidade> objetosCarregadosDoBanco = converteParaEntidade(daoObjeto);
         listaDeObjetoJson = carregaListaConverteObjeto(jsonObjeto, entidade, objetosCarregadosDoBanco);

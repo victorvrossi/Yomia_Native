@@ -4,9 +4,9 @@ import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.modulo.atividade.Atividade;
 import com.yomia.webform.json.CarregaListaJson;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
-import com.yomia.webform.json.JsonAtividade;
-import com.yomia.webform.service.face.FormularioGenerico;
-import static com.yomia.webform.service.face.FormularioGenerico.processaRequest;
+import com.yomia.webform.json.JsonListarAtividades;
+import com.yomia.webform.service.face.RequisicaoGenerica;
+import static com.yomia.webform.service.face.RequisicaoGenerica.processaRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class FormularioAtividade extends FormularioGenerico {
+public class FormularioAtividade extends RequisicaoGenerica {
 
     AcaoFormulario acao = AcaoFormulario.NENHUMA;
 

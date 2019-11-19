@@ -11,7 +11,7 @@ import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
-import com.yomia.webform.json.JsonAtividade;
+import com.yomia.webform.json.JsonListarAtividades;
 import java.util.Date;
 
 public class Atividade extends Entidade {
@@ -60,7 +60,7 @@ public class Atividade extends Entidade {
 
     public String geraListaJsonDeAtividades() {
         CarregaListaJson json = new CarregaListaJson();
-        return json.listaTodosElementoEmJson(DaoAtividade.class, JsonAtividade.class, Atividade.class);
+        return json.listaTodosElementoEmJson(DaoAtividade.class, JsonListarAtividades.class, Atividade.class);
 
     }
 

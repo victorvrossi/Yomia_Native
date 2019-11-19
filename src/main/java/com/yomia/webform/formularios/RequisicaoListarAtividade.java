@@ -1,35 +1,34 @@
-
 package com.yomia.webform.formularios;
 
+import com.yomia.modulo.atividade.Atividade;
+import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 import com.yomia.webform.service.face.RequisicaoGenerica;
-import com.yomia.webform.json.JsonListarCliente;
+import static com.yomia.webform.service.face.RequisicaoGenerica.processaRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ClienteListaTicket extends RequisicaoGenerica{
+public class RequisicaoListarAtividade extends RequisicaoGenerica{
 
     @Override
-    public void processaRequest(HttpServletRequest request) {
-        
-    }
+    public void processaRequest(final HttpServletRequest request) {}
 
     @Override
     public void processaResponse(HttpServletResponse response) {
-         t(response);
+        response.setContentType("text/html;charset=UTF-8");
+        listaAtividade(response);
     }
 
-    private void t(HttpServletResponse response) {
+    private void listaAtividade(HttpServletResponse response) {        
         try (PrintWriter out = response.getWriter()) {
-           
-            //System.out.println("Passei pelo out:"+t);
+            out.println(new Atividade().geraListaJsonDeAtividades());
         } catch (IOException ex) {
             Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class JsonClienteLista {
+public class JsonListarCliente {
 
     
     String titulo;
@@ -49,14 +49,14 @@ public class JsonClienteLista {
     }
     
     
-    public String json(JsonClienteLista user){
+    public String json(JsonListarCliente user){
         Gson gson = new Gson();
         String userJSONString = gson.toJson(user);
         return userJSONString;
     }
-    public String jsonList(ArrayList<JsonClienteLista> user){
+    public String jsonList(ArrayList<JsonListarCliente> user){
         Gson gson = new Gson();
-        Type listType = new TypeToken<List<JsonClienteLista>>() {}.getType();
+        Type listType = new TypeToken<List<JsonListarCliente>>() {}.getType();
         String userJSONString = gson.toJson(user,listType);
         return userJSONString;
     }

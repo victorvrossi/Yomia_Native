@@ -9,10 +9,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonAtividade extends JsonResponse {
+public class JsonListarAtividades extends JsonResponse {
 
-    public static JsonAtividade converte(Atividade atividade) {
-        return (JsonAtividade) new JsonAtividade().converteParaJson(atividade);
+    public static JsonListarAtividades converte(Atividade atividade) {
+        return (JsonListarAtividades) new JsonListarAtividades().converteParaJson(atividade);
     }
 
     public String getCodigoAtividade() {
@@ -42,7 +42,7 @@ public class JsonAtividade extends JsonResponse {
     @Override
     public JsonResponse converteParaJson(Object atv) {
         Atividade atividade = (Atividade) atv;
-        JsonAtividade nv = new JsonAtividade();
+        JsonListarAtividades nv = new JsonListarAtividades();
         nv.titulo = atividade.getTitulo();
         nv.codigoAtividade = atividade.getCodigoAtividade();
         nv.descricao = atividade.getDescricao();

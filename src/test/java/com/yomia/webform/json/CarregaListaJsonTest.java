@@ -22,7 +22,7 @@ public class CarregaListaJsonTest extends MainFuncionalTest{
         new AtividadeUtil().novaAtividade();
         System.out.println("listaTodosElementoEmJson");
         Class<? extends DaoGenerico> daoClass = DaoAtividade.class;
-        Class<? extends JsonAtividade> jsonClass = JsonAtividade.class;
+        Class<? extends JsonListarAtividades> jsonClass = JsonListarAtividades.class;
         Class<? extends Entidade> entidadeClass = Atividade.class;
         CarregaListaJson instance = new CarregaListaJson();
         String result = instance.listaTodosElementoEmJson(daoClass, jsonClass, entidadeClass);        

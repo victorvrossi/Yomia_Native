@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 
-public abstract class FormularioGenerico implements InterfaceFormularioHTTP {
+public abstract class RequisicaoGenerica implements InterfaceFormularioHTTP {
 
     public static void processaRequest(HttpServletRequest request, AcaoParaObjetoRequisicaoDoFormularioSimples objeto) {
         try {

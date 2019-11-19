@@ -3,10 +3,10 @@ package com.yomia.webform.json;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.modulo.atividade.TipoAtividade;
 
-public class JsonTipoAtividade extends JsonResponse {
+public class JsonListarTipoAtividade extends JsonResponse {
 
     public static JsonResponse converte(TipoAtividade tipo) {
-        return new JsonTipoAtividade().converteParaJson(tipo);
+        return new JsonListarTipoAtividade().converteParaJson(tipo);
     }
     String titulo;
 
@@ -21,7 +21,7 @@ public class JsonTipoAtividade extends JsonResponse {
     @Override
     public JsonResponse converteParaJson(Object tipo) {
         TipoAtividade tipoAtividade = (TipoAtividade)tipo;
-        JsonTipoAtividade nv = new JsonTipoAtividade();
+        JsonListarTipoAtividade nv = new JsonListarTipoAtividade();
         nv.titulo = tipoAtividade.getTitulo();
         return nv;
     }

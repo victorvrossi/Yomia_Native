@@ -7,7 +7,6 @@ package com.yomia.jpa.dao;
 
 import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbFluxoSequencia;
-import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.test.util.MainFuncionalTest;
 import java.util.ArrayList;
 import java.util.List;

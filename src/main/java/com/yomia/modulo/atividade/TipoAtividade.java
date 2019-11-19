@@ -4,7 +4,7 @@ import com.yomia.jpa.dao.DaoTipoAtividade;
 import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.webform.json.JsonResponse;
-import com.yomia.webform.json.JsonTipoAtividade;
+import com.yomia.webform.json.JsonListarTipoAtividade;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,10 +37,10 @@ public class TipoAtividade {
         List<TbTipoAtividade> atividadesCarregadasBancoDeDados = daoAtividade.carregaTipoAtividade();
         for (TbTipoAtividade atividade : atividadesCarregadasBancoDeDados) {
             TipoAtividade atv = new TipoAtividade().converteTabelaParaObjeto(atividade);
-            JsonResponse converteParaJson = new JsonTipoAtividade().converteParaJson(atv);
+            JsonResponse converteParaJson = new JsonListarTipoAtividade().converteParaJson(atv);
             listaDeAtividadeJson.add(converteParaJson);
         }
-        return new JsonTipoAtividade().formarJsonComLista(listaDeAtividadeJson);
+        return new JsonListarTipoAtividade().formarJsonComLista(listaDeAtividadeJson);
     }
 
     private void validaEntrada(String tipo) {

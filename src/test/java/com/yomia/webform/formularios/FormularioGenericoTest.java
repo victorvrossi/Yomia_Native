@@ -1,7 +1,7 @@
 
 package com.yomia.webform.formularios;
 
-import com.yomia.webform.service.face.FormularioGenerico;
+import com.yomia.webform.service.face.RequisicaoGenerica;
 import com.yomia.envoriment.Enviroment;
 import com.yomia.envoriment.ObjetoTeste;
 import com.yomia.test.Unitario;
@@ -23,7 +23,7 @@ public class FormularioGenericoTest {
         HttpServletRequest request = Enviroment.getMockRequest();
         AcaoParaObjetoRequisicaoDoFormularioSimples objeto = Enviroment.acaoParaObjetoDeTeste(teste);
         assertEquals("fail", teste.getTexto());
-        FormularioGenerico.processaRequest(request, objeto);
+        RequisicaoGenerica.processaRequest(request, objeto);
         assertEquals("teste", teste.getTexto());
 
     }

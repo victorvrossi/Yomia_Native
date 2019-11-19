@@ -5,12 +5,6 @@ import com.yomia.jpa.entidade.TbFluxoDesvio;
 import com.yomia.jpa.entidade.TbFluxoSequencia;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.test.util.MainFuncionalTest;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

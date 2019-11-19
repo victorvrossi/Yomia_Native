@@ -1,6 +1,6 @@
 package com.yomia.webform;
 
-import com.yomia.webform.service.face.FormularioGenerico;
+import com.yomia.webform.service.face.RequisicaoGenerica;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ServletWebForm extends HttpServlet {
 
-    FormularioGenerico processaUrlRetornaFormularioParaExecucao(HttpServletRequest request, HttpServletResponse response) {
+    RequisicaoGenerica processaUrlRetornaFormularioParaExecucao(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/plain;charset=UTF-8");
         String URI = request.getRequestURI().replace("/form/", "");
         return EnumeracaoFormulariosSistema.retornaFormPorURI(URI);
@@ -17,7 +17,7 @@ public class ServletWebForm extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        final FormularioGenerico formularioParaExecutar = processaUrlRetornaFormularioParaExecucao(request, response);
+        final RequisicaoGenerica formularioParaExecutar = processaUrlRetornaFormularioParaExecucao(request, response);
         final ExecutaAcaoParaRequisicaoDoFormulario forms = new ExecutaAcaoParaRequisicaoDoFormulario(formularioParaExecutar);
         forms.processaRequest(request);
         forms.processaResponse(response);

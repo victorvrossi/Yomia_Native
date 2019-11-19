@@ -1,14 +1,14 @@
 package com.yomia.webform;
 
-import com.yomia.webform.service.face.FormularioGenerico;
+import com.yomia.webform.service.face.RequisicaoGenerica;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ExecutaAcaoParaRequisicaoDoFormulario<T extends FormularioGenerico> {
+public class ExecutaAcaoParaRequisicaoDoFormulario<T extends RequisicaoGenerica> {
 
     public void processaRequest(HttpServletRequest request) {
-        ((FormularioGenerico) var).processaRequest(request);
+        ((RequisicaoGenerica) var).processaRequest(request);
     }
 
     private T var;
@@ -18,6 +18,6 @@ public class ExecutaAcaoParaRequisicaoDoFormulario<T extends FormularioGenerico>
     }
 
     void processaResponse(HttpServletResponse response) throws IOException {
-         ((FormularioGenerico) var).processaResponse(response);
+         ((RequisicaoGenerica) var).processaResponse(response);
     }
 }

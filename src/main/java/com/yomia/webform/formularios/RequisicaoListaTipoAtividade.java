@@ -2,7 +2,7 @@
 package com.yomia.webform.formularios;
 
 import com.yomia.modulo.atividade.TipoAtividade;
-import com.yomia.webform.service.face.FormularioGenerico;
+import com.yomia.webform.service.face.RequisicaoGenerica;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ListaTipoAtividade extends FormularioGenerico{
+public class RequisicaoListaTipoAtividade extends RequisicaoGenerica{
 
     @Override
     public void processaRequest(HttpServletRequest request) {}
@@ -22,7 +22,7 @@ public class ListaTipoAtividade extends FormularioGenerico{
             out.println(new TipoAtividade().carregaLista());
             System.out.println("Passei pelo out");
         } catch (IOException ex) {
-            Logger.getLogger(ListaTipoAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RequisicaoListaTipoAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

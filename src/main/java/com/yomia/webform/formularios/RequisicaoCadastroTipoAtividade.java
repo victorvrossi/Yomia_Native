@@ -2,14 +2,14 @@ package com.yomia.webform.formularios;
 
 import com.yomia.modulo.atividade.TipoAtividade;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
-import com.yomia.webform.service.face.FormularioGenerico;
-import static com.yomia.webform.service.face.FormularioGenerico.processaRequest;
+import com.yomia.webform.service.face.RequisicaoGenerica;
+import static com.yomia.webform.service.face.RequisicaoGenerica.processaRequest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CadastroTipoAtividade  extends FormularioGenerico {
+public class RequisicaoCadastroTipoAtividade  extends RequisicaoGenerica {
 
     @Override
     public void processaRequest(HttpServletRequest request) {
