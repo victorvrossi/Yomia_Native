@@ -1,5 +1,5 @@
 
-package com.yomia.webform.formularios;
+package com.yomia.webform.requisicao;
 
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import com.yomia.webform.json.JsonListarCliente;

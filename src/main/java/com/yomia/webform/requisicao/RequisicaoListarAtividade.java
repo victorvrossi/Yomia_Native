@@ -1,4 +1,4 @@
-package com.yomia.webform.formularios;
+package com.yomia.webform.requisicao;
 
 import com.yomia.modulo.atividade.Atividade;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;

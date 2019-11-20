@@ -1,14 +1,14 @@
 package com.yomia.webform;
 
-import com.yomia.webform.formularios.AcaoFormulario;
-import com.yomia.webform.formularios.RequisicaoCadastroStatus;
-import com.yomia.webform.formularios.RequisicaoCadastroTipoAtividade;
-import com.yomia.webform.formularios.ClienteListaTicket;
-import com.yomia.webform.formularios.FormularioAtividade;
+import com.yomia.webform.requisicao.AcaoFormulario;
+import com.yomia.webform.requisicao.RequisicaoCadastroStatus;
+import com.yomia.webform.requisicao.RequisicaoCadastroTipoAtividade;
+import com.yomia.webform.requisicao.ClienteListaTicket;
+import com.yomia.webform.requisicao.FormularioAtividade;
 import com.yomia.webform.service.face.RequisicaoGenerica;
-import com.yomia.webform.formularios.RequisicaoListaTipoAtividade;
-import com.yomia.webform.formularios.RequisicaoCadastrarAtividade;
-import com.yomia.webform.formularios.RequisicaoListarAtividade;
+import com.yomia.webform.requisicao.RequisicaoListaTipoAtividade;
+import com.yomia.webform.requisicao.RequisicaoCadastrarAtividade;
+import com.yomia.webform.requisicao.RequisicaoListarAtividade;
 import java.util.HashMap;
 import java.util.Map;
 

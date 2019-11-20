@@ -1,4 +1,4 @@
-package com.yomia.webform.formularios;
+package com.yomia.webform.requisicao;
 
 import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.modulo.atividade.Atividade;

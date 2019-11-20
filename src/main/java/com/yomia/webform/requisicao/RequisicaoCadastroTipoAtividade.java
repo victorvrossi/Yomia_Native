@@ -1,6 +1,5 @@
-package com.yomia.webform.formularios;
+package com.yomia.webform.requisicao;
 
-import com.yomia.modulo.atividade.Status;
 import com.yomia.modulo.atividade.TipoAtividade;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 import com.yomia.webform.service.face.RequisicaoGenerica;
@@ -10,17 +9,16 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RequisicaoCadastroStatus extends RequisicaoGenerica {
+public class RequisicaoCadastroTipoAtividade  extends RequisicaoGenerica {
 
     @Override
     public void processaRequest(HttpServletRequest request) {
-        AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
+         AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
             @Override
             public void executarAcao(HttpServletRequest request) {
                 try {
-                    String statusAtividade = request.getParameter("lb_titulo");
-                    System.out.println("Status:"+statusAtividade);
-                    new Status().novoStatus(statusAtividade);
+                    String tipoAtividade = request.getParameter("lb_titulo");
+                    new TipoAtividade().novoTipoAtividade(tipoAtividade);
                 } catch (Exception ex) {
                     Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -28,11 +26,12 @@ public class RequisicaoCadastroStatus extends RequisicaoGenerica {
             }
         };
         processaRequest(request, formObjeto);
+        
     }
 
     @Override
     public void processaResponse(HttpServletResponse response) {
-
+        
     }
 
 }
