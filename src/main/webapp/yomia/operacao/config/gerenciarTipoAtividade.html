@@ -279,51 +279,21 @@
 
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Configurações</h1>
-                            <a href="index.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar</a>
+                            <h1 class="h3 mb-0 text-gray-800">Configurações para Tipo de Atividade</h1>
+                            <a href="../configuracao.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar</a>
                         </div>
                         <!-- Form -->
                         <div class="row">
-                            <div class="col-lg-3">
-                                <div class="card shadow mb-4"><!-- Card -->
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Gerenciar configuração de atividade</h6>
-                                    </div>
-                                    <div class="card-body">
 
-
-                                        <fieldset class="container-fluid">
-                                            <!-- Text input-->
-                                            <div class="row mb-1">
-                                                <div class="col-md">
-                                                    <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <div class="col-md">
-                                                    <a class="btn btn-info btn-block"  href="config/gerenciarStatus.html">Status de Atividade</a>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <div class="col-md">
-                                                    <a class="btn btn-primary btn-block"  href="config/gerenciarStatus.html">Fluxo de Atividade</a>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-
-
-                                    </div>
-                                </div><!-- End Card -->
-                            </div>
                             <div class="col-lg-6">
-                                <form class="form-horizontal" id="formStatus">
+                                <form class="form-horizontal" id="formid">
 
 
 
 
                                     <div class="card shadow mb-4"><!-- Card -->
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Status da Atividade</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Tipo Atividade</h6>
                                         </div>
                                         <div class="card-body">
 
@@ -340,13 +310,57 @@
                                                         <div class="col-md-12 p-3">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <div class="btn btn-primary btn-block" id="btn_salvar_status">Adicionar</div>
+                                                                    <div class="btn btn-primary btn-block" id="btn_salvar_tipo">Adicionar</div>
                                                                 </div>
 
                                                             </div>
 
 
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+
+                                        </div>
+                                    </div><!-- End Card -->
+
+
+                                </form>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <form class="form-horizontal" id="formStatus">
+
+
+
+
+                                    <div class="card shadow mb-4"><!-- Card -->
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Status da Atividade</h6>
+                                        </div>
+                                        <div class="card-body">
+
+
+                                            <fieldset>
+                                                <!-- Text input-->
+                                                <div class="collapse show" id="cardEstBackLog">
+                                                    <div class="card-body overflow-auto" id="listatipoatividade" style="max-height: 19rem" >
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -423,6 +437,22 @@
 
             $(document).ready(function () {
 
+                function listaTipos() {
+                    $.ajax({
+                        url: '/form/tipo_atividade.lista',
+                        type: "post"
+                    }).done(function (data) {
+
+                        $("#listatipoatividade").html("");
+                        var json = JSON.parse(data);
+                        var tiposBotoes = ["btn-primary", "btn-info"];
+                        var botaoClasse = tiposBotoes[0];
+                        for (var i = 0; i <= json.length; i++) {
+                            botaoClasse = tiposBotoes[(i % 2 == 0 ? 0 : 1)];
+                            $("#listatipoatividade").html($("#listatipoatividade").html() + "<a class='btn " + botaoClasse + " btn-block'  href='#'>" + json[i].titulo + "</a>");
+                        }
+                    });
+                }
                 $("#btn_salvar_tipo").click(
                         function () {
 
@@ -430,35 +460,17 @@
 
                             var $inputs = $form.find("input");
                             var serializedData = $form.serialize();
-                            $inputs.prop("disabled", true);
+                            $inputs.prop("disabled", false);
                             $.ajax({
                                 url: '/form/tipo_atividade.form.cad',
                                 type: "post",
                                 data: serializedData
                             }).done(function (data) {
-                                alert(data);
+                                listaTipos();
                             });
                         }
                 );
-
-                $("#btn_salvar_status").click(
-                        function () {
-
-                            var $form = $("#formStatus");
-
-                            var $inputs = $form.find("input");
-                            var serializedData = $form.serialize();
-                            $inputs.prop("disabled", true);
-                            $.ajax({
-                                url: '/form/status_atividade.form.cad',
-                                type: "post",
-                                data: serializedData
-                            }).done(function (data) {
-                                alert(data);
-                            });
-                        }
-                );
-
+                listaTipos();
 
 
             });

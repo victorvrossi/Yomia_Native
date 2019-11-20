@@ -279,42 +279,56 @@
 
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Configurações</h1>
-                            <a href="index.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar</a>
+                          <h1 class="h3 mb-0 text-gray-800">Configurações de Status de Atividade</h1>
+                          <a href="../configuracao.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar</a>
                         </div>
                         <!-- Form -->
                         <div class="row">
-                            <div class="col-lg-3">
-                                <div class="card shadow mb-4"><!-- Card -->
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Gerenciar configuração de atividade</h6>
-                                    </div>
-                                    <div class="card-body">
+                            
+                            <div class="col-lg-6">
+                                <form class="form-horizontal" id="formStatus">
 
 
-                                        <fieldset class="container-fluid">
-                                            <!-- Text input-->
-                                            <div class="row mb-1">
-                                                <div class="col-md">
-                                                    <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+
+
+                                    <div class="card shadow mb-4"><!-- Card -->
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Status da Atividade</h6>
+                                        </div>
+                                        <div class="card-body">
+
+
+                                            <fieldset>
+                                                <!-- Text input-->
+                                                <div class="form-group">
+                                                    <label class="col-md control-label" for="lb_titulo">Titulo</label>  
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input id="lb_titulo" name="lb_titulo" type="text" placeholder="" class="form-control input-md" required="">
+                                                        </div>
+
+                                                        <div class="col-md-12 p-3">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="btn btn-primary btn-block" id="btn_salvar_status">Adicionar</div>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <div class="col-md">
-                                                    <a class="btn btn-info btn-block"  href="config/gerenciarStatus.html">Status de Atividade</a>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <div class="col-md">
-                                                    <a class="btn btn-primary btn-block"  href="config/gerenciarStatus.html">Fluxo de Atividade</a>
-                                                </div>
-                                            </div>
-                                        </fieldset>
+                                            </fieldset>
 
 
-                                    </div>
-                                </div><!-- End Card -->
+                                        </div>
+                                    </div><!-- End Card -->
+
+
+                                </form>
                             </div>
+                            
                             <div class="col-lg-6">
                                 <form class="form-horizontal" id="formStatus">
 
