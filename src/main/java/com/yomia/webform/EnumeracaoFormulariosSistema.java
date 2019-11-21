@@ -1,10 +1,9 @@
 package com.yomia.webform;
 
-import com.yomia.webform.requisicao.AcaoFormulario;
 import com.yomia.webform.requisicao.RequisicaoCadastroStatus;
 import com.yomia.webform.requisicao.RequisicaoCadastroTipoAtividade;
 import com.yomia.webform.requisicao.ClienteListaTicket;
-import com.yomia.webform.requisicao.FormularioAtividade;
+import com.yomia.webform.requisicao.RequisicaoAvancarStatusAtividade;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import com.yomia.webform.requisicao.RequisicaoListaTipoAtividade;
 import com.yomia.webform.requisicao.RequisicaoCadastrarAtividade;
@@ -22,7 +21,7 @@ public enum EnumeracaoFormulariosSistema {
     LISTAR_TIPO_ATIVIDADE(new Object[]{"tipo_atividade.lista", new RequisicaoListaTipoAtividade()}),
     LISTA_TICKET(new Object[]{"ticket.list", new ClienteListaTicket()}),
     
-    AVANCA_STATUS_ATIVIDADE(new Object[]{"atividade.avanca.status", new FormularioAtividade(AcaoFormulario.AVANCAR_STATUS)})
+    AVANCA_STATUS_ATIVIDADE(new Object[]{"atividade.avanca.status", new RequisicaoAvancarStatusAtividade()})
     ;
 
     public Object[] uri_obj;

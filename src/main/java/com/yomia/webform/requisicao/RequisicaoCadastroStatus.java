@@ -22,7 +22,7 @@ public class RequisicaoCadastroStatus extends RequisicaoGenerica {
                     System.out.println("Status:"+statusAtividade);
                     new Status().novoStatus(statusAtividade);
                 } catch (Exception ex) {
-                    Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
 
             }

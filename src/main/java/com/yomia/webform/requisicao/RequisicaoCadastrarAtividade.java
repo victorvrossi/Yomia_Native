@@ -33,7 +33,7 @@ public class RequisicaoCadastrarAtividade extends RequisicaoGenerica {
                     
                     new Atividade().cadastrarNovaAtividade(titulo, descricao,tipo);
                 } catch (Exception ex) {
-                    Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
 
             }

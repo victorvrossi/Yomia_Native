@@ -1,6 +1,6 @@
 package com.yomia.webform.formularios;
 
-import com.yomia.webform.service.face.FormularioProcessamento;
+import com.yomia.webform.service.face.ProcessamentoDaRequisicao;
 import com.yomia.envoriment.Enviroment;
 import com.yomia.envoriment.ObjetoTeste;
 import com.yomia.test.Unitario;
@@ -19,7 +19,7 @@ public class FormularioProcessamentoTest {
     public void testRequest() throws Exception {
         HttpServletRequest request = Enviroment.getMockRequest();
         AcaoParaObjetoRequisicaoDoFormularioSimples objeto = Enviroment.acaoParaObjetoDeTeste(teste);
-        FormularioProcessamento instance = new FormularioProcessamento();
+        ProcessamentoDaRequisicao instance = new ProcessamentoDaRequisicao();
         instance.request(request, objeto);
         assertEquals("teste", teste.getTexto());
     }

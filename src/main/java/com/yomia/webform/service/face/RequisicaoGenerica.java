@@ -15,7 +15,7 @@ public abstract class RequisicaoGenerica implements InterfaceFormularioHTTP {
     public static void processaRequest(HttpServletRequest request, AcaoParaObjetoRequisicaoDoFormularioSimples objeto) {
         try {
             validaParaProcessa(request,objeto);
-            FormularioProcessamento h = new FormularioProcessamento();
+            ProcessamentoDaRequisicao h = new ProcessamentoDaRequisicao();
             h.request(request, objeto);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(ExecutaAcaoParaRequisicaoDoFormulario.class.getName()).log(Level.SEVERE, null, ex);

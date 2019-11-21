@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RequisicaoListarAtividade extends RequisicaoGenerica{
+public class RequisicaoAvancarStatusAtividade extends RequisicaoGenerica{
 
     @Override
     public void processaRequest(final HttpServletRequest request) {}

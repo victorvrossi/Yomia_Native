@@ -28,7 +28,7 @@ public class ClienteListaTicket extends RequisicaoGenerica{
            
             //System.out.println("Passei pelo out:"+t);
         } catch (IOException ex) {
-            Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
     

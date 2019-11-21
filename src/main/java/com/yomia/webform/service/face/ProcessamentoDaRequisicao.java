@@ -5,7 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 
-public class FormularioProcessamento {
+public class ProcessamentoDaRequisicao {
 
     public void request(HttpServletRequest request, AcaoParaObjetoRequisicaoDoFormularioSimples objeto)
             throws ServletException, IOException {

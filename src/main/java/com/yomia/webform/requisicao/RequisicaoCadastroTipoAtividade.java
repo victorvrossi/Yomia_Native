@@ -20,7 +20,7 @@ public class RequisicaoCadastroTipoAtividade  extends RequisicaoGenerica {
                     String tipoAtividade = request.getParameter("lb_titulo");
                     new TipoAtividade().novoTipoAtividade(tipoAtividade);
                 } catch (Exception ex) {
-                    Logger.getLogger(FormularioAtividade.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
 
             }
