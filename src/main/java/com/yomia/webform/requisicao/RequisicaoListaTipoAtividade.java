@@ -20,7 +20,6 @@ public class RequisicaoListaTipoAtividade extends RequisicaoGenerica{
          response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             out.println(new TipoAtividade().carregaLista());
-            System.out.println("Passei pelo out");
         } catch (IOException ex) {
             Logger.getLogger(RequisicaoListaTipoAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }
