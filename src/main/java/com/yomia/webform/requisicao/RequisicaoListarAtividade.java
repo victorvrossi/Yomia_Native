@@ -11,24 +11,26 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RequisicaoListarAtividade extends RequisicaoGenerica{
+public class RequisicaoListarAtividade extends RequisicaoGenerica {
 
     @Override
-    public void processaRequest(final HttpServletRequest request) {}
+    public void processaRequest(final HttpServletRequest request) {
+    }
 
     @Override
     public void processaResponse(HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-        listaAtividade(response);
-    }
-
-    private void listaAtividade(HttpServletResponse response) {        
-        try (PrintWriter out = response.getWriter()) {
-            out.println(new Atividade().geraListaJsonDeAtividades());
-        } catch (IOException ex) {
-            
+        if (false) {
+            listaAtividade(response);
         }
     }
 
+    private void listaAtividade(HttpServletResponse response) {
+        try (PrintWriter out = response.getWriter()) {
+            out.println(new Atividade().geraListaJsonDeAtividades());
+        } catch (IOException ex) {
+
+        }
+    }
 
 }

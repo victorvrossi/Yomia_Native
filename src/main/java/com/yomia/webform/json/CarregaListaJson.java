@@ -18,8 +18,11 @@ public class CarregaListaJson {
         DaoGenerico daoObjeto = (DaoGenerico) geraObjetoApartirDeClasse(daoClass);
         JsonListarAtividades jsonObjeto = (JsonListarAtividades) geraObjetoApartirDeClasse(jsonClass);
         ArrayList<JsonResponse> listaDeObjetoJson;
-        List<BaseEntidade> objetosCarregadosDoBanco = converteParaEntidade(daoObjeto);
+        List<BaseEntidade> objetosCarregadosDoBanco = converteParaEntidade(daoObjeto);        
         listaDeObjetoJson = carregaListaConverteObjeto(jsonObjeto, entidade, objetosCarregadosDoBanco);
+        if(listaDeObjetoJson.size()<1){
+            throw  new NullPointerException("Falha de lista ao criar atividade");
+        }
         return jsonObjeto.formarJsonComLista(listaDeObjetoJson);
     }
 
@@ -41,16 +44,20 @@ public class CarregaListaJson {
     private List<BaseEntidade> converteParaEntidade(DaoGenerico e) {
         List<BaseEntidade> carregarTodasAtividades = e.carregarTodas("findAll");
         if(carregarTodasAtividades == null || carregarTodasAtividades.size()<1){
-            throw new NullPointerException("Nenhuma Atividade carregada");
+           return new ArrayList<BaseEntidade>();
         }
         return carregarTodasAtividades;
     }
 
     private ArrayList<JsonResponse> carregaListaConverteObjeto(JsonResponse l, Entidade entidade, List<BaseEntidade> atividadesCarregadasBancoDeDados) {
         ArrayList<JsonResponse> listaDeAtividadeJson = new ArrayList<>();
+        try{
         for (BaseEntidade atividade : atividadesCarregadasBancoDeDados) {
             Entidade atv = entidade.converteTabelaParaObjeto(atividade);
             listaDeAtividadeJson.add(l.converteParaJson(atv));
+        }
+        }catch(Exception e){
+            System.out.println("Falha ao carregar JSON:"+e);
         }
         return listaDeAtividadeJson;
     }

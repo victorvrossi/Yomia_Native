@@ -345,22 +345,14 @@
                                             <fieldset>
                                                 <!-- Text input-->
                                                 <div class="collapse show" id="cardEstBackLog">
-                                                    <div class="card-body overflow-auto" id="listatipoatividade" style="max-height: 19rem" >
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
-                                                        <a class="btn btn-primary btn-block"  href="config/gerenciarTipoAtividade.html">Tipo de Atividade</a>
+                                                    <div class="card-body overflow-auto"  style="max-height: 19rem" >
+                                                        <h3>Status de Atividades cadastrados</h3>
+                                                        <hr/>
+                                                        <table class="table table-striped">
+                                                            <tbody id="listatipoatividade">
+
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -424,6 +416,7 @@
             </div>
         </div>
 
+
         <!-- Bootstrap core JavaScript-->
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -437,6 +430,13 @@
 
             $(document).ready(function () {
 
+                function linha(css,valor){
+                    if(valor){
+                        return "<td class='center'><a href='#' class=' " + css + "  '>" + valor.titulo + "</a></td>";    
+                    }
+                    return '<td></td>';
+                    
+                }
                 function listaTipos() {
                     $.ajax({
                         url: '/form/tipo_atividade.lista',
@@ -447,9 +447,17 @@
                         var json = JSON.parse(data);
                         var tiposBotoes = ["btn-primary", "btn-info"];
                         var botaoClasse = tiposBotoes[0];
-                        for (var i = 0; i <= json.length; i++) {
-                            botaoClasse = tiposBotoes[(i % 2 == 0 ? 0 : 1)];
-                            $("#listatipoatividade").html($("#listatipoatividade").html() + "<a class='btn " + botaoClasse + " btn-block'  href='#'>" + json[i].titulo + "</a>");
+                        for (var i = 0; i < json.length; i++) {
+                            if (json[i]) {
+                                botaoClasse = tiposBotoes[(i % 2 == 0 ? 0 : 1)];
+                                var add = "<tr>";
+                                add += linha("btn " + botaoClasse + "  btn-block",json[i]);
+                                i = i + 1;
+                                botaoClasse = tiposBotoes[(i % 2 == 0 ? 0 : 1)];
+                                add += linha("btn " + botaoClasse + "  btn-block",json[i]);
+                                add += "</tr>";
+                                $("#listatipoatividade").html($("#listatipoatividade").html() + add);
+                            }
                         }
                     });
                 }

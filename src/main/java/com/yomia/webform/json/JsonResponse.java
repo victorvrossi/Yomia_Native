@@ -13,10 +13,17 @@ public abstract class JsonResponse {
     public abstract JsonResponse converteParaJson( Object atividade) ;
     
     public String formarJsonComLista(ArrayList<JsonResponse> user){
+        String userJSONString="";
+        try{
         validaLista(user);
         Gson gson = new Gson();
         Type listType = new TypeToken<List<JsonResponse>>() {}.getType();
-        String userJSONString = gson.toJson(user,listType);
+         userJSONString = gson.toJson(user,listType);
+        }catch(Exception e){
+            System.out.println("Falha ao formar JSON:"+e);
+        }
+        
+        
         return userJSONString;
     }
 

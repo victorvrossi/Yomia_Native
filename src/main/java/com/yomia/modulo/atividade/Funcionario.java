@@ -1,6 +1,8 @@
 package com.yomia.modulo.atividade;
 
-class Funcionario {
+import com.yomia.jpa.dao.DaoFuncionario;
+
+public class Funcionario {
 
     private String nome;
 
@@ -12,6 +14,9 @@ class Funcionario {
         return nome;
     }
     
+    public void novo(String nome){
+        new DaoFuncionario().novoFuncionario(nome);
+    }
     
 
 }

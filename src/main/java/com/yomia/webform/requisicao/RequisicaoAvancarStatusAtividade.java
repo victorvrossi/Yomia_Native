@@ -19,16 +19,8 @@ public class RequisicaoAvancarStatusAtividade extends RequisicaoGenerica{
     @Override
     public void processaResponse(HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-        listaAtividade(response);
     }
 
-    private void listaAtividade(HttpServletResponse response) {        
-        try (PrintWriter out = response.getWriter()) {
-            out.println(new Atividade().geraListaJsonDeAtividades());
-        } catch (IOException ex) {
-            
-        }
-    }
 
 
 }

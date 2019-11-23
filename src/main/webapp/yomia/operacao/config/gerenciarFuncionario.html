@@ -280,21 +280,21 @@
                         
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                          <h1 class="h3 mb-0 text-gray-800">Configurações de projeto</h1>
+                          <h1 class="h3 mb-0 text-gray-800">Gerenciar Funcionario</h1>
                           <a href="../configuracao.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Voltar</a>
                         </div>
                         <!-- Form -->
                         <div class="row">
                             
                             <div class="col-lg-6">
-                                <form class="form-horizontal" id="formStatus">
+                                <form class="form-horizontal" id="formFunci">
 
 
 
 
                                     <div class="card shadow mb-4"><!-- Card -->
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Status da Atividade</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Novo Funcionário</h6>
                                         </div>
                                         <div class="card-body">
 
@@ -302,7 +302,7 @@
                                             <fieldset>
                                                 <!-- Text input-->
                                                 <div class="form-group">
-                                                    <label class="col-md control-label" for="lb_titulo">Titulo</label>  
+                                                    <label class="col-md control-label" for="lb_titulo">Nome do funcionário</label>  
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <input id="lb_titulo" name="lb_titulo" type="text" placeholder="" class="form-control input-md" required="">
@@ -311,7 +311,7 @@
                                                         <div class="col-md-12 p-3">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <div class="btn btn-primary btn-block" id="btn_salvar_status">Adicionar</div>
+                                                                    <div class="btn btn-primary btn-block" id="btn_salvar_funci">Adicionar</div>
                                                                 </div>
 
                                                             </div>
@@ -344,26 +344,7 @@
 
 
                                             <fieldset>
-                                                <!-- Text input-->
-                                                <div class="form-group">
-                                                    <label class="col-md control-label" for="lb_titulo">Titulo</label>  
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <input id="lb_titulo" name="lb_titulo" type="text" placeholder="" class="form-control input-md" required="">
-                                                        </div>
-
-                                                        <div class="col-md-12 p-3">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="btn btn-primary btn-block" id="btn_salvar_status">Adicionar</div>
-                                                                </div>
-
-                                                            </div>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                              
                                             </fieldset>
 
 
@@ -438,16 +419,16 @@
 
             $(document).ready(function () {
 
-                $("#btn_salvar_tipo").click(
+                $("#btn_salvar_funci").click(
                         function () {
 
-                            var $form = $("#formid");
+                            var $form = $("#formFunci");
 
                             var $inputs = $form.find("input");
                             var serializedData = $form.serialize();
-                            $inputs.prop("disabled", true);
+                            $inputs.prop("disabled", false);
                             $.ajax({
-                                url: '/form/tipo_atividade.form.cad',
+                                url: '/form/funcionario.form.cad',
                                 type: "post",
                                 data: serializedData
                             }).done(function (data) {

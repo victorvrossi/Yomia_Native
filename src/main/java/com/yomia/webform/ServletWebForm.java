@@ -17,6 +17,9 @@ public class ServletWebForm extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(request == null){
+            return;
+        }
         final RequisicaoGenerica formularioParaExecutar = processaUrlRetornaFormularioParaExecucao(request, response);
         final ExecutaAcaoParaRequisicaoDoFormulario requisicao = new ExecutaAcaoParaRequisicaoDoFormulario(formularioParaExecutar);
         requisicao.processaRequest(request);

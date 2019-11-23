@@ -1,6 +1,7 @@
 
 package com.yomia.modulo.atividade;
 
+import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.modulo.data.DataUtil;
 import com.yomia.test.util.AtividadeUtil;
 import com.yomia.test.util.MainFuncionalTest;
@@ -12,8 +13,11 @@ public class AtividadeTest extends MainFuncionalTest{
     @Test
     public void testListaAtividade() {
         System.out.println("listaAtividade");
-        new AtividadeUtil().novaAtividade();
-        new AtividadeUtil().novaAtividade();
+        TbAtividade n1 = new AtividadeUtil().novaAtividade();
+        TbAtividade n2 =new AtividadeUtil().novaAtividade();
+        
+        assertNotNull(n1.getId());
+        assertNotNull(n2.getId());
         Atividade instance = new Atividade();
         
         String dataCriacao = DataUtil.formatarData(DataUtil.atual().data());

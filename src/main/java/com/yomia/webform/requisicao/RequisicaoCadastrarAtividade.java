@@ -26,14 +26,11 @@ public class RequisicaoCadastrarAtividade extends RequisicaoGenerica {
         AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
             @Override
             public void executarAcao(HttpServletRequest request) {
-                try {
-                    final String titulo = request.getParameter("lb_titulo");
-                    final String descricao = request.getParameter("lb_descricao");
-                    final String tipo = request.getParameter("selecttipoativi");
-                    
-                    new Atividade().cadastrarNovaAtividade(titulo, descricao,tipo);
-                } catch (Exception ex) {
-                    
+                final String titulo = request.getParameter("lb_titulo");
+                final String descricao = request.getParameter("lb_descricao");
+                final String tipo = request.getParameter("selecttipoativi");
+                if (verificaDadosDeEntrada(new String[]{tipo,titulo,descricao})) {
+                    new Atividade().cadastrarNovaAtividade(titulo, descricao, tipo);
                 }
 
             }
@@ -41,5 +38,4 @@ public class RequisicaoCadastrarAtividade extends RequisicaoGenerica {
         processaRequest(request, formObjeto);
     }
 
-    
 }

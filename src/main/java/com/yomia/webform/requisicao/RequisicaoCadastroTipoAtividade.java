@@ -9,29 +9,27 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RequisicaoCadastroTipoAtividade  extends RequisicaoGenerica {
+public class RequisicaoCadastroTipoAtividade extends RequisicaoGenerica {
 
     @Override
     public void processaRequest(HttpServletRequest request) {
-         AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
+        AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
             @Override
             public void executarAcao(HttpServletRequest request) {
-                try {
-                    String tipoAtividade = request.getParameter("lb_titulo");
+                String tipoAtividade = request.getParameter("lb_titulo");
+                if (verificaDadosDeEntrada(new String[]{tipoAtividade})) {
                     new TipoAtividade().novoTipoAtividade(tipoAtividade);
-                } catch (Exception ex) {
-                    
                 }
 
             }
         };
         processaRequest(request, formObjeto);
-        
+
     }
 
     @Override
     public void processaResponse(HttpServletResponse response) {
-        
+
     }
 
 }

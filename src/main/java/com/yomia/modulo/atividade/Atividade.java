@@ -8,6 +8,7 @@ import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
+import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.webform.json.JsonListarAtividades;
 import java.util.Date;
@@ -59,7 +60,6 @@ public class Atividade extends Entidade {
     public String geraListaJsonDeAtividades() {
         CarregaListaJson json = new CarregaListaJson();
         return json.listaTodosElementoEmJson(DaoAtividade.class, JsonListarAtividades.class, Atividade.class);
-
     }
 
     public void cadastrarNovaAtividade(String titulo, String descricao, String tipo) {
@@ -78,18 +78,33 @@ public class Atividade extends Entidade {
     @Override
     public Entidade converteTabelaParaObjeto(BaseEntidade bt) {
         TbAtividade tb = (TbAtividade) bt;
-        titulo = tb.getTitulo();
-        descricao = tb.getDescricao();
-        codigoAtividade = tb.getCodigoAtividade();
-        tipo.setTitulo(tb.getIdTipoAtividade().getTitulo());
-        dataCriacao = tb.getDataCriacao();
-        status = tb.getTbStatusAtividade().getIdStatus().getTitulo();
-        if (status == null || status.equals("")) {
-            throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId() + " StatusTB:" + tb.getTbStatusAtividade().getId() + ">>" + tb.getTbStatusAtividade().getIdStatus());
+        if(tb == null){
+            return this;
         }
+        try {
+            
+            final TbTipoAtividade idTipoAtividade = tb.getIdTipoAtividade();
+            final TbStatusAtividade tbStatusAtividade = tb.getTbStatusAtividade();
+            if(idTipoAtividade == null|| tbStatusAtividade == null){
+                return this;
+            }
+            titulo = tb.getTitulo();
+            descricao = tb.getDescricao();
+            codigoAtividade = tb.getCodigoAtividade();
+            
+            tipo.setTitulo(idTipoAtividade.getTitulo());
+            dataCriacao = tb.getDataCriacao();
+            
+            status = tbStatusAtividade.getIdStatus().getTitulo();
+            String nomeResponsavel = tb.getIdResponsavel().getNome();
+            responsavel.setNome(nomeResponsavel);
 
-        String nomeResponsavel = tb.getIdResponsavel().getNome();
-        responsavel.setNome(nomeResponsavel);
+            if (status == null || status.equals("")) {
+                throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId() + " StatusTB:" + tb.getTbStatusAtividade().getId() + ">>" + tb.getTbStatusAtividade().getIdStatus());
+            }
+        } catch (Exception e) {
+            System.out.println("Falhou ao carregar atividade:"+e);
+        }
 
         return this;
     }

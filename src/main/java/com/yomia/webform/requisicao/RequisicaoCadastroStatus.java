@@ -19,10 +19,13 @@ public class RequisicaoCadastroStatus extends RequisicaoGenerica {
             public void executarAcao(HttpServletRequest request) {
                 try {
                     String statusAtividade = request.getParameter("lb_titulo");
-                    System.out.println("Status:"+statusAtividade);
-                    new Status().novoStatus(statusAtividade);
+                    System.out.println("Req Status:" + statusAtividade);
+                    if (verificaDadosDeEntrada(new String[]{statusAtividade})) {
+                        new Status().novoStatus(statusAtividade);
+                    }
+
                 } catch (Exception ex) {
-                    
+
                 }
 
             }

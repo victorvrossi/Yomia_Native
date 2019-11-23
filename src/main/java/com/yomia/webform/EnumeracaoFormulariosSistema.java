@@ -7,19 +7,25 @@ import com.yomia.webform.requisicao.RequisicaoAvancarStatusAtividade;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import com.yomia.webform.requisicao.RequisicaoListaTipoAtividade;
 import com.yomia.webform.requisicao.RequisicaoCadastrarAtividade;
+import com.yomia.webform.requisicao.RequisicaoCadastrarFuncionario;
 import com.yomia.webform.requisicao.RequisicaoListarAtividade;
 import java.util.HashMap;
 import java.util.Map;
 
 public enum EnumeracaoFormulariosSistema {
 
+    //----------------------------- Cadastrar
     CADASTRAR_ATIVIDADE(new Object[]{"atividade.form.cad", new RequisicaoCadastrarAtividade()}),
     CADASTRAR_TIPO_ATIVIDADE(new Object[]{"tipo_atividade.form.cad", new RequisicaoCadastroTipoAtividade()}),
     CADASTRAR_STATUS_ATIVIDADE(new Object[]{"status_atividade.form.cad", new RequisicaoCadastroStatus()}),
+    CADASTRAR_FUNCIONARIO(new Object[]{"funcionario.form.cad", new RequisicaoCadastrarFuncionario()}),
     
+    //----------------------------- Listar
     LISTAR_ATIVIDADE(new Object[]{"atividade.form.lista", new RequisicaoListarAtividade()}),    
     LISTAR_TIPO_ATIVIDADE(new Object[]{"tipo_atividade.lista", new RequisicaoListaTipoAtividade()}),
     LISTA_TICKET(new Object[]{"ticket.list", new ClienteListaTicket()}),
+    
+    //----------------------------- Outros
     
     AVANCA_STATUS_ATIVIDADE(new Object[]{"atividade.avanca.status", new RequisicaoAvancarStatusAtividade()})
     ;
