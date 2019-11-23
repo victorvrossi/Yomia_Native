@@ -1,11 +1,8 @@
 package com.yomia.webform.requisicao;
 
 import com.yomia.modulo.atividade.Atividade;
-import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
+import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.webform.service.face.RequisicaoGenerica;
-import static com.yomia.webform.service.face.RequisicaoGenerica.processaRequest;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -23,19 +20,17 @@ public class RequisicaoCadastrarAtividade extends RequisicaoGenerica {
     }
 
     private void acaoCadastroRequest(HttpServletRequest request) {
-        AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
-            @Override
-            public void executarAcao(HttpServletRequest request) {
-                final String titulo = request.getParameter("lb_titulo");
-                final String descricao = request.getParameter("lb_descricao");
-                final String tipo = request.getParameter("selecttipoativi");
-                if (verificaDadosDeEntrada(new String[]{tipo,titulo,descricao})) {
-                    new Atividade().cadastrarNovaAtividade(titulo, descricao, tipo);
-                }
-
+        final String titulo = request.getParameter("lb_titulo");
+        final String descricao = request.getParameter("lb_descricao");
+        final String tipo = request.getParameter("selecttipoativi");
+        if (verificaDadosDeEntrada(new String[]{tipo, titulo, descricao})) {
+            try {
+                new Atividade().cadastrarNovaAtividade(titulo, descricao, tipo);
+            } catch (FalhaGenerica ex) {
+                Logger.getLogger(RequisicaoCadastrarAtividade.class.getName()).log(Level.SEVERE, null, ex);
             }
-        };
-        processaRequest(request, formObjeto);
+        }
+
     }
 
 }

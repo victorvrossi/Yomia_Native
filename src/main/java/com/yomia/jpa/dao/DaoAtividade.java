@@ -9,21 +9,21 @@ import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.modulo.data.DataUtil;
+import com.yomia.modulo.falhas.FalhaGenerica;
+import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 public class DaoAtividade extends DaoGenerico<TbAtividade> {
 
     public TbAtividade novaAtividade(String titulo, String codigoAtividade,
-            String descricao, TbProjeto projeto,TbStatus status,
-            TbTipoAtividade novoTipoAtividade,TbFuncionario func) {
-        
+            String descricao, TbProjeto projeto, TbStatus status,
+            TbTipoAtividade novoTipoAtividade, TbFuncionario func) throws FalhaGenerica {
+
         TbAtividade nova = new TbAtividade();
-        
+
         nova.setTitulo(titulo);
         nova.setDescricao(descricao);
         nova.setCodigoAtividade(codigoAtividade);
@@ -38,21 +38,19 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
 
         TbStatusAtividade novoStatus = new DaoStatusAtividade().novoStatus(nova, status);
         nova.setTbStatusAtividade(novoStatus);
+        salvar(nova);
         
-        try {
-            salvar(nova);
-        } catch (Exception ex) {
-            Logger.getLogger(DaoAtividade.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return nova;
     }
 
-    public List<TbAtividade> carregarTodasAtividades() {
+    public List<TbAtividade> carregarTodasAtividades() throws FalhaOperacaoDeBD {
         EntityManager manager = getEntityManager();
         try {
             Query createNamedQuery = manager.createNamedQuery("TbAtividade.findAll");
             return createNamedQuery.getResultList();
-        } finally {
+        } catch(Throwable e){
+            throw new FalhaOperacaoDeBD("Falha ao Carregar todas as atividades");
+        }finally {
             manager.close();
         }
 

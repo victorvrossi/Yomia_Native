@@ -17,11 +17,11 @@ public class WebFormTest {
         return request;
     }
 
-    ObjetoTeste teste = new Enviroment().get();
+    
     @Test
     public void testProcessRequest() throws Exception {
+        ObjetoTeste teste = new Enviroment().getObjetoTeste();
         new ExecutaAcaoParaRequisicaoDoFormulario(new FormularioParaTeste(teste)).processaRequest(getMockRequest());
-        
         assertEquals("TesteDeForm",teste.getTexto() );
     }
 

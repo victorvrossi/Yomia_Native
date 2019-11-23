@@ -10,6 +10,8 @@ import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.modulo.falhas.FalhaGenerica;
+import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import com.yomia.webform.json.JsonListarAtividades;
 import java.util.Date;
 
@@ -62,39 +64,35 @@ public class Atividade extends Entidade {
         return json.listaTodosElementoEmJson(DaoAtividade.class, JsonListarAtividades.class, Atividade.class);
     }
 
-    public void cadastrarNovaAtividade(String titulo, String descricao, String tipo) {
+    public void cadastrarNovaAtividade(String titulo, String descricao, String tipo) throws FalhaGenerica {
         final TbTipoAtividade tipoAtividade = new DaoTipoAtividade().carregaTipoAtividadePorTitulo(tipo);
 
-        TbFuncionario l = new TbFuncionario(1);
+        TbFuncionario funcionario = new TbFuncionario(1);
         TbStatus status = new TbStatus(1);
-        if (tipoAtividade != null) {
-            new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao, new TbProjeto(1), status, tipoAtividade, l);
-            return;
-        }
-        throw new NullPointerException("Falha ao Criar nova atividade: Tipo NULL");
-
+        TbProjeto tbProjeto = new TbProjeto(1);
+        new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao, tbProjeto, status, tipoAtividade, funcionario);
     }
 
     @Override
     public Entidade converteTabelaParaObjeto(BaseEntidade bt) {
         TbAtividade tb = (TbAtividade) bt;
-        if(tb == null){
+        if (tb == null) {
             return this;
         }
         try {
-            
+
             final TbTipoAtividade idTipoAtividade = tb.getIdTipoAtividade();
             final TbStatusAtividade tbStatusAtividade = tb.getTbStatusAtividade();
-            if(idTipoAtividade == null|| tbStatusAtividade == null){
+            if (idTipoAtividade == null || tbStatusAtividade == null) {
                 return this;
             }
             titulo = tb.getTitulo();
             descricao = tb.getDescricao();
             codigoAtividade = tb.getCodigoAtividade();
-            
+
             tipo.setTitulo(idTipoAtividade.getTitulo());
             dataCriacao = tb.getDataCriacao();
-            
+
             status = tbStatusAtividade.getIdStatus().getTitulo();
             String nomeResponsavel = tb.getIdResponsavel().getNome();
             responsavel.setNome(nomeResponsavel);
@@ -103,7 +101,7 @@ public class Atividade extends Entidade {
                 throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId() + " StatusTB:" + tb.getTbStatusAtividade().getId() + ">>" + tb.getTbStatusAtividade().getIdStatus());
             }
         } catch (Exception e) {
-            System.out.println("Falhou ao carregar atividade:"+e);
+            System.out.println("Falhou ao carregar atividade:" + e);
         }
 
         return this;

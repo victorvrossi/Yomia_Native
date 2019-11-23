@@ -3,7 +3,12 @@ package com.yomia.modulo.falhas;
 
 public class FalhaDeDivisao extends RuntimeException {
 
-    public FalhaDeDivisao() {
+    public FalhaDeDivisao(String message) {
+        super(message);
     }
+     public FalhaDeDivisao() {
+    }
+
+    
     
 }

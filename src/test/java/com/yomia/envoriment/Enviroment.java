@@ -1,6 +1,5 @@
 package com.yomia.envoriment;
 
-import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -19,29 +18,9 @@ public class Enviroment {
         return request;
     }
 
-    public static AcaoParaObjetoRequisicaoDoFormularioSimples acaoParaObjetoDeTeste(final ObjetoTeste teste) {
-        AcaoParaObjetoRequisicaoDoFormularioSimples objeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
-            @Override
-            public void executarAcao(HttpServletRequest request) {
-                teste.setTexto("teste");
-            }
-        };
-        return objeto;
-    }
-
-    public static AcaoParaObjetoRequisicaoDoFormularioSimples acaoParaObjetoComplexo(final ObjetoTeste teste) {
-        AcaoParaObjetoRequisicaoDoFormularioSimples formObjeto = new AcaoParaObjetoRequisicaoDoFormularioSimples() {
-            @Override
-            public void executarAcao(HttpServletRequest request) {
-                teste.setTexto("TesteDeForm");
-            }
-        };
-        return formObjeto;
-    }
-
     ObjetoTeste teste = new ObjetoTeste();
 
-    public ObjetoTeste get() {
+    public ObjetoTeste getObjetoTeste() {
         return teste;
     }
 

@@ -2,13 +2,17 @@ package com.yomia.jpa.dao;
 
 import com.yomia.test.util.MainFuncionalTest;
 import com.yomia.jpa.entidade.TbAtividade;
+import com.yomia.jpa.entidade.TbFuncionario;
+import com.yomia.jpa.entidade.TbProjeto;
+import com.yomia.jpa.entidade.TbStatus;
+import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import com.yomia.test.util.AtividadeUtil;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
-public class DaoAtividadeTest extends MainFuncionalTest{
+public class DaoAtividadeTest extends MainFuncionalTest {
 
     /**
      * Test of novaAtividade method, of class DaoAtividade.
@@ -18,6 +22,17 @@ public class DaoAtividadeTest extends MainFuncionalTest{
         System.out.println("novaAtividade");
         TbAtividade novaAtividade = new AtividadeUtil().novaAtividade();
         assertNotNull(novaAtividade.getId());
+
+    }
+
+    @Test(expected = FalhaOperacaoDeBD.class)
+    public void testeFalhaAoSalvar()throws FalhaOperacaoDeBD{
+        System.out.println("Falha ao gerar novaAtividade");
+        String titulo = "TESTE";
+        String codigoAtividade = "TESTE-001";
+        String descricao = "TESTE";
+        DaoAtividade instance = new DaoAtividade();
+        assertNull(instance.novaAtividade(titulo, codigoAtividade, descricao, null, null, null, null));
 
     }
 
@@ -45,5 +60,4 @@ public class DaoAtividadeTest extends MainFuncionalTest{
         assertEquals(expResult, result);
     }
 
-   
 }

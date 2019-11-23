@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class AtividadeTest extends MainFuncionalTest{
     
     @Test
-    public void testListaAtividade() {
+    public void testGeraListaJsonDeAtividades() {
         System.out.println("listaAtividade");
         TbAtividade n1 = new AtividadeUtil().novaAtividade();
         TbAtividade n2 =new AtividadeUtil().novaAtividade();

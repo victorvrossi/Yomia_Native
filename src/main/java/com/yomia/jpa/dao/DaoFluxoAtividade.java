@@ -3,7 +3,6 @@ package com.yomia.jpa.dao;
 import com.yomia.jpa.controler.DaoGenerico;
 import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbFluxoSequencia;
-import com.yomia.jpa.entidade.TbTipoAtividade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;

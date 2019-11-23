@@ -1,5 +1,6 @@
 package com.yomia.jpa.controler;
 
+import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import com.yomia.resource.YomiaResource;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
         return factory.createEntityManager();
     }
 
-    public T salvar(T obj) throws Exception {
+    public T salvar(T obj) throws FalhaOperacaoDeBD {
 
         EntityManager manager = getEntityManager();
 
@@ -34,6 +35,8 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
             }
 
             manager.getTransaction().commit();
+        } catch (Throwable ex) {
+            throw new FalhaOperacaoDeBD("Não foi possivel salvar em Banco: " + ex.getCause().getMessage());
         } finally {
             manager.close();
         }
@@ -54,7 +57,7 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
 
     }
 
-    public T consultarPorId( Integer id) {
+    public T consultarPorId(Integer id) {
         EntityManager manager = getEntityManager();
         T obj = null;
         try {

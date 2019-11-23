@@ -1,13 +1,9 @@
 package com.yomia.webform.requisicao;
 
 import com.yomia.modulo.atividade.Atividade;
-import com.yomia.webform.AcaoParaObjetoRequisicaoDoFormularioSimples;
 import com.yomia.webform.service.face.RequisicaoGenerica;
-import static com.yomia.webform.service.face.RequisicaoGenerica.processaRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

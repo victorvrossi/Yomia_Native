@@ -11,7 +11,6 @@ import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbTipoAtividade;
-import java.util.ArrayList;
 import static org.junit.Assert.assertNotNull;
 
 public class AtividadeUtil {
