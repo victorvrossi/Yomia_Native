@@ -3,6 +3,7 @@ package com.yomia.modulo.atividade;
 
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.modulo.data.DataUtil;
+import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.test.util.AtividadeUtil;
 import com.yomia.test.util.MainFuncionalTest;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 public class AtividadeTest extends MainFuncionalTest{
     
     @Test
-    public void testGeraListaJsonDeAtividades() {
+    public void testGeraListaJsonDeAtividades() throws FalhaGenerica {
         System.out.println("listaAtividade");
         TbAtividade n1 = new AtividadeUtil().novaAtividade();
         TbAtividade n2 =new AtividadeUtil().novaAtividade();

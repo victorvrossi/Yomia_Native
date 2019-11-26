@@ -1,7 +1,11 @@
 package com.yomia.webform;
 
+import com.yomia.modulo.falhas.FalhaGenerica;
+import com.yomia.modulo.falhas.SaidaDeError;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,21 +13,50 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ServletWebForm extends HttpServlet {
 
-    RequisicaoGenerica processaUrlRetornaFormularioParaExecucao(HttpServletRequest request, HttpServletResponse response) {
-        response.setContentType("text/plain;charset=UTF-8");
+    RequisicaoGenerica processaUrlRetornaFormularioParaExecucao(HttpServletRequest request) throws FalhaGenerica {
         String URI = request.getRequestURI().replace("/form/", "");
         return EnumeracaoFormulariosSistema.retornaFormPorURI(URI);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request == null){
+        response.setContentType("text/html;charset=UTF-8");
+
+        if (request == null) {
             return;
         }
-        final RequisicaoGenerica formularioParaExecutar = processaUrlRetornaFormularioParaExecucao(request, response);
+        RequisicaoGenerica formularioParaExecutar = null;
+        try {
+            formularioParaExecutar = processaUrlRetornaFormularioParaExecucao(request);
+        } catch (FalhaGenerica ex) {
+            try {
+                SaidaDeError.responseComSaidaDeErro(response, ex);
+            } catch (Exception e) {
+                System.err.println("Falha ao lançar erro:" + e);
+            }
+        }
         final ExecutaAcaoParaRequisicaoDoFormulario requisicao = new ExecutaAcaoParaRequisicaoDoFormulario(formularioParaExecutar);
-        requisicao.processaRequest(request);
-        requisicao.processaResponse(response);
+
+        try {
+            requisicao.processaRequest(request);
+        } catch (FalhaGenerica ex) {
+            try {
+                SaidaDeError.responseComSaidaDeErro(response, ex);
+            } catch (Exception e) {
+                System.err.println("Falha ao lançar erro:" + e);
+            }
+        }
+
+        try {
+            requisicao.processaResponse(response);
+        } catch (FalhaGenerica ex) {
+            try {
+                SaidaDeError.responseComSaidaDeErro(response, ex);
+            } catch (Exception e) {
+                System.err.println("Falha ao lançar erro:" + e);
+            }
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

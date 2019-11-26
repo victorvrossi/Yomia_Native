@@ -1,5 +1,6 @@
 package com.yomia.webform;
 
+import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.webform.requisicao.RequisicaoCadastroStatus;
 import com.yomia.webform.requisicao.RequisicaoCadastroTipoAtividade;
 import com.yomia.webform.requisicao.ClienteListaTicket;
@@ -9,6 +10,7 @@ import com.yomia.webform.requisicao.RequisicaoListaTipoAtividade;
 import com.yomia.webform.requisicao.RequisicaoCadastrarAtividade;
 import com.yomia.webform.requisicao.RequisicaoCadastrarFuncionario;
 import com.yomia.webform.requisicao.RequisicaoListarAtividade;
+import com.yomia.webform.requisicao.RequisicaoSolicitarLogin;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +28,7 @@ public enum EnumeracaoFormulariosSistema {
     LISTA_TICKET(new Object[]{"ticket.list", new ClienteListaTicket()}),
     
     //----------------------------- Outros
-    
+    SOLICITAR_LOGIN(new Object[]{"usuario.login", new RequisicaoSolicitarLogin()}),
     AVANCA_STATUS_ATIVIDADE(new Object[]{"atividade.avanca.status", new RequisicaoAvancarStatusAtividade()})
     ;
 
@@ -49,9 +51,9 @@ public enum EnumeracaoFormulariosSistema {
         }
     }
 
-    public static RequisicaoGenerica retornaFormPorURI(String URI) {
+    public static RequisicaoGenerica retornaFormPorURI(String URI) throws FalhaGenerica {
         if(!relacao.containsKey(URI)){
-            throw  new NullPointerException("Nenhuma relação declarada para "+URI);
+            throw  new FalhaGenerica("Falha ao resgatar URI").lancarError("Falhou", "Dançou", "cagou");//new NullPointerException("Nenhuma relação declarada para "+URI);
         }
         final Object var = relacao.get(URI).uri_obj[1];
         

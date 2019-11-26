@@ -1,4 +1,3 @@
-
 package com.yomia.webform.json;
 
 import com.google.gson.Gson;
@@ -10,27 +9,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class JsonResponse {
-    public abstract JsonResponse converteParaJson( Object atividade) ;
-    
-    public String formarJsonComLista(ArrayList<JsonResponse> user){
-        String userJSONString="";
-        try{
-        validaLista(user);
-        Gson gson = new Gson();
-        Type listType = new TypeToken<List<JsonResponse>>() {}.getType();
-         userJSONString = gson.toJson(user,listType);
-        }catch(Exception e){
-            System.out.println("Falha ao formar JSON:"+e);
+
+    public abstract JsonResponse converteParaJson(Object atividade);
+
+    public String formarJsonComLista(ArrayList<JsonResponse> user) {
+        String userJSONString = "";
+        try {
+            validaLista(user);
+            Gson gson = new Gson();
+            Type listType = new TypeToken<List<JsonResponse>>() {
+            }.getType();
+            userJSONString = gson.toJson(user, listType);
+        } catch (Exception e) {
+            System.out.println("Falha ao formar JSON:" + e);
         }
-        
-        
+
+        return userJSONString;
+    }
+
+    public String formarJson(JsonResponse json) {
+        String userJSONString = "";
+        try {
+            Gson gson = new Gson();
+            Type listType = new TypeToken<JsonResponse>() {
+            }.getType();
+            userJSONString = gson.toJson(json);
+        } catch (Exception e) {
+            System.out.println("Falha ao formar JSON:" + e);
+        }
+
         return userJSONString;
     }
 
     private void validaLista(ArrayList<JsonResponse> user) {
-        if(user == null | user.size()<1){
+        if (user == null | user.size() < 1) {
             throw new NullPointerException("Sem dados para formar JSON");
         }
     }
-    
+
 }

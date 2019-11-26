@@ -150,26 +150,9 @@
 
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Atividade ATB-54154</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Modal para lançamento de erros-->
+        <div id="saidaDeErro"></div>
+        <!-- END Modal para lançamento de erros-->
 
         <!-- Modal Detalhe de ATIVIDADE-->
         <div class="modal fade" id="modalDetalhe" tabindex="-1" role="dialog" aria-labelledby="modalDetalhe" aria-hidden="true">
@@ -250,11 +233,22 @@
 
         <!-- Custom scripts for all pages-->
         <script src="/js/sb-admin-2.min.js"></script>
-
+        <script src="/js/yomia-script.js"></script>
 
         <script>
-
-
+            carregaModalparaErros();
+            
+            function validaLogin(){
+                $.ajax({
+                    url:'/form/usuario.login',
+                    type: 'post'
+                }).done(function (data){
+                    alert("Login:"+data);
+                });
+            }
+            
+            validaLogin();
+            
 
             class AvancaStatus {
                 constructor(atividade) {
@@ -317,8 +311,8 @@
                 url: '/form/atividade.form.lista',
                 type: "post"
             }).done(function (data) {
-
-                if (data == null || data == "") {
+                if (verificaSeDeuErro(data)) {
+                    imprimeErroNaTela(JSON.parse(data));
                     return;
                 }
                 var json = JSON.parse(data);

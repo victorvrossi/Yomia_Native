@@ -6,6 +6,7 @@ import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.modulo.atividade.Atividade;
 import com.yomia.modulo.atividade.Entidade;
 import com.yomia.modulo.data.DataUtil;
+import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.test.util.AtividadeUtil;
 import com.yomia.test.util.MainFuncionalTest;
 import org.junit.BeforeClass;
@@ -17,7 +18,7 @@ import org.junit.experimental.categories.Category;
 public class CarregaListaJsonTest extends MainFuncionalTest{
         
     @Test
-    public void testListaTodosElementoEmJson() {
+    public void testListaTodosElementoEmJson() throws FalhaGenerica {
         new AtividadeUtil().novaAtividade();
         new AtividadeUtil().novaAtividade();
         System.out.println("listaTodosElementoEmJson");

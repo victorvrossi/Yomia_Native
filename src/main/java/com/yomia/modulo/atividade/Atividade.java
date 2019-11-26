@@ -59,7 +59,7 @@ public class Atividade extends Entidade {
         return status;
     }
 
-    public String geraListaJsonDeAtividades() {
+    public String geraListaJsonDeAtividades() throws FalhaGenerica {
         CarregaListaJson json = new CarregaListaJson();
         return json.listaTodosElementoEmJson(DaoAtividade.class, JsonListarAtividades.class, Atividade.class);
     }

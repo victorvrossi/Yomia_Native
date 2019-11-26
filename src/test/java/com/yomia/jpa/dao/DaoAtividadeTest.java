@@ -6,6 +6,7 @@ import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import com.yomia.test.util.AtividadeUtil;
 import java.util.List;
@@ -26,13 +27,13 @@ public class DaoAtividadeTest extends MainFuncionalTest {
     }
 
     @Test(expected = FalhaOperacaoDeBD.class)
-    public void testeFalhaAoSalvar()throws FalhaOperacaoDeBD{
+    public void testeFalhaAoSalvar()throws FalhaOperacaoDeBD, FalhaGenerica{
         System.out.println("Falha ao gerar novaAtividade");
         String titulo = "TESTE";
         String codigoAtividade = "TESTE-001";
         String descricao = "TESTE";
         DaoAtividade instance = new DaoAtividade();
-        assertNull(instance.novaAtividade(titulo, codigoAtividade, descricao, null, null, null, null));
+        instance.novaAtividade(titulo, codigoAtividade, descricao, null, null, null, null);
 
     }
 
@@ -40,7 +41,7 @@ public class DaoAtividadeTest extends MainFuncionalTest {
      * Test of carregarTodasAtividades method, of class DaoAtividade.
      */
     @Test
-    public void testCarregarTodasAtividades() {
+    public void testCarregarTodasAtividades() throws FalhaOperacaoDeBD {
         System.out.println("carregarTodasAtividades");
         new AtividadeUtil().novaAtividade();
         DaoAtividade instance = new DaoAtividade();
