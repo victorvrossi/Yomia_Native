@@ -9,14 +9,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public abstract class RequisicaoGenerica implements InterfaceFormularioHTTP {
+
     private SaidaDeError saidaDeErro = new SaidaDeError();
 
     public SaidaDeError saidaDeErro() {
         return saidaDeErro;
     }
-    
+
     public void verificaLoginNoSistema(HttpServletRequest request) throws FalhaGenerica {
         verificaSeExisteSessao(request);
     }
@@ -30,20 +32,44 @@ public abstract class RequisicaoGenerica implements InterfaceFormularioHTTP {
         return true;
     }
 
-    private void verificaSeExisteSessao(HttpServletRequest request) throws FalhaGenerica {
-        if (request.getSession().getAttribute(SessaoUsuario.SESSAO_RESERVADA) == null) {
-            throw new FalhaSessaoNaoEncontrada("Usuario não possui sessão Ativa no sistema").lancarError("USER", "Falha de Sessao", "Sessao para o usuario não foi encontrada. Faça login novamente.");
-        }
-    }
-    
-    public void printSaida(HttpServletResponse response,String texto) throws FalhaGenerica{
+    public void printSaida(HttpServletResponse response, String texto) throws FalhaGenerica {
         try (PrintWriter out = response.getWriter()) {
             out.println(texto);
         } catch (IOException ex) {
             System.out.println("Falha de IO");
             throw new FalhaDeIO("Problemas na leitura de dados.").setMensagem(ex);
         }
-        
+
+    }
+
+    public void geraSessaoComLogin(final HttpServletRequest request, SessaoUsuario usuarioSessao) {
+        HttpSession session = verificaSeExisteSessao(request);
+        Object n = session.getAttribute(SessaoUsuario.SESSAO_RESERVADA);
+        if (n == null) {
+            session.setAttribute(SessaoUsuario.SESSAO_RESERVADA, usuarioSessao);
+            n = session.getAttribute(SessaoUsuario.SESSAO_RESERVADA);
+        }
+        System.out.println("geraSessaoComLogin>>" + ((SessaoUsuario) n).estaLogadoNoSistema());
+    }
+    
+    public SessaoUsuario resgatarSessaoComLogin(final HttpServletRequest request) throws FalhaGenerica {
+        HttpSession session = verificaSeExisteSessao(request);
+        Object n = session.getAttribute(SessaoUsuario.SESSAO_RESERVADA);
+        if (n == null) {
+            throw new FalhaSessaoNaoEncontrada("Usuario não possui sessão Ativa no sistema").lancarError("USER", "Falha de Sessao", "Sessao para o usuario não foi encontrada. Faça login novamente.");
+        }
+        return (SessaoUsuario) n;
+    }
+
+    private HttpSession verificaSeExisteSessao(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session == null) {
+            return request.getSession(true);
+        }
+//         if (request.getSession().getAttribute(SessaoUsuario.SESSAO_RESERVADA) == null) {
+//            throw new FalhaSessaoNaoEncontrada("Usuario não possui sessão Ativa no sistema").lancarError("USER", "Falha de Sessao", "Sessao para o usuario não foi encontrada. Faça login novamente.");
+//        }
+        return session;
     }
 
 }

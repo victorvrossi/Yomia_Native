@@ -77,6 +77,22 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <div class="col-md-12 p-3">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="btn btn-primary btn-block" id="btn_salvar">Confirmar e Salvar</div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="btn btn-danger btn-block">Cancelar</div>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
 
                                             </fieldset>
 
@@ -86,9 +102,9 @@
                                     <!--                                </form>-->
                                 </div>
 
-                               
+
                                 <div class="col-lg-6">
-                                    
+
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="btn btn-primary btn-block" id="btn_salvar">Confirmar e Salvar</div>
@@ -146,6 +162,13 @@
             </div>
         </div>
 
+
+        <!-- Modal para lançamento de erros-->
+        <div id="saidaDeErro"></div>
+        <!-- END Modal para lançamento de erros-->
+
+
+
         <!-- Bootstrap core JavaScript-->
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -155,21 +178,26 @@
 
         <!-- Custom scripts for all pages-->
         <script src="/js/sb-admin-2.min.js"></script>atividade.form.cad
+
+        <script src="/js/yomia-script.js"></script>
         <script>
-            
+
             var ajax = $.ajax({
                 url: '/form/tipo_atividade.lista',
                 type: "post"
             }).done(function (data) {
-                
-                 $("#selecttipoativi").html("");
-                 var json = JSON.parse(data);
+                if (verificaSeDeuErro(data)) {
+                    imprimeErroNaTela(JSON.parse(data));
+                    return;
+                }
+                $("#selecttipoativi").html("");
+                var json = JSON.parse(data);
                 for (var i = 0; i <= json.length; i++) {
-                   $("#selecttipoativi").html( $("#selecttipoativi").html()+"<option value='"+json[i].titulo+"'>"+json[i].titulo+"</option>");
+                    $("#selecttipoativi").html($("#selecttipoativi").html() + "<option value='" + json[i].titulo + "'>" + json[i].titulo + "</option>");
                 }
             });
-            
-            
+
+
             $(document).ready(function () {
 
                 $("#btn_salvar").click(
@@ -179,13 +207,16 @@
 
                             var $inputs = $form.find("input, select, button, textarea");
                             var serializedData = $form.serialize();
-                            $inputs.prop("disabled", true);
+                            //$inputs.prop("disabled", true);
                             $.ajax({
                                 url: '/form/atividade.form.cad',
                                 type: "post",
                                 data: serializedData
                             }).done(function (data) {
-                                alert(data);
+                                if (verificaSeDeuErro(data)) {
+                                    imprimeErroNaTela(JSON.parse(data));
+                                    return;
+                                }
                             });
                         }
                 );

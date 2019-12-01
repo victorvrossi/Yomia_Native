@@ -1,5 +1,6 @@
 package com.yomia.modulo.atividade;
 
+import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoTipoAtividade;
 import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
@@ -8,7 +9,7 @@ import com.yomia.webform.json.JsonListarTipoAtividade;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TipoAtividade {
+public class TipoAtividade extends Entidade{
 
     private String titulo;
     
@@ -26,17 +27,12 @@ public class TipoAtividade {
         return titulo;
     }
     
-     public TipoAtividade converteTabelaParaObjeto(TbTipoAtividade tb) {
-        titulo = tb.getTitulo();
-        return this;
-    }
-
     public String carregaLista() {
         ArrayList<JsonResponse> listaDeAtividadeJson = new ArrayList<>();
         DaoTipoAtividade daoAtividade = new DaoTipoAtividade();
         List<TbTipoAtividade> atividadesCarregadasBancoDeDados = daoAtividade.carregaTipoAtividade();
         for (TbTipoAtividade atividade : atividadesCarregadasBancoDeDados) {
-            TipoAtividade atv = new TipoAtividade().converteTabelaParaObjeto(atividade);
+            TipoAtividade atv = (TipoAtividade)new TipoAtividade().converteTabelaParaObjeto(atividade);
             JsonResponse converteParaJson = new JsonListarTipoAtividade().converteParaJson(atv);
             listaDeAtividadeJson.add(converteParaJson);
         }
@@ -48,5 +44,11 @@ public class TipoAtividade {
             throw new NullPointerException("Tipo de Atividada]e NULL");
         }
         
+    }
+
+    @Override
+    public Entidade converteTabelaParaObjeto(BaseEntidade tb) {
+        titulo = ((TbTipoAtividade)tb).getTitulo();
+        return this;
     }
 }

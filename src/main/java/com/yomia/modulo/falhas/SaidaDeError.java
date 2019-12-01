@@ -1,10 +1,8 @@
 package com.yomia.modulo.falhas;
 
 import com.yomia.webform.json.JsonInformeErro;
-import com.yomia.webform.json.JsonResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.http.HttpResponse;
 import javax.servlet.http.HttpServletResponse;
 
 public class SaidaDeError {
@@ -46,6 +44,7 @@ public class SaidaDeError {
         try (PrintWriter out = response.getWriter()) {
             response.getWriter().flush();
             System.out.println("Erro Gerado:"+e.getErroGerado().gerarJson());
+            e.printStackTrace();
             out.println(e.getErroGerado().gerarJson());
         } catch (IOException ex) {
             ex.printStackTrace();

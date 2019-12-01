@@ -1,6 +1,7 @@
 package com.yomia.webform.json;
 
 import com.yomia.modulo.atividade.Atividade;
+import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.SaidaDeError;
 
 public class JsonInformeErro extends JsonResponse {
@@ -44,7 +45,7 @@ public class JsonInformeErro extends JsonResponse {
             return nv;
         }
         SaidaDeError atividade = (SaidaDeError) atv;  
-        System.out.println(">>"+atividade.getTitulo());
+        System.out.println("converteParaJson>>"+atividade.getTitulo());        
         nv.titulo = atividade.getTitulo();
         nv.codigoErro = atividade.getCodigoErro();
         nv.descricao = atividade.getDescricao();

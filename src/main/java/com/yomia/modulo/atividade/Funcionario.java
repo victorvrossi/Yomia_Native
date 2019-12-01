@@ -3,6 +3,7 @@ package com.yomia.modulo.atividade;
 import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoFuncionario;
 import com.yomia.jpa.entidade.TbFuncionario;
+import java.util.List;
 
 public class Funcionario extends Entidade {
 
@@ -21,7 +22,11 @@ public class Funcionario extends Entidade {
     }
 
     public Funcionario pesquisaPorNome(String teste) {
-        return (Funcionario) converteTabelaParaObjeto(new DaoFuncionario().pesquisaPorNome(teste).get(0));
+        final List<TbFuncionario> pesquisaPorNome = new DaoFuncionario().pesquisaPorNome(teste);
+        if (pesquisaPorNome.size() > 0) {
+            return (Funcionario) converteTabelaParaObjeto(pesquisaPorNome.get(0));
+        }
+        return null;
 
     }
 
@@ -31,5 +36,6 @@ public class Funcionario extends Entidade {
         nome = k.getNome();
         return this;
     }
+
 
 }

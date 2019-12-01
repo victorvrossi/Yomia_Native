@@ -1,11 +1,8 @@
 package com.yomia.webform.requisicao;
 
-import com.yomia.modulo.atividade.Atividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import com.yomia.webform.service.face.RequisicaoGenerica;
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

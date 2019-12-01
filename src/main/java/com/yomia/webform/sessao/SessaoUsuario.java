@@ -7,9 +7,17 @@ public class SessaoUsuario {
     public static String SESSAO_RESERVADA = "sessao de usuario reservada";
 
     private boolean estaLogado = false;
+    Funcionario funcionarioLogado = new Funcionario();
+    
 
     public boolean efetuaLogin(String user, String password) {
         estaLogado = true;
+        
+        Funcionario k = funcionarioLogado.pesquisaPorNome("teste");
+        if(k == null){
+            System.out.println("Cadastro do nvo Teste");
+            funcionarioLogado.novo("teste");    
+        }
         return estaLogado;
     }
 
@@ -18,9 +26,7 @@ public class SessaoUsuario {
     }
 
     public Funcionario funcionarioLogado() {
-        Funcionario m = new Funcionario();
-        m.pesquisaPorNome("teste");
-        return m;
+        return funcionarioLogado;
     }
 
 }

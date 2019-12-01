@@ -77,11 +77,13 @@
                                             <table class="table table-bordered" id="dataTable"  cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Titulo </th>
-                                                        <th>Código</th>
-                                                        <th>Status</th>
-                                                        <th>Tipo</th>
-                                                        <th>Detalhes</th>
+                                                        <th>titulo</th>
+                                                        <th>titulo</th>
+                                                        <th>titulo</th>
+                                                        <th>titulo</th>
+                                                        <th>titulo</th>
+                                                        <th>titulo</th>
+                                                        <th>titulo</th>
                                                     </tr>
                                                 </thead>
 
@@ -243,7 +245,6 @@
                     url:'/form/usuario.login',
                     type: 'post'
                 }).done(function (data){
-                    alert("Login:"+data);
                 });
             }
             
@@ -307,7 +308,8 @@
 
             }
 
-            var ajax = $.ajax({
+            function carregaAtividadesParaTabela(){
+                $.ajax({
                 url: '/form/atividade.form.lista',
                 type: "post"
             }).done(function (data) {
@@ -337,8 +339,20 @@
                 });
                 $('#dataTable').DataTable();
             });
+            }
+            
+            //carregaAtividadesParaTabela();
             $(document).ready(function () {
-                $('#dataTable').DataTable();
+                $('#dataTable').DataTable(
+                    { 
+                        "ajax":{    
+                            "url": '/form/atividade.form.lista',
+                            "type": "post"
+                                }
+                    }
+                );
+                
+                
             });
 
 
@@ -347,7 +361,7 @@
         </script>
 
 
-        <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="/vendor/datatables/jquery.dataTables.js"></script>
         <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     </body>

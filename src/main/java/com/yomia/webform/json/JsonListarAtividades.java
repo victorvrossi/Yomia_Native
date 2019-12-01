@@ -8,6 +8,7 @@ import com.yomia.modulo.data.DataUtil;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class JsonListarAtividades extends JsonResponse {
 
@@ -51,7 +52,7 @@ public class JsonListarAtividades extends JsonResponse {
         nv.dataCriacao = DataUtil.formatarData(atividade.getDataCriacao());
         return nv;
     }
-
+    
     String codigoAtividade;
     String titulo;
     String descricao;

@@ -3,32 +3,28 @@ package com.yomia.webform.requisicao;
 import com.yomia.modulo.atividade.Atividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.webform.service.face.RequisicaoGenerica;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.yomia.webform.sessao.SessaoUsuario;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class RequisicaoCadastrarAtividade extends RequisicaoGenerica {
 
     @Override
-    public void processaRequest(final HttpServletRequest request) {
+    public void processaRequest(final HttpServletRequest request) throws FalhaGenerica {
         acaoCadastroRequest(request);
     }
 
     @Override
-    public void processaResponse(HttpServletResponse response) {
+    public void processaResponse(HttpServletResponse response) throws FalhaGenerica {
     }
 
-    private void acaoCadastroRequest(HttpServletRequest request) {
+    private void acaoCadastroRequest(HttpServletRequest request) throws FalhaGenerica {
         final String titulo = request.getParameter("lb_titulo");
         final String descricao = request.getParameter("lb_descricao");
         final String tipo = request.getParameter("selecttipoativi");
         if (verificaDadosDeEntrada(new String[]{tipo, titulo, descricao})) {
-            try {
-                new Atividade().cadastrarNovaAtividade(titulo, descricao, tipo);
-            } catch (FalhaGenerica ex) {
-                Logger.getLogger(RequisicaoCadastrarAtividade.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            final SessaoUsuario login = resgatarSessaoComLogin(request);
+            new Atividade().cadastrarNovaAtividade(titulo, descricao, tipo, login.funcionarioLogado());
         }
 
     }
