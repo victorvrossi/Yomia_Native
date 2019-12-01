@@ -53,7 +53,7 @@ public enum EnumeracaoFormulariosSistema {
 
     public static RequisicaoGenerica retornaFormPorURI(String URI) throws FalhaGenerica {
         if(!relacao.containsKey(URI)){
-            throw  new FalhaGenerica("Falha ao resgatar URI").lancarError("Falhou", "Dançou", "cagou");//new NullPointerException("Nenhuma relação declarada para "+URI);
+            throw  new FalhaGenerica("Falha ao resgatar URI").lancarError("Falhou", "Dançou", "cagou");
         }
         final Object var = relacao.get(URI).uri_obj[1];
         

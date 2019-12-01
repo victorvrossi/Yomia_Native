@@ -1,6 +1,7 @@
 package com.yomia.webform.json;
 
-import com.yomia.modulo.atividade.Atividade;
+import com.yomia.webform.json.model.JsonResponse;
+import com.yomia.modulo.core.Atividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.SaidaDeError;
 

@@ -1,14 +1,8 @@
 package com.yomia.webform.json;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.yomia.jpa.entidade.TbAtividade;
-import com.yomia.modulo.atividade.Atividade;
+import com.yomia.webform.json.model.JsonResponse;
+import com.yomia.modulo.core.Atividade;
 import com.yomia.modulo.data.DataUtil;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class JsonListarAtividades extends JsonResponse {
 

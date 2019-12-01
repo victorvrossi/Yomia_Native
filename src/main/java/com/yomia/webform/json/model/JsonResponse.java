@@ -1,4 +1,4 @@
-package com.yomia.webform.json;
+package com.yomia.webform.json.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

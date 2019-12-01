@@ -5,7 +5,7 @@
  */
 package com.yomia.modulo.data;
 
-import com.yomia.test.Unitario;
+import test.core.Unitario;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import org.junit.Test;

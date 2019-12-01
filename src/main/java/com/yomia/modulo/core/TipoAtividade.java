@@ -1,13 +1,9 @@
-package com.yomia.modulo.atividade;
+package com.yomia.modulo.core;
 
 import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoTipoAtividade;
 import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
-import com.yomia.webform.json.JsonResponse;
-import com.yomia.webform.json.JsonListarTipoAtividade;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TipoAtividade extends Entidade{
 
@@ -26,18 +22,7 @@ public class TipoAtividade extends Entidade{
     public String getTitulo() {
         return titulo;
     }
-    
-    public String carregaLista() {
-        ArrayList<JsonResponse> listaDeAtividadeJson = new ArrayList<>();
-        DaoTipoAtividade daoAtividade = new DaoTipoAtividade();
-        List<TbTipoAtividade> atividadesCarregadasBancoDeDados = daoAtividade.carregaTipoAtividade();
-        for (TbTipoAtividade atividade : atividadesCarregadasBancoDeDados) {
-            TipoAtividade atv = (TipoAtividade)new TipoAtividade().converteTabelaParaObjeto(atividade);
-            JsonResponse converteParaJson = new JsonListarTipoAtividade().converteParaJson(atv);
-            listaDeAtividadeJson.add(converteParaJson);
-        }
-        return new JsonListarTipoAtividade().formarJsonComLista(listaDeAtividadeJson);
-    }
+
 
     private void validaEntrada(String tipo) {
         if(tipo == null || tipo.equals("")){

@@ -6,7 +6,7 @@
 package com.yomia.webform;
 
 import com.yomia.modulo.falhas.FalhaGenerica;
-import com.yomia.test.Unitario;
+import test.core.Unitario;
 import com.yomia.webform.requisicao.ClienteListaTicket;
 import com.yomia.webform.requisicao.RequisicaoAvancarStatusAtividade;
 import com.yomia.webform.requisicao.RequisicaoCadastrarAtividade;

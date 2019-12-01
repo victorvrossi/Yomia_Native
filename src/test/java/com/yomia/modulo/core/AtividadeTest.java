@@ -1,11 +1,12 @@
 
-package com.yomia.modulo.atividade;
+package com.yomia.modulo.core;
 
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.modulo.data.DataUtil;
 import com.yomia.modulo.falhas.FalhaGenerica;
-import com.yomia.test.util.AtividadeUtil;
-import com.yomia.test.util.MainFuncionalTest;
+import com.yomia.modulo.saida.ProcessaJsonSaidaAtividade;
+import test.core.util.AtividadeUtil;
+import test.core.util.MainFuncionalTest;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,7 +20,7 @@ public class AtividadeTest extends MainFuncionalTest{
         
         assertNotNull(n1.getId());
         assertNotNull(n2.getId());
-        Atividade instance = new Atividade();
+        ProcessaJsonSaidaAtividade instance = new ProcessaJsonSaidaAtividade();
         
         String dataCriacao = DataUtil.formatarData(DataUtil.atual().data());
         String expResult = "[{\"codigoAtividade\":\"TESTE-001\",\"titulo\":\"TESTE\",\"descricao\":\"TESTE\",\"status\":\"aberto\",\"tipo\":\"Tipo\",\"dataCriacao\":\""+dataCriacao+"\"},{\"codigoAtividade\":\"TESTE-001\",\"titulo\":\"TESTE\",\"descricao\":\"TESTE\",\"status\":\"aberto\",\"tipo\":\"Tipo\",\"dataCriacao\":\""+dataCriacao+"\"}]";

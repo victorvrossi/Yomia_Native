@@ -1,6 +1,6 @@
 package com.yomia.webform.requisicao;
 
-import com.yomia.modulo.atividade.Atividade;
+import com.yomia.modulo.core.Atividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import com.yomia.webform.sessao.SessaoUsuario;

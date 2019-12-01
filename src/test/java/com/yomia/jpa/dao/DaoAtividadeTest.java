@@ -1,6 +1,6 @@
 package com.yomia.jpa.dao;
 
-import com.yomia.test.util.MainFuncionalTest;
+import test.core.util.MainFuncionalTest;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
@@ -8,7 +8,7 @@ import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
-import com.yomia.test.util.AtividadeUtil;
+import test.core.util.AtividadeUtil;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;

@@ -1,10 +1,10 @@
-package com.yomia.test.util;
+package test.core.util;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.experimental.categories.Category;
-import com.yomia.test.DatabaseTest;
+import test.core.DatabaseTest;
 
 @Category(DatabaseTest.class)
 public class MainFuncionalTest {

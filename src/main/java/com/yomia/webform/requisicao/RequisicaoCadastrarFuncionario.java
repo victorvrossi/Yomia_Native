@@ -1,6 +1,6 @@
 package com.yomia.webform.requisicao;
 
-import com.yomia.modulo.atividade.Funcionario;
+import com.yomia.modulo.core.Funcionario;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import java.io.IOException;
 import java.io.PrintWriter;

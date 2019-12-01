@@ -1,11 +1,11 @@
-package com.yomia.webform.json;
+package com.yomia.webform.json.model;
 
 import com.yomia.modulo.falhas.FalhaAoConverterObjeto;
 import com.yomia.modulo.falhas.FalhaAoGerarObjetoPorReflexion;
 import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.controler.DaoGenerico;
-import com.yomia.modulo.atividade.Entidade;
-import com.yomia.modulo.atividade.ModeloDataTable;
+import com.yomia.modulo.core.Entidade;
+import com.yomia.modulo.saida.ModeloParaSaidaEmJson;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -23,8 +23,8 @@ public class CarregaListaJson {
         return jsonObjeto.formarJsonComLista(listaDeObjetoJson);
     }
     
-    public String listaTodosElementoEmJsonParaDataTable(Class<? extends DaoGenerico> daoClass,  Class<? extends ModeloDataTable> entidadeClass) throws FalhaGenerica {
-        ModeloDataTable modeloDataTable = (ModeloDataTable) geraObjetoApartirDeClasse(entidadeClass);
+    public String listaTodosElementoEmJsonParaDataTable(Class<? extends DaoGenerico> daoClass,  Class<? extends ModeloParaSaidaEmJson> entidadeClass) throws FalhaGenerica {
+        ModeloParaSaidaEmJson modeloDataTable = (ModeloParaSaidaEmJson) geraObjetoApartirDeClasse(entidadeClass);
         DaoGenerico daoObjeto = (DaoGenerico) geraObjetoApartirDeClasse(daoClass);
         List<BaseEntidade> objetosCarregadosDoBanco = converteParaEntidade(daoObjeto);
         ArrayList<String[]> listaDeObjetoJson = carregaListaConverteArrayString(modeloDataTable, objetosCarregadosDoBanco);
@@ -74,7 +74,7 @@ public class CarregaListaJson {
         return listaDeAtividadeJson;
     }
     
-    private ArrayList<String[]> carregaListaConverteArrayString(ModeloDataTable l,  List<BaseEntidade> objetosCarregadosBancoDeDados) throws FalhaAoConverterObjeto {
+    private ArrayList<String[]> carregaListaConverteArrayString(ModeloParaSaidaEmJson l,  List<BaseEntidade> objetosCarregadosBancoDeDados) throws FalhaAoConverterObjeto {
         ArrayList<String[]> listaDeAtividadeJson = new ArrayList<>();
         try {
             for (BaseEntidade atividade : objetosCarregadosBancoDeDados) {

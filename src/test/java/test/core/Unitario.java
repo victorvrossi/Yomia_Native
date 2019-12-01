@@ -1,5 +1,5 @@
 
-package com.yomia.test;
+package test.core;
 
 public interface Unitario extends AllTest{
     

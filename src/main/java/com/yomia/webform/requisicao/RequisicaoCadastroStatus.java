@@ -1,6 +1,6 @@
 package com.yomia.webform.requisicao;
 
-import com.yomia.modulo.atividade.Status;
+import com.yomia.modulo.core.Status;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

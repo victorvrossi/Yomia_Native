@@ -1,6 +1,6 @@
-package com.yomia.modulo.atividade.acoes;
+package com.yomia.modulo.core.acoes;
 
-import com.yomia.modulo.atividade.Atividade;
+import com.yomia.modulo.core.Atividade;
 
 public class AvancaStatusAtividade {
 

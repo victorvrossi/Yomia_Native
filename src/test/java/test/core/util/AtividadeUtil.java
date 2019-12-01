@@ -1,4 +1,4 @@
-package com.yomia.test.util;
+package test.core.util;
 
 import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.jpa.dao.DaoFuncionario;

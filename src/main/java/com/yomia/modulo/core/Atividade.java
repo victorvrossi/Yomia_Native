@@ -1,6 +1,7 @@
-package com.yomia.modulo.atividade;
+package com.yomia.modulo.core;
 
-import com.yomia.webform.json.CarregaListaJson;
+import com.yomia.modulo.saida.ModeloParaSaidaEmJson;
+import com.yomia.webform.json.model.CarregaListaJson;
 import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.jpa.dao.DaoFuncionario;
@@ -16,7 +17,7 @@ import com.yomia.webform.json.JsonListarAtividades;
 import java.util.Date;
 import java.util.List;
 
-public class Atividade  extends ModeloDataTable{
+public class Atividade  extends Entidade{
 
     String titulo;
     String descricao;
@@ -60,14 +61,8 @@ public class Atividade  extends ModeloDataTable{
         return status;
     }
 
-    public String geraListaJsonDeAtividades() throws FalhaGenerica {
-        CarregaListaJson json = new CarregaListaJson();
-        return json.listaTodosElementoEmJson(DaoAtividade.class, JsonListarAtividades.class, Atividade.class);
-    }
-    public String geraListaJsonDeAtividadesParaDataTable() throws FalhaGenerica {
-        CarregaListaJson json = new CarregaListaJson();
-        return json.listaTodosElementoEmJsonParaDataTable(DaoAtividade.class,  Atividade.class);
-    }
+    
+    
 
 
     public void cadastrarNovaAtividade(String titulo, String descricao, String tipo,Funcionario responsavel) throws FalhaGenerica {
@@ -118,43 +113,6 @@ public class Atividade  extends ModeloDataTable{
         }
 
         return this;
-    }
-
-    @Override
-    public String[] converteParaArrayDeString(BaseEntidade bt) {
-        String [] arrayCamposAtividade = null;
-        
-         TbAtividade tb = (TbAtividade) bt;
-        if (tb == null) {
-            return arrayCamposAtividade;
-        }
-        try {
-
-            final TbTipoAtividade idTipoAtividade = tb.getIdTipoAtividade();
-            final TbStatusAtividade tbStatusAtividade = tb.getTbStatusAtividade();
-            if (idTipoAtividade == null || tbStatusAtividade == null) {
-                return arrayCamposAtividade;
-            }
-            String atividadeTitulo = tb.getTitulo();
-            String atividadeDescricao = tb.getDescricao();
-            String atividadeCodigo = tb.getCodigoAtividade();
-
-            String AtividadeTipo = idTipoAtividade.getTitulo();
-            String AtividadeDataCriacao = tb.getDataCriacao().toString();
-
-            String AtividadeStatus = tbStatusAtividade.getIdStatus().getTitulo();
-            String AtividadeNomeResponsavel = tb.getIdResponsavel().getNome();
-
-//            if (AtividadeStatus == null || AtividadeStatus.equals("")) {
-//                throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId() + " StatusTB:" + tb.getTbStatusAtividade().getId() + ">>" + tb.getTbStatusAtividade().getIdStatus());
-//            }
-            arrayCamposAtividade = new String[]{atividadeTitulo,atividadeDescricao,atividadeCodigo,AtividadeTipo,AtividadeDataCriacao,AtividadeStatus,AtividadeNomeResponsavel};
-            
-        } catch (Exception e) {
-            System.out.println("Falhou ao carregar atividade:" + e);
-        }
-        
-        return arrayCamposAtividade;
     }
 
 }

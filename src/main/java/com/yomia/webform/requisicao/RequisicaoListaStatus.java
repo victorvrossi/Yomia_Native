@@ -1,8 +1,8 @@
 
 package com.yomia.webform.requisicao;
 
-import com.yomia.modulo.atividade.Status;
-import com.yomia.modulo.atividade.TipoAtividade;
+import com.yomia.modulo.core.Status;
+import com.yomia.modulo.core.TipoAtividade;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import java.io.IOException;
 import java.io.PrintWriter;

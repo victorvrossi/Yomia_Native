@@ -1,6 +1,7 @@
 
-package com.yomia.modulo.atividade;
+package com.yomia.modulo.core;
 
+import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoFluxoAtividade;
 import com.yomia.jpa.dao.DaoFluxoSequencia;
 import com.yomia.jpa.dao.DaoStatus;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FluxoAtividade {
+public class FluxoAtividade extends Entidade{
     
     
     public void novoFluxo(){
@@ -40,6 +41,11 @@ public class FluxoAtividade {
         novaSequencia.novaSequencia(k, new DaoStatus().consultarPorId(idAber), 1);
         novaSequencia.novaSequencia(k, new DaoStatus().consultarPorId(idFecha), 2);
         
+    }
+
+    @Override
+    public Entidade converteTabelaParaObjeto(BaseEntidade tb) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

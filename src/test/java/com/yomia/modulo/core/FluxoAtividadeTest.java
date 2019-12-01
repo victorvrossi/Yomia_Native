@@ -1,9 +1,10 @@
 
-package com.yomia.modulo.atividade;
+package com.yomia.modulo.core;
 
-import com.yomia.test.DatabaseTest;
-import com.yomia.test.util.MainFuncionalTest;
-import com.yomia.test.util.UtilHarnessDatabase;
+import com.yomia.modulo.core.FluxoAtividade;
+import test.core.DatabaseTest;
+import test.core.util.MainFuncionalTest;
+import test.core.util.UtilHarnessDatabase;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 

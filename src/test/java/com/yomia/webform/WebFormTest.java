@@ -2,7 +2,7 @@ package com.yomia.webform;
 
 import com.yomia.envoriment.Enviroment;
 import com.yomia.envoriment.ObjetoTeste;
-import com.yomia.test.Unitario;
+import test.core.Unitario;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import com.yomia.webform.sessao.SessaoUsuario;
 import javax.servlet.http.HttpServletRequest;

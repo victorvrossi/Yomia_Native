@@ -1,6 +1,6 @@
 package com.yomia.webform.sessao;
 
-import com.yomia.modulo.atividade.Funcionario;
+import com.yomia.modulo.core.Funcionario;
 
 public class SessaoUsuario {
 

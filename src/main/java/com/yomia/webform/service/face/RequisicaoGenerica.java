@@ -1,6 +1,6 @@
 package com.yomia.webform.service.face;
 
-import com.yomia.modulo.atividade.Atividade;
+import com.yomia.modulo.core.Atividade;
 import com.yomia.modulo.falhas.FalhaDeIO;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.SaidaDeError;

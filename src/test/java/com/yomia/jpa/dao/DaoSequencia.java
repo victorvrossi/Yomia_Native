@@ -4,7 +4,7 @@ import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbFluxoDesvio;
 import com.yomia.jpa.entidade.TbFluxoSequencia;
 import com.yomia.jpa.entidade.TbStatus;
-import com.yomia.test.util.MainFuncionalTest;
+import test.core.util.MainFuncionalTest;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

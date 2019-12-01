@@ -1,4 +1,4 @@
-package com.yomia.modulo.atividade;
+package com.yomia.modulo.core;
 
 import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoFuncionario;

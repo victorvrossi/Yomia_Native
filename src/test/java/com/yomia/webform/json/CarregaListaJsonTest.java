@@ -1,14 +1,15 @@
 
 package com.yomia.webform.json;
 
+import com.yomia.webform.json.model.CarregaListaJson;
 import com.yomia.jpa.controler.DaoGenerico;
 import com.yomia.jpa.dao.DaoAtividade;
-import com.yomia.modulo.atividade.Atividade;
-import com.yomia.modulo.atividade.Entidade;
+import com.yomia.modulo.core.Atividade;
+import com.yomia.modulo.core.Entidade;
 import com.yomia.modulo.data.DataUtil;
 import com.yomia.modulo.falhas.FalhaGenerica;
-import com.yomia.test.util.AtividadeUtil;
-import com.yomia.test.util.MainFuncionalTest;
+import test.core.util.AtividadeUtil;
+import test.core.util.MainFuncionalTest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;

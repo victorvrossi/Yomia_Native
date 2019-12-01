@@ -1,7 +1,8 @@
 package com.yomia.webform.json;
 
+import com.yomia.webform.json.model.JsonResponse;
 import com.yomia.jpa.entidade.TbTipoAtividade;
-import com.yomia.modulo.atividade.TipoAtividade;
+import com.yomia.modulo.core.TipoAtividade;
 
 public class JsonListarTipoAtividade extends JsonResponse {
 
