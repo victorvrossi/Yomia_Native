@@ -65,21 +65,7 @@ public class Atividade  extends Entidade{
     
 
 
-    public void cadastrarNovaAtividade(String titulo, String descricao, String tipo,Funcionario responsavel) throws FalhaGenerica {
-        final TbTipoAtividade tipoAtividade = new DaoTipoAtividade().carregaTipoAtividadePorTitulo(tipo);
-
-        ;
-        DaoFuncionario daoFuncionario = new DaoFuncionario();
-        List<TbFuncionario>  l = daoFuncionario.pesquisaPorNome(responsavel.getNome());
-        if(l.size()<1){
-            throw new FalhaGenerica("").lancarError("Falha", "Erro", "Problema de funcionario");
-        }
-        TbFuncionario funcionario = l.get(0);
-        TbStatus status = new TbStatus(1);
-        TbProjeto tbProjeto = new TbProjeto(1);
-        String codigo = tbProjeto.getSigla();
-        new DaoAtividade().novaAtividade(titulo, "PARIO-005", descricao, tbProjeto, status, tipoAtividade, funcionario);
-    }
+    
 
     @Override
     public Entidade converteTabelaParaObjeto(BaseEntidade bt) {
@@ -90,8 +76,7 @@ public class Atividade  extends Entidade{
         try {
 
             final TbTipoAtividade idTipoAtividade = tb.getIdTipoAtividade();
-            final TbStatusAtividade tbStatusAtividade = tb.getTbStatusAtividade();
-            if (idTipoAtividade == null || tbStatusAtividade == null) {
+            if (idTipoAtividade == null ) {
                 return this;
             }
             titulo = tb.getTitulo();
@@ -101,13 +86,13 @@ public class Atividade  extends Entidade{
             tipo.setTitulo(idTipoAtividade.getTitulo());
             dataCriacao = tb.getDataCriacao();
 
-            status = tbStatusAtividade.getIdStatus().getTitulo();
+            //status = tbStatusAtividade.getIdStatus().getTitulo();
             String nomeResponsavel = tb.getIdResponsavel().getNome();
             responsavel.setNome(nomeResponsavel);
 
-            if (status == null || status.equals("")) {
-                throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId() + " StatusTB:" + tb.getTbStatusAtividade().getId() + ">>" + tb.getTbStatusAtividade().getIdStatus());
-            }
+//            if (status == null || status.equals("")) {
+//                throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId() );
+//            }
         } catch (Exception e) {
             System.out.println("Falhou ao carregar atividade:" + e);
         }

@@ -1,10 +1,9 @@
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,14 +14,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -55,18 +51,14 @@ public class TbAtividade implements BaseEntidade {
     @Column(name = "titulo")
     private String titulo;
     @JoinColumn(name = "id_projeto", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private TbProjeto idProjeto;
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private TbFuncionario idResponsavel;
     @JoinColumn(name = "id_tipo_atividade", referencedColumnName = "id")
     @ManyToOne
     private TbTipoAtividade idTipoAtividade;
-    @OneToMany(mappedBy = "idAtividade",cascade = CascadeType.PERSIST)
-    private List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList;
-    @OneToOne(mappedBy = "idAtividade",cascade = CascadeType.PERSIST)
-    private TbStatusAtividade tbStatusAtividade;
 
     public TbAtividade() {
     }
@@ -137,23 +129,6 @@ public class TbAtividade implements BaseEntidade {
 
     public void setIdTipoAtividade(TbTipoAtividade idTipoAtividade) {
         this.idTipoAtividade = idTipoAtividade;
-    }
-
-    @XmlTransient
-    public List<TbHistoricoStatusAtv> getTbHistoricoStatusAtvList() {
-        return tbHistoricoStatusAtvList;
-    }
-
-    public void setTbHistoricoStatusAtvList(List<TbHistoricoStatusAtv> tbHistoricoStatusAtvList) {
-        this.tbHistoricoStatusAtvList = tbHistoricoStatusAtvList;
-    }
-
-    public TbStatusAtividade getTbStatusAtividade() {
-        return tbStatusAtividade;
-    }
-
-    public void setTbStatusAtividade(TbStatusAtividade tbStatusAtividade) {
-        this.tbStatusAtividade = tbStatusAtividade;
     }
 
     @Override

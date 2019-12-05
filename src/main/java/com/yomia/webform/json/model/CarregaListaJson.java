@@ -54,7 +54,7 @@ public class CarregaListaJson {
     }
 
     private List<BaseEntidade> converteParaEntidade(DaoGenerico e) throws FalhaGenerica {
-        List<BaseEntidade> carregarTodasAtividades = e.carregarTodas("findAll");
+        List<BaseEntidade> carregarTodasAtividades = e.carregarTodosObjetosDoBanco("findAll");
         if (carregarTodasAtividades == null || carregarTodasAtividades.size() < 1) {
             throw new FalhaGenerica("Falha ao carregar dados do Banco").lancarError("EBD-001", "Falha ao acessar dados", "Não existe atividades cadastradas ainda");
         }

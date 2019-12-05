@@ -2,16 +2,13 @@ package com.yomia.jpa.dao;
 
 import test.core.util.MainFuncionalTest;
 import com.yomia.jpa.entidade.TbAtividade;
-import com.yomia.jpa.entidade.TbFuncionario;
-import com.yomia.jpa.entidade.TbProjeto;
-import com.yomia.jpa.entidade.TbStatus;
-import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
-import test.core.util.AtividadeUtil;
+import test.core.util.CoreUtil;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import test.core.util.UtilHarnessDatabase;
 
 public class DaoAtividadeTest extends MainFuncionalTest {
 
@@ -20,14 +17,15 @@ public class DaoAtividadeTest extends MainFuncionalTest {
      */
     @Test
     public void testNovaAtividade() {
-        System.out.println("novaAtividade");
-        TbAtividade novaAtividade = new AtividadeUtil().novaAtividade();
+        new UtilHarnessDatabase().limpaTodasOsDados();
+        System.out.println("novaAtividade**********************************************");
+        TbAtividade novaAtividade = new CoreUtil().novaAtividade();
         assertNotNull(novaAtividade.getId());
-
     }
 
     @Test(expected = FalhaOperacaoDeBD.class)
     public void testeFalhaAoSalvar()throws FalhaOperacaoDeBD, FalhaGenerica{
+        new UtilHarnessDatabase().limpaTodasOsDados();
         System.out.println("Falha ao gerar novaAtividade");
         String titulo = "TESTE";
         String codigoAtividade = "TESTE-001";
@@ -43,7 +41,7 @@ public class DaoAtividadeTest extends MainFuncionalTest {
     @Test
     public void testCarregarTodasAtividades() throws FalhaOperacaoDeBD {
         System.out.println("carregarTodasAtividades");
-        new AtividadeUtil().novaAtividade();
+        new CoreUtil().novaAtividade();
         DaoAtividade instance = new DaoAtividade();
         List<TbAtividade> result = instance.carregarTodasAtividades();
         assertTrue(result.size() == 1);

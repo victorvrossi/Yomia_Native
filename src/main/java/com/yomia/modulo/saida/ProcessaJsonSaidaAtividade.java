@@ -33,10 +33,10 @@ public class ProcessaJsonSaidaAtividade extends ModeloParaSaidaEmJson {
         try {
 
             final TbTipoAtividade idTipoAtividade = tb.getIdTipoAtividade();
-            final TbStatusAtividade tbStatusAtividade = tb.getTbStatusAtividade();
-            if (idTipoAtividade == null || tbStatusAtividade == null) {
-                return arrayCamposAtividade;
-            }
+            //final TbStatusAtividade tbStatusAtividade = tb.getTbStatusAtividade();
+//            if (idTipoAtividade == null || tbStatusAtividade == null) {
+//                return arrayCamposAtividade;
+//            }
             String atividadeTitulo = tb.getTitulo();
             String atividadeDescricao = tb.getDescricao();
             String atividadeCodigo = tb.getCodigoAtividade();
@@ -44,13 +44,13 @@ public class ProcessaJsonSaidaAtividade extends ModeloParaSaidaEmJson {
             String AtividadeTipo = idTipoAtividade.getTitulo();
             String AtividadeDataCriacao = tb.getDataCriacao().toString();
 
-            String AtividadeStatus = tbStatusAtividade.getIdStatus().getTitulo();
+//            String AtividadeStatus = tbStatusAtividade.getIdStatus().getTitulo();
             String AtividadeNomeResponsavel = tb.getIdResponsavel().getNome();
 
 //            if (AtividadeStatus == null || AtividadeStatus.equals("")) {
 //                throw new NullPointerException("Falha ao carregar Status da atividade:" + tb.getId() + " StatusTB:" + tb.getTbStatusAtividade().getId() + ">>" + tb.getTbStatusAtividade().getIdStatus());
 //            }
-            arrayCamposAtividade = new String[]{atividadeTitulo, atividadeDescricao, atividadeCodigo, AtividadeTipo, AtividadeDataCriacao, AtividadeStatus, AtividadeNomeResponsavel};
+            arrayCamposAtividade = new String[]{atividadeTitulo, atividadeDescricao, atividadeCodigo, AtividadeTipo, AtividadeDataCriacao, null, AtividadeNomeResponsavel};
 
         } catch (Exception e) {
             System.out.println("Falhou ao carregar atividade:" + e);

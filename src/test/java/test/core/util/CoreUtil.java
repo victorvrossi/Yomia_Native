@@ -13,15 +13,20 @@ import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import static org.junit.Assert.assertNotNull;
 
-public class AtividadeUtil {
+public class CoreUtil {
+
+    TbProjeto projeto;
+    TbStatus novoStatus;
+    TbTipoAtividade novoTipoAtividade;
+    TbFuncionario novoFuncionario;
 
     public TbAtividade novaAtividade() {
         TbAtividade novaAtividade = null;
         try {
-            TbProjeto projeto = novoProjeto();
-            TbStatus novoStatus = novoStatus();
-            TbTipoAtividade novoTipoAtividade = novoTipoAtividade();
-            TbFuncionario novoFuncionario = novoFuncionario();
+            projeto = novoProjeto();
+            novoStatus = novoStatus();
+            novoTipoAtividade = novoTipoAtividade();
+            novoFuncionario = novoFuncionario();
 
             String titulo = "TESTE";
             String codigoAtividade = "TESTE-001";
@@ -29,38 +34,58 @@ public class AtividadeUtil {
             DaoAtividade instance = new DaoAtividade();
             novaAtividade = instance.novaAtividade(titulo, codigoAtividade, descricao, projeto, novoStatus, novoTipoAtividade, novoFuncionario);
         } catch (Exception e) {
-            System.out.println("Falhou:"+e);
+            System.out.println("Falhou:" + e);
         }
         return novaAtividade;
     }
 
-    private TbFuncionario novoFuncionario() {
+    public TbFuncionario novoFuncionario() {
         TbFuncionario novoFuncionario = new DaoFuncionario().novoFuncionario("func");
         assertNotNull(novoFuncionario.getId());
         return novoFuncionario;
     }
 
-    private TbTipoAtividade novoTipoAtividade() {
+    public TbTipoAtividade novoTipoAtividade() {
         TbFluxoAtividade fluxo = new TbFluxoAtividade();
         fluxo.setTitulo("Fluxo Teste");
         fluxo.setVisibilidadePublica(true);
-        
 
         TbTipoAtividade novoTipoAtividade = new DaoTipoAtividade().novoTipoAtividade("Tipo", fluxo);
         assertNotNull(novoTipoAtividade.getId());
         return novoTipoAtividade;
     }
 
-    private TbStatus novoStatus() {
+    public TbStatus novoStatus() {
         TbStatus novoStatus = new DaoStatus().novoStatus("aberto");
         assertNotNull(novoStatus.getId());
         return novoStatus;
     }
 
-    private TbProjeto novoProjeto() {
+    public TbProjeto novoProjeto() {
         TbProjeto projeto = new DaoProjeto().novoProjeto("Yomia", "YMA");
         assertNotNull(projeto.getId());
         return projeto;
     }
+
+    public TbProjeto getProjeto() {
+        return projeto;
+    }
+
+    public TbStatus getNovoStatus() {
+        return novoStatus;
+    }
+
+    public TbTipoAtividade getNovoTipoAtividade() {
+        return novoTipoAtividade;
+    }
+
+    public TbFuncionario getNovoFuncionario() {
+        return novoFuncionario;
+    }
+    
+    
+    
+    
+    
 
 }

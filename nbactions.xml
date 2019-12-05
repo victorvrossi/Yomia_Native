@@ -1,36 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
-        <action>
-            <actionName>CUSTOM-teste de Banco</actionName>
-            <displayName>teste de Banco</displayName>
-            <goals>
-                <goal>test</goal>
-                <goal>-Dgroups="junit.conf.TesteBancoDeDados"</goal>
-            </goals>
-        </action>
-        <action>
-            <actionName>CUSTOM-Teste Unitario</actionName>
-            <displayName>Teste Unitario</displayName>
-            <goals>
-                <goal>-Dgroups="junit.conf.TesteUnitario"</goal>
-            </goals>
-        </action>
-        <action>
-            <actionName>CUSTOM-Teste Funcional</actionName>
-            <displayName>Teste Funcional</displayName>
-            <activatedProfiles>
-                <activatedProfile>testFuncional</activatedProfile>
-            </activatedProfiles>
-        </action>
-        <action>
-            <actionName>CUSTOM-Clean Install NoTest</actionName>
-            <displayName>Clean Install NoTest</displayName>
-            <goals>
-                <goal>clean</goal>
-                <goal>install</goal>
-            </goals>
-            <properties>
-                <skipTests>true</skipTests>
-            </properties>
-        </action>
-    </actions>
+    <action>
+        <actionName>CUSTOM-Clean Install NoTest</actionName>
+        <displayName>Clean Install NoTest</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>install</goal>
+        </goals>
+        <properties>
+            <skipTests>true</skipTests>
+        </properties>
+    </action>
+</actions>

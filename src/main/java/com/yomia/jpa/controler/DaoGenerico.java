@@ -35,7 +35,7 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
             }
 
             manager.getTransaction().commit();
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             throw new FalhaOperacaoDeBD("Não foi possivel salvar em Banco: " + ex.getCause().getMessage());
         } finally {
             manager.close();
@@ -70,7 +70,7 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
         return obj;
     }
 
-    public List<BaseEntidade> carregarTodas(String queryNomeada) {
+    public List<BaseEntidade> carregarTodosObjetosDoBanco(String queryNomeada) {
         EntityManager manager = getEntityManager();
         try {
             Query createNamedQuery = manager.createNamedQuery(getClasseTabela().getSimpleName() + "." + queryNomeada);

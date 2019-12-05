@@ -8,11 +8,6 @@ public class Status extends Entidade {
 
     String status;
 
-    public void novoStatus(String novo) {
-        DaoStatus status = new DaoStatus();
-        status.novoStatus(novo);
-    }
-
     @Override
     public Entidade converteTabelaParaObjeto(BaseEntidade tb) {
         TbStatus bt = (TbStatus) tb;

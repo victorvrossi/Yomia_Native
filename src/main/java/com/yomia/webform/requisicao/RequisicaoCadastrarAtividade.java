@@ -1,6 +1,7 @@
 package com.yomia.webform.requisicao;
 
 import com.yomia.modulo.core.Atividade;
+import com.yomia.modulo.core.acoes.GerenciarAtividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import com.yomia.webform.sessao.SessaoUsuario;
@@ -24,7 +25,7 @@ public class RequisicaoCadastrarAtividade extends RequisicaoGenerica {
         final String tipo = request.getParameter("selecttipoativi");
         if (verificaDadosDeEntrada(new String[]{tipo, titulo, descricao})) {
             final SessaoUsuario login = resgatarSessaoComLogin(request);
-            new Atividade().cadastrarNovaAtividade(titulo, descricao, tipo, login.funcionarioLogado());
+            GerenciarAtividade.cadastrar(titulo, descricao, tipo, login.funcionarioLogado());
         }
 
     }

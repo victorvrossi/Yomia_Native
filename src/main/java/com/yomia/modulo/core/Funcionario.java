@@ -10,7 +10,7 @@ public class Funcionario extends Entidade {
     private String nome;
 
     void setNome(String nomeResponsavel) {
-        this.nome = nome;
+        this.nome = nomeResponsavel;
     }
 
     public String getNome() {

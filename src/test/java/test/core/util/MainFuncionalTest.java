@@ -10,10 +10,12 @@ import test.core.DatabaseTest;
 public class MainFuncionalTest {
     @BeforeClass
     public static void setUpClass() {
+        new UtilHarnessDatabase().limpaTodasOsDados();
     }
 
     @Before
     public void setUp() {
+        new UtilHarnessDatabase().limpaTodasOsDados();
     }
 
     @After

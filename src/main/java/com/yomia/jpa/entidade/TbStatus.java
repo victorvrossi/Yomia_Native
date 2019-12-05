@@ -114,7 +114,7 @@ public class TbStatus implements BaseEntidade {
 
     @Override
     public String toString() {
-        return "com.yomia.jpa.entidade.TbStatus[ id=" + id + " ]";
+        return "com.yomia.jpa.entidade.TbStatus[ id=" + id + " , T= "+titulo+"]";
     }
 
 }

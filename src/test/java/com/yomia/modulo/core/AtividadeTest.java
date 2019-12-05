@@ -5,7 +5,7 @@ import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.modulo.data.DataUtil;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.saida.ProcessaJsonSaidaAtividade;
-import test.core.util.AtividadeUtil;
+import test.core.util.CoreUtil;
 import test.core.util.MainFuncionalTest;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -15,8 +15,8 @@ public class AtividadeTest extends MainFuncionalTest{
     @Test
     public void testGeraListaJsonDeAtividades() throws FalhaGenerica {
         System.out.println("listaAtividade");
-        TbAtividade n1 = new AtividadeUtil().novaAtividade();
-        TbAtividade n2 =new AtividadeUtil().novaAtividade();
+        TbAtividade n1 = new CoreUtil().novaAtividade();
+        TbAtividade n2 =new CoreUtil().novaAtividade();
         
         assertNotNull(n1.getId());
         assertNotNull(n2.getId());
