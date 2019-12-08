@@ -5,6 +5,7 @@ import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
+import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.modulo.data.DataUtil;
 import com.yomia.modulo.falhas.FalhaGenerica;
@@ -33,6 +34,12 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
 
         salvar(nova);
 
+        DaoStatusAtividade l = new DaoStatusAtividade();
+        TbStatusAtividade tbStatusAtividade = l.novoStatus(nova, status);
+
+        nova.setTbStatusAtividade(tbStatusAtividade);
+        salvar(nova);
+        
         return nova;
     }
 

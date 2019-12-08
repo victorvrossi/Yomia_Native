@@ -60,6 +60,11 @@ public class CoreUtil {
         assertNotNull(novoStatus.getId());
         return novoStatus;
     }
+    public TbStatus novoStatus(String status) {
+        TbStatus novoStatus = new DaoStatus().novoStatus(status);
+        assertNotNull(novoStatus.getId());
+        return novoStatus;
+    }
 
     public TbProjeto novoProjeto() {
         TbProjeto projeto = new DaoProjeto().novoProjeto("Yomia", "YMA");

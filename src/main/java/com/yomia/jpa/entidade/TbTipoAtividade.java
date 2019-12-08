@@ -1,9 +1,9 @@
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +35,7 @@ public class TbTipoAtividade implements BaseEntidade {
     @Size(max = 255)
     @Column(name = "titulo")
     private String titulo;
-    @OneToMany(mappedBy = "idTipoAtividade",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "idTipoAtividade")
     private List<TbAtividade> tbAtividadeList;
 
     public TbTipoAtividade() {

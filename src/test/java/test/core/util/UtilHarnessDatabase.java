@@ -3,14 +3,11 @@ package test.core.util;
 import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFluxoAtividade;
-import com.yomia.jpa.entidade.TbFluxoDesvio;
-import com.yomia.jpa.entidade.TbFluxoSequencia;
 import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
-import com.yomia.resource.YomiaResource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,7 +15,7 @@ import javax.persistence.Persistence;
 public class UtilHarnessDatabase {
 
     protected EntityManager getEntityManager() {
-         EntityManagerFactory factory = Persistence.createEntityManagerFactory(new YomiaResource().devolveAmbienteQueEstaEmExecucao().getNome());
+         EntityManagerFactory factory = Persistence.createEntityManagerFactory("producao_yomia");
         return factory.createEntityManager();
     }
 
@@ -28,8 +25,7 @@ public class UtilHarnessDatabase {
         try {
             manager.getTransaction().begin();
             truncateTabela(manager, nomeDaTabela(TbAtividade.class));
-            truncateTabela(manager, nomeDaTabela(TbFluxoAtividade.class));            
-            truncateTabela(manager, nomeDaTabela(TbFluxoSequencia.class));
+            truncateTabela(manager, nomeDaTabela(TbFluxoAtividade.class));     
             truncateTabela(manager, nomeDaTabela(TbFuncionario.class));            
             truncateTabela(manager, nomeDaTabela(TbProjeto.class));
             truncateTabela(manager, nomeDaTabela(TbStatus.class));

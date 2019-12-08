@@ -13,7 +13,7 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
     public abstract Class<T> getClasseTabela();
 
     protected EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(new YomiaResource().devolveAmbienteQueEstaEmExecucao().getNome());
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("producao_yomia");
         return factory.createEntityManager();
     }
 

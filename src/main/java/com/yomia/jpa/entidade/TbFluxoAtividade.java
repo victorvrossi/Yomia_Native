@@ -1,9 +1,8 @@
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
-import java.util.List;
+import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,12 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "tb_fluxo_atividade")
@@ -43,8 +40,6 @@ public class TbFluxoAtividade implements BaseEntidade {
     @NotNull
     @Column(name = "visibilidade_publica")
     private boolean visibilidadePublica;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFluxo")
-    private List<TbFluxoSequencia> tbFluxoSequenciaList;
 
     public TbFluxoAtividade() {
     }
@@ -81,15 +76,6 @@ public class TbFluxoAtividade implements BaseEntidade {
 
     public void setVisibilidadePublica(boolean visibilidadePublica) {
         this.visibilidadePublica = visibilidadePublica;
-    }
-
-    @XmlTransient
-    public List<TbFluxoSequencia> getTbFluxoSequenciaList() {
-        return tbFluxoSequenciaList;
-    }
-
-    public void setTbFluxoSequenciaList(List<TbFluxoSequencia> tbFluxoSequenciaList) {
-        this.tbFluxoSequenciaList = tbFluxoSequenciaList;
     }
 
     @Override

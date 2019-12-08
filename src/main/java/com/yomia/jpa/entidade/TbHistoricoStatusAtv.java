@@ -1,9 +1,9 @@
 package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,10 +37,10 @@ public class TbHistoricoStatusAtv implements BaseEntidade {
     @Temporal(TemporalType.DATE)
     private Date dataEfetivado;
     @JoinColumn(name = "id_atividade", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private TbAtividade idAtividade;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private TbStatus idStatus;
 
     public TbHistoricoStatusAtv() {

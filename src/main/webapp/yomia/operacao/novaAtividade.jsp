@@ -76,6 +76,16 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                
+                                                <div class="form-group">
+                                                    <label class="col-md control-label" for="selectprojeto">Projeto</label>
+                                                    <div class="col-md">
+                                                        <select id="selecttipoativi" name="selectprojeto" class="form-control">
+                                                            <option value="1">Bug</option>
+                                                            <option value="2">Tarefa de fábrica</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-group">
                                                     <div class="col-md-12 p-3">
@@ -106,10 +116,7 @@
                                 <div class="col-lg-6">
 
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="btn btn-primary btn-block" id="btn_salvar">Confirmar e Salvar</div>
-                                    <div class="btn btn-danger btn-block">Cancelar</div>
-                                </div>
+                                
                             </div>
                         </form>
 
