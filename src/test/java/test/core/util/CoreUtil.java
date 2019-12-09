@@ -87,10 +87,4 @@ public class CoreUtil {
     public TbFuncionario getNovoFuncionario() {
         return novoFuncionario;
     }
-    
-    
-    
-    
-    
-
 }

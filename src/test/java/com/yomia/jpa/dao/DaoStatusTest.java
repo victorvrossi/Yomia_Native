@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.yomia.jpa.dao;
 
 import com.yomia.jpa.entidade.TbStatus;
@@ -10,13 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import test.core.util.MainFuncionalTest;
+import test.core.util.TesteBase;
 
-/**
- *
- * @author Victor
- */
-public class DaoStatusTest extends MainFuncionalTest {
+public class DaoStatusTest extends TesteBase{
 
     @Test
     public void testNovoStatus() {
@@ -69,7 +60,7 @@ public class DaoStatusTest extends MainFuncionalTest {
         TbStatus expResult = new TbStatus();
         expResult.setTitulo(titulo);
         TbStatus result = instance.pesquisaPorTitulo(titulo);
-            assertEquals(expResult.getTitulo(), result.getTitulo());
+        assertEquals(expResult.getTitulo(), result.getTitulo());
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.yomia.jpa.controler;
 
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
-import com.yomia.resource.YomiaResource;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

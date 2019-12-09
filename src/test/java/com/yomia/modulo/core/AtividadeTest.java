@@ -6,11 +6,10 @@ import com.yomia.modulo.data.DataUtil;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.saida.ProcessaJsonSaidaAtividade;
 import test.core.util.CoreUtil;
-import test.core.util.MainFuncionalTest;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class AtividadeTest extends MainFuncionalTest{
+public class AtividadeTest {
     
     @Test
     public void testGeraListaJsonDeAtividades() throws FalhaGenerica {

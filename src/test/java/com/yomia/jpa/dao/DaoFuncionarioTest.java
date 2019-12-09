@@ -1,12 +1,11 @@
 package com.yomia.jpa.dao;
 
-import test.core.util.MainFuncionalTest;
 import com.yomia.jpa.entidade.TbFuncionario;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class DaoFuncionarioTest extends MainFuncionalTest{
+public class DaoFuncionarioTest{
     
     
 

@@ -8,13 +8,10 @@ import com.yomia.modulo.core.Entidade;
 import com.yomia.modulo.data.DataUtil;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import test.core.util.CoreUtil;
-import test.core.util.MainFuncionalTest;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.experimental.categories.Category;
 
-public class CarregaListaJsonTest extends MainFuncionalTest {
+public class CarregaListaJsonTest {
 
     @Test
     public void testListaTodosElementoEmJson() throws FalhaGenerica {

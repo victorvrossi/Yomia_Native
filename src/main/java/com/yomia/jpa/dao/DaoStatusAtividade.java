@@ -16,7 +16,6 @@ public class DaoStatusAtividade extends DaoGenerico<TbStatusAtividade> {
     }
 
     TbStatusAtividade novoStatus(TbAtividade idAtividade, TbStatus tbStatus) throws FalhaGenerica {
-        System.out.println("Status DaoStatus:"+tbStatus.getId());
         TbStatusAtividade tbStatusAtividade = new TbStatusAtividade();
         tbStatusAtividade.setIdAtividade(idAtividade);
         tbStatusAtividade.setIdStatus(tbStatus);

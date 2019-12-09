@@ -1,21 +1,11 @@
 package com.yomia.modulo.core;
 
-import com.yomia.modulo.saida.ModeloParaSaidaEmJson;
-import com.yomia.webform.json.model.CarregaListaJson;
 import com.yomia.jpa.controler.BaseEntidade;
-import com.yomia.jpa.dao.DaoAtividade;
-import com.yomia.jpa.dao.DaoFuncionario;
-import com.yomia.jpa.dao.DaoTipoAtividade;
 import com.yomia.jpa.entidade.TbAtividade;
-import com.yomia.jpa.entidade.TbFuncionario;
-import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
-import com.yomia.jpa.entidade.TbStatusAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
-import com.yomia.webform.json.JsonListarAtividades;
 import java.util.Date;
-import java.util.List;
 
 public class Atividade  extends Entidade{
 
@@ -61,12 +51,6 @@ public class Atividade  extends Entidade{
         return status;
     }
 
-    
-    
-
-
-    
-
     @Override
     public Entidade converteTabelaParaObjeto(BaseEntidade bt) {
         TbAtividade tb = (TbAtividade) bt;
@@ -86,7 +70,14 @@ public class Atividade  extends Entidade{
             tipo.setTitulo(idTipoAtividade.getTitulo());
             dataCriacao = tb.getDataCriacao();
 
-            //status = tbStatusAtividade.getIdStatus().getTitulo();
+//            if(tb.getTbStatusAtividade() == null){
+//                throw new FalhaGenerica("Problema ao carregar a atividade"+tb.getTitulo());
+//            }
+//            final TbStatus idStatus = tb.getTbStatusAtividade().getIdStatus();
+//            if(idStatus == null){
+//                throw new FalhaGenerica("Problema ao carregar status da atividade"+tb.getTitulo());
+//            }
+//            status = idStatus.getTitulo();
             String nomeResponsavel = tb.getIdResponsavel().getNome();
             responsavel.setNome(nomeResponsavel);
 

@@ -8,14 +8,11 @@ import com.yomia.modulo.falhas.FalhaGenerica;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import test.core.util.CoreUtil;
-import test.core.util.MainFuncionalTest;
+import test.core.util.TesteBase;
 
-public class DaoStatusAtividadeTest extends MainFuncionalTest{
+public class DaoStatusAtividadeTest extends TesteBase{
     
 
-    /**
-     * Test of consultaPorTitulo method, of class DaoStatusAtividade.
-     */
     @Test
     public void testConsultaPorTitulo() {
         System.out.println("consultaPorTitulo");
@@ -30,29 +27,23 @@ public class DaoStatusAtividadeTest extends MainFuncionalTest{
         instance.consultaPorTitulo(atividade, aberto);
     }
 
-    /**
-     * Test of novoStatus method, of class DaoStatusAtividade.
-     */
     @Test
-    public void testNovoStatus() {
-        try{
-            System.out.println("novoStatus");
+    public void testNovoStatus() throws FalhaGenerica {
+        System.out.println("novoStatus");        
         final CoreUtil coreUtil = new CoreUtil();
         TbAtividade idAtividade = coreUtil.novaAtividade();
-        TbStatus tbStatus = coreUtil.getNovoStatus();
-        
+       
+        final TbStatus novoStatus = new DaoStatus().novoStatus("nono");
         DaoStatusAtividade instance = new DaoStatusAtividade();
+        assertNotNull(novoStatus.getId());
+        
         TbStatusAtividade result = null;
-        result = instance.novoStatus(idAtividade, tbStatus);
-        assertNotNull(result);
-        }catch(FalhaGenerica e){
-        }
+        result = instance.novoStatus(idAtividade, novoStatus);
+        assertNotNull(result.getId());
+        
         
     }
 
-    /**
-     * Test of getClasseTabela method, of class DaoStatusAtividade.
-     */
     @Test
     public void testGetClasseTabela() {
         System.out.println("getClasseTabela");
