@@ -1,7 +1,10 @@
 package com.yomia.jpa.dao;
 
+import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.controler.DaoGenerico;
 import com.yomia.jpa.entidade.TbFuncionario;
+import com.yomia.modulo.falhas.FalhaGenerica;
+import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +43,19 @@ public class DaoFuncionario extends DaoGenerico<TbFuncionario> {
     @Override
     public Class<TbFuncionario> getClasseTabela() {
         return TbFuncionario.class;
+    }
+
+    @Override
+    public List<BaseEntidade> carregarListaDoBanco() throws FalhaGenerica {
+        EntityManager manager = getEntityManager();
+        try {
+            Query createNamedQuery = manager.createNamedQuery("TbFuncionario.findAll");
+            return createNamedQuery.getResultList();
+        } catch (Throwable e) {
+            throw new FalhaOperacaoDeBD("Falha ao Carregar todas as atividades");
+        } finally {
+            manager.close();
+        }
     }
 
 }

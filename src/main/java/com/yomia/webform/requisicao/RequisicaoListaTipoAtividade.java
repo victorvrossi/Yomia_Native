@@ -4,8 +4,8 @@ package com.yomia.webform.requisicao;
 import com.yomia.jpa.dao.DaoTipoAtividade;
 import com.yomia.modulo.core.TipoAtividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
-import com.yomia.webform.json.model.CarregaListaJson;
 import com.yomia.webform.json.JsonListarTipoAtividade;
+import com.yomia.webform.json.model.CarregarDadosEmListaJson;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +23,7 @@ public class RequisicaoListaTipoAtividade extends RequisicaoGenerica{
     public void processaResponse(HttpServletResponse response) throws FalhaGenerica {
          response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println(new CarregaListaJson().listaTodosElementoEmJson(DaoTipoAtividade.class, JsonListarTipoAtividade.class, TipoAtividade.class));
+            out.println(new CarregarDadosEmListaJson().listaTodosElementoEmJson( new TipoAtividade(),new DaoTipoAtividade(), new JsonListarTipoAtividade()));
         } catch (IOException ex) {
             Logger.getLogger(RequisicaoListaTipoAtividade.class.getName()).log(Level.SEVERE, null, ex);
         }

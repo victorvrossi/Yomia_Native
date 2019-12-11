@@ -1,8 +1,10 @@
 package com.yomia.webform.requisicao;
 
+import com.yomia.jpa.dao.DaoAtividade;
 import com.yomia.modulo.core.Atividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
-import com.yomia.modulo.saida.ProcessaJsonSaidaAtividade;
+import com.yomia.modulo.saida.dataTable.ProcessaJsonAtividadeParaDataTable;
+import com.yomia.webform.json.model.CarregarDadosEmListaJson;
 import com.yomia.webform.service.face.RequisicaoGenerica;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +27,7 @@ public class RequisicaoListarAtividade extends RequisicaoGenerica {
     }
 
     private String listaAtividade() throws FalhaGenerica {
-        return new ProcessaJsonSaidaAtividade().geraListaJsonDeAtividadesParaDataTable();
+        return new CarregarDadosEmListaJson().listaTodosElementoEmJsonParaDataTable(new DaoAtividade(), new ProcessaJsonAtividadeParaDataTable());
     }
 
 }

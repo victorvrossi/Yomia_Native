@@ -6,8 +6,12 @@ import com.yomia.jpa.entidade.TbStatus;
 
 public class Status extends Entidade {
 
-    String status;
+    private String status;
 
+    public String getStatus() {
+        return status;
+    }
+    
     @Override
     public Entidade converteTabelaParaObjeto(BaseEntidade tb) {
         TbStatus bt = (TbStatus) tb;

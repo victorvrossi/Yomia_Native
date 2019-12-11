@@ -1,5 +1,6 @@
 package com.yomia.jpa.dao;
 
+import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
@@ -20,6 +21,12 @@ public class DaoAtividadeTest  extends TesteBase{
         System.out.println("novaAtividade**********************************************");
         TbAtividade novaAtividade = new CoreUtil().novaAtividade();
         assertNotNull(novaAtividade.getId());
+        assertNotNull(novaAtividade.getTbStatusAtividade().getId());
+        assertNotNull(novaAtividade.getTbStatusAtividade().getIdStatus());
+        assertEquals("aberto", novaAtividade.getTbStatusAtividade().getIdStatus().getTitulo());
+        assertEquals("TESTE-001", novaAtividade.getTbStatusAtividade().getIdAtividade().getCodigoAtividade());
+        assertEquals("Yomia", novaAtividade.getIdProjeto().getTitulo());
+        
     }
 
     @Test(expected = FalhaOperacaoDeBD.class)
@@ -41,7 +48,7 @@ public class DaoAtividadeTest  extends TesteBase{
         System.out.println("carregarTodasAtividades");
         new CoreUtil().novaAtividade();
         DaoAtividade instance = new DaoAtividade();
-        List<TbAtividade> result = instance.carregarTodasAtividades();
+        List<BaseEntidade> result = instance.carregarListaDoBanco();
         assertTrue(result.size() == 1);
     }
 

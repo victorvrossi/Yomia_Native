@@ -1,6 +1,8 @@
 package com.yomia.jpa.dao;
 
+import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.entidade.TbStatus;
+import com.yomia.modulo.falhas.FalhaGenerica;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -25,7 +27,7 @@ public class DaoStatusTest extends TesteBase{
      * Test of carregarTodosStatus method, of class DaoStatus.
      */
     @Test
-    public void testCarregarTodosStatus() {
+    public void testCarregarTodosStatus() throws FalhaGenerica {
         System.out.println("carregarTodosStatus");
         String fechado = "fechado";
         DaoStatus instance = new DaoStatus();
@@ -37,8 +39,9 @@ public class DaoStatusTest extends TesteBase{
         TbStatus moment = new TbStatus();
         moment.setTitulo(fechado);
         expResult.add(moment);
-        List<TbStatus> result = instance.carregarTodosStatus();
-        for (TbStatus tbStatus : result) {
+        List<BaseEntidade> result = instance.carregarListaDoBanco();
+        for (BaseEntidade k : result) {
+            TbStatus tbStatus = (TbStatus)k;
             for (TbStatus r : expResult) {
                 assertEquals(tbStatus.getTitulo(), r.getTitulo());
             }

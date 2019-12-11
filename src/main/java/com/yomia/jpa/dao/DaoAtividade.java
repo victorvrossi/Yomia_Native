@@ -1,5 +1,6 @@
 package com.yomia.jpa.dao;
 
+import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.controler.DaoGenerico;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFuncionario;
@@ -20,6 +21,7 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
     public TbAtividade novaAtividade(String titulo, String codigoAtividade,
             String descricao, TbProjeto projeto, TbStatus status,
             TbTipoAtividade novoTipoAtividade, TbFuncionario func) throws FalhaGenerica {
+       
         TbAtividade nova = new TbAtividade();
         validaEntrada(titulo, descricao, codigoAtividade, projeto, func, novoTipoAtividade);
 
@@ -34,26 +36,17 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
 
         salvar(nova);
 
+        adicionarStatusDefault(nova, status);
+        
+        return nova;
+    }
+
+    private void adicionarStatusDefault(TbAtividade nova, TbStatus status) throws FalhaGenerica, FalhaOperacaoDeBD {
         DaoStatusAtividade l = new DaoStatusAtividade();
         TbStatusAtividade tbStatusAtividade = l.novoStatus(nova, status);
 
         nova.setTbStatusAtividade(tbStatusAtividade);
         salvar(nova);
-        
-        return nova;
-    }
-
-    public List<TbAtividade> carregarTodasAtividades() throws FalhaOperacaoDeBD {
-        EntityManager manager = getEntityManager();
-        try {
-            Query createNamedQuery = manager.createNamedQuery("TbAtividade.findAll");
-            return createNamedQuery.getResultList();
-        } catch (Throwable e) {
-            throw new FalhaOperacaoDeBD("Falha ao Carregar todas as atividades");
-        } finally {
-            manager.close();
-        }
-
     }
 
     @Override
@@ -71,6 +64,19 @@ public class DaoAtividade extends DaoGenerico<TbAtividade> {
         Validacao.verificaTabela(projeto);
         Validacao.verificaTabela(func);
         Validacao.verificaTabela(novoTipoAtividade);
+    }
+
+    @Override
+    public List<BaseEntidade> carregarListaDoBanco() throws FalhaOperacaoDeBD {
+        EntityManager manager = getEntityManager();
+        try {
+            Query createNamedQuery = manager.createNamedQuery("TbAtividade.findAll");
+            return createNamedQuery.getResultList();
+        } catch (Throwable e) {
+            throw new FalhaOperacaoDeBD("Falha ao Carregar todas as atividades");
+        } finally {
+            manager.close();
+        }
     }
 
 }

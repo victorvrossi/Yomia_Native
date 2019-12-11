@@ -1,9 +1,12 @@
 package com.yomia.jpa.dao;
 
+import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.controler.DaoGenerico;
 import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.modulo.falhas.FalhaGenerica;
+import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,7 +16,7 @@ import javax.persistence.Query;
 
 public class DaoTipoAtividade extends DaoGenerico<TbTipoAtividade> {
 
-    public TbTipoAtividade novoTipoAtividade(String titulo,TbFluxoAtividade idFluxoAtividade) {
+    public TbTipoAtividade novoTipoAtividade(String titulo, TbFluxoAtividade idFluxoAtividade) {
         TbTipoAtividade n = new TbTipoAtividade();
         n.setTitulo(titulo);
         List<TbAtividade> tbAtividadeList = new ArrayList<>();
@@ -42,13 +45,26 @@ public class DaoTipoAtividade extends DaoGenerico<TbTipoAtividade> {
             Query createNamedQuery = manager.createNamedQuery("TbTipoAtividade.findByTitulo");
             createNamedQuery.setParameter("titulo", titulo);
             final List resultList = createNamedQuery.getResultList();
-            if(resultList.size()>0){
-                return (TbTipoAtividade)resultList.get(0);
+            if (resultList.size() > 0) {
+                return (TbTipoAtividade) resultList.get(0);
             }
         } finally {
             manager.close();
         }
         return null;
+    }
+
+    @Override
+    public List<BaseEntidade> carregarListaDoBanco() throws FalhaGenerica {
+        EntityManager manager = getEntityManager();
+        try {
+            Query createNamedQuery = manager.createNamedQuery("TbTipoAtividade.findAll");
+            return createNamedQuery.getResultList();
+        } catch (Throwable e) {
+            throw new FalhaOperacaoDeBD("Falha ao Carregar todas as atividades");
+        } finally {
+            manager.close();
+        }
     }
 
     @Override

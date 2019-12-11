@@ -1,5 +1,6 @@
 package com.yomia.jpa.controler;
 
+import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -68,7 +69,8 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
         }
         return obj;
     }
-
+    public abstract List<BaseEntidade> carregarListaDoBanco()  throws FalhaGenerica;
+    
     public List<BaseEntidade> carregarTodosObjetosDoBanco(String queryNomeada) {
         EntityManager manager = getEntityManager();
         try {

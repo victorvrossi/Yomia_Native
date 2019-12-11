@@ -9,6 +9,7 @@ import com.yomia.webform.service.face.RequisicaoGenerica;
 import com.yomia.webform.requisicao.RequisicaoListaTipoAtividade;
 import com.yomia.webform.requisicao.RequisicaoCadastrarAtividade;
 import com.yomia.webform.requisicao.RequisicaoCadastrarFuncionario;
+import com.yomia.webform.requisicao.RequisicaoListaStatus;
 import com.yomia.webform.requisicao.RequisicaoListarAtividade;
 import com.yomia.webform.requisicao.RequisicaoSolicitarLogin;
 import java.util.HashMap;
@@ -24,6 +25,8 @@ public enum EnumeracaoFormulariosSistema {
     
     //----------------------------- Listar
     LISTAR_ATIVIDADE(new Object[]{"atividade.form.lista", new RequisicaoListarAtividade()}),    
+    LISTAR_STATUS(new Object[]{"status.lista", new RequisicaoListaStatus()}),    
+    
     LISTAR_TIPO_ATIVIDADE(new Object[]{"tipo_atividade.lista", new RequisicaoListaTipoAtividade()}),
     LISTA_TICKET(new Object[]{"ticket.list", new ClienteListaTicket()}),
     

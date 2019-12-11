@@ -100,23 +100,13 @@
 
                                             <fieldset>
                                                 <!-- Text input-->
-                                                <div class="form-group">
-                                                    <label class="col-md control-label" for="lb_titulo">Titulo</label>  
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <input id="lb_titulo" name="lb_titulo" type="text" placeholder="" class="form-control input-md" required="">
-                                                        </div>
+                                                <div class="collapse show" id="cardEstBackLog">
+                                                    <div class="card-body overflow-auto"  style="max-height: 19rem" >
+                                                        <table class="table table-striped">
+                                                            <tbody id="listatipoatividade">
 
-                                                        <div class="col-md-12 p-3">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="btn btn-primary btn-block" id="btn_salvar_status">Adicionar</div>
-                                                                </div>
-
-                                                            </div>
-
-
-                                                        </div>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -193,24 +183,39 @@
 
             $(document).ready(function () {
 
-                $("#btn_salvar_tipo").click(
-                        function () {
+                function linha(css, valor) {
+                    if (valor) {
+                        return "<td class='center'><a href='#' class=' " + css + "  '>" + valor.titulo + "</a></td>";
+                    }
+                    return '<td></td>';
 
-                            var $form = $("#formid");
+                }
+                function listaTipos() {
+                    $.ajax({
+                        url: '/form/status.lista',
+                        type: "post"
+                    }).done(function (data) {
+                        alert(data);
 
-                            var $inputs = $form.find("input");
-                            var serializedData = $form.serialize();
-                            $inputs.prop("disabled", true);
-                            $.ajax({
-                                url: '/form/tipo_atividade.form.cad',
-                                type: "post",
-                                data: serializedData
-                            }).done(function (data) {
-                                alert(data);
-                            });
+                        $("#listatipoatividade").html("");
+                        var json = JSON.parse(data);
+                        var tiposBotoes = ["btn-primary", "btn-info"];
+                        var botaoClasse = tiposBotoes[0];
+                        for (var i = 0; i < json.length; i++) {
+                            if (json[i]) {
+                                botaoClasse = tiposBotoes[(i % 2 == 0 ? 0 : 1)];
+                                var add = "<tr>";
+                                add += linha("btn " + botaoClasse + "  btn-block", json[i]);
+                                i = i + 1;
+                                botaoClasse = tiposBotoes[(i % 2 == 0 ? 0 : 1)];
+                                add += linha("btn " + botaoClasse + "  btn-block", json[i]);
+                                add += "</tr>";
+                                $("#listatipoatividade").html($("#listatipoatividade").html() + add);
+                            }
                         }
-                );
-
+                    });
+                }
+                listaTipos();
                 $("#btn_salvar_status").click(
                         function () {
 
@@ -224,7 +229,7 @@
                                 type: "post",
                                 data: serializedData
                             }).done(function (data) {
-                                alert(data);
+                                listaTipos();
                             });
                         }
                 );
