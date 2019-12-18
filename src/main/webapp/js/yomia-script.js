@@ -1,4 +1,3 @@
-
 function verificaSeDeuErro(data) {
     if (data == null || data == "") {
         imprimeErroDefaultNaTela();

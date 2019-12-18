@@ -4,15 +4,16 @@ import com.yomia.jpa.controler.BaseEntidade;
 import com.yomia.jpa.dao.DaoTipoAtividade;
 import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.modulo.falhas.FalhaGenerica;
 
 public class TipoAtividade extends Entidade{
 
     private String titulo;
     
-    public void novoTipoAtividade(String tipo){
+    public void novoTipoAtividade(String tipo) throws FalhaGenerica{
         validaEntrada(tipo);
         DaoTipoAtividade novo = new DaoTipoAtividade();
-        novo.novoTipoAtividade(tipo, new TbFluxoAtividade());
+        novo.novoTipoAtividade(tipo);
     }
 
     void setTitulo(String titulo) {

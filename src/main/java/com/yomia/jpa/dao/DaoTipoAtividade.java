@@ -9,22 +9,21 @@ import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 public class DaoTipoAtividade extends DaoGenerico<TbTipoAtividade> {
 
-    public TbTipoAtividade novoTipoAtividade(String titulo, TbFluxoAtividade idFluxoAtividade) {
+    public TbTipoAtividade novoTipoAtividade(String titulo) throws FalhaGenerica {
         TbTipoAtividade n = new TbTipoAtividade();
         n.setTitulo(titulo);
-        List<TbAtividade> tbAtividadeList = new ArrayList<>();
-        n.setTbAtividadeList(tbAtividadeList);
+        n.setTbAtividadeList(null);
+        n.setTbFluxoAtividade(null);
         try {
             salvar(n);
         } catch (Exception ex) {
-            Logger.getLogger(DaoAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            //throw new FalhaGenerica("Falha:"+ex.toString());
         }
         return n;
     }
@@ -70,5 +69,9 @@ public class DaoTipoAtividade extends DaoGenerico<TbTipoAtividade> {
     @Override
     public Class<TbTipoAtividade> getClasseTabela() {
         return TbTipoAtividade.class;
+    }
+
+    public void novoTipoAtividade(String tipo, TbFluxoAtividade tbFluxoAtividade) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

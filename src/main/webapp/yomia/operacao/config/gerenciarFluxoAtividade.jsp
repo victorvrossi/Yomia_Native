@@ -49,7 +49,7 @@
 
                                     <div class="card shadow mb-4"><!-- Card -->
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Status da Atividade</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Criar novo Fluxo de Atividade</h6>
                                         </div>
                                         <div class="card-body">
 
@@ -57,14 +57,45 @@
                                             <fieldset>
                                                 <!-- Text input-->
                                                 <div class="form-group">
-                                                    <label class="col-md control-label" for="lb_titulo">Titulo</label>  
-                                                    <div class="row">
+
+                                                    <div class="row mb-1">
+                                                        <label class="col-md control-label" for="lb_titulo">Titulo para o Fluxo</label>  
                                                         <div class="col-md-12">
                                                             <input id="lb_titulo" name="lb_titulo" type="text" placeholder="" class="form-control input-md" required="">
                                                         </div>
-
+                                                    </div>
+                                                    <div class="row mb-1">
+                                                        <label class="col-md control-label" for="lb_titulo">Associar a tipo de atividade</label>  
+                                                        <div class="col-md-12">
+                                                            <input id="lb_titulo" name="lb_titulo" type="text" placeholder="" class="form-control input-md" required="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-1">
                                                         <div class="col-md-12 p-3">
                                                             <div class="row">
+
+                                                                <div class="col-md-6">
+                                                                    <button class="btn btn-block btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        Dropdown
+                                                                    </button>
+                                                                    <p class="text-break">Another actionsdf sdf sd fsdf sdf sdf sdf sd fsd f GATINHO aosij daosi das od teste</p>
+                                                                    <div class="text-break dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                                        <a class="dropdown-item" href="#">Action</a>
+                                                                        <p class="text-break">Another actionsdf sdf sd fsdf sdf sdf sdf sd fsd f GATINHO aosij daosi das od teste</p>
+                                                                        <a class="dropdown-item text-break" href="#">Another actionsdf sdf sd fsdf sdf sdf sdf sd fsd f GATINHO aosij daosi das od teste</a>
+                                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-1">
+                                                        <div class="col-md-12 p-3">
+                                                            <div class="row">
+
                                                                 <div class="col-md-6">
                                                                     <div class="btn btn-primary btn-block" id="btn_salvar_status">Adicionar</div>
                                                                 </div>
@@ -93,7 +124,7 @@
 
                                     <div class="card shadow mb-4"><!-- Card -->
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Status da Atividade</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Fluxo de Atividade já configurado</h6>
                                         </div>
                                         <div class="card-body">
 
@@ -178,7 +209,7 @@
         <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="/js/sb-admin-2.min.js"></script>atividade.form.cad
+        <script src="/js/sb-admin-2.min.js"></script>
         <script>
 
             $(document).ready(function () {
@@ -236,6 +267,7 @@
 
             });
         </script>
+
 
     </body>
 

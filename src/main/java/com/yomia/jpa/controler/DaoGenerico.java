@@ -20,6 +20,9 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
     public T salvar(T obj) throws FalhaOperacaoDeBD {
 
         EntityManager manager = getEntityManager();
+        if(obj == null){
+            System.out.println("Objeto null********************");
+        }
 
         try {
             manager.getTransaction().begin();
@@ -36,7 +39,8 @@ public abstract class DaoGenerico<T extends BaseEntidade> {
 
             manager.getTransaction().commit();
         } catch (Exception ex) {
-            throw new FalhaOperacaoDeBD("Não foi possivel salvar em Banco: " + ex.getCause().getMessage());
+            ex.printStackTrace();
+            throw new FalhaOperacaoDeBD("Não foi possivel salvar em Banco: " + ex.toString());
         } finally {
             manager.close();
         }

@@ -25,7 +25,7 @@ public class RequisicaoListaTipoAtividade extends RequisicaoGenerica{
         try (PrintWriter out = response.getWriter()) {
             out.println(new CarregarDadosEmListaJson().listaTodosElementoEmJson( new TipoAtividade(),new DaoTipoAtividade(), new JsonListarTipoAtividade()));
         } catch (IOException ex) {
-            Logger.getLogger(RequisicaoListaTipoAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            throw new FalhaGenerica("Falha ao processar Resposta para TipoAtividadeLista");
         }
     }
     

@@ -11,7 +11,8 @@ import com.yomia.modulo.core.Funcionario;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import java.util.List;
 
-public class GerenciarAtividade {
+public class GerenciarAtividade implements GerenciarSistema
+{
 
     public static void cadastrar(String titulo, String descricao, String tipo, Funcionario responsavel) throws FalhaGenerica {
         final TbTipoAtividade tipoAtividade = new DaoTipoAtividade().carregaTipoAtividadePorTitulo(tipo);

@@ -22,13 +22,8 @@ public class RequisicaoSolicitarLogin extends RequisicaoGenerica {
 
     }
 
-    
-
     @Override
     public void processaResponse(HttpServletResponse response) throws FalhaGenerica {
-        //printSaida(response, saidaDeErro().gerarJson());        
     }
-
-   
 
 }

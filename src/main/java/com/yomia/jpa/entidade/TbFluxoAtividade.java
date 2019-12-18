@@ -2,18 +2,24 @@ package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "tb_fluxo_atividade")
@@ -21,8 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "TbFluxoAtividade.findAll", query = "SELECT t FROM TbFluxoAtividade t"),
     @NamedQuery(name = "TbFluxoAtividade.findById", query = "SELECT t FROM TbFluxoAtividade t WHERE t.id = :id"),
-    @NamedQuery(name = "TbFluxoAtividade.findByTitulo", query = "SELECT t FROM TbFluxoAtividade t WHERE t.titulo = :titulo"),
-    @NamedQuery(name = "TbFluxoAtividade.findByVisibilidadePublica", query = "SELECT t FROM TbFluxoAtividade t WHERE t.visibilidadePublica = :visibilidadePublica")})
+    @NamedQuery(name = "TbFluxoAtividade.findByTitulo", query = "SELECT t FROM TbFluxoAtividade t WHERE t.titulo = :titulo")})
 public class TbFluxoAtividade implements BaseEntidade {
 
     private static final long serialVersionUID = 1L;
@@ -36,10 +41,11 @@ public class TbFluxoAtividade implements BaseEntidade {
     @Size(min = 1, max = 200)
     @Column(name = "titulo")
     private String titulo;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "visibilidade_publica")
-    private boolean visibilidadePublica;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFluxo")
+    private List<TbFluxoSequencia> tbFluxoSequenciaList;
+    @JoinColumn(name = "id_tipo_atv", referencedColumnName = "id")
+    @OneToOne(optional = false)
+    private TbTipoAtividade idTipoAtv;
 
     public TbFluxoAtividade() {
     }
@@ -48,10 +54,9 @@ public class TbFluxoAtividade implements BaseEntidade {
         this.id = id;
     }
 
-    public TbFluxoAtividade(Integer id, String titulo, boolean visibilidadePublica) {
+    public TbFluxoAtividade(Integer id, String titulo) {
         this.id = id;
         this.titulo = titulo;
-        this.visibilidadePublica = visibilidadePublica;
     }
 
     public Integer getId() {
@@ -70,12 +75,21 @@ public class TbFluxoAtividade implements BaseEntidade {
         this.titulo = titulo;
     }
 
-    public boolean getVisibilidadePublica() {
-        return visibilidadePublica;
+    @XmlTransient
+    public List<TbFluxoSequencia> getTbFluxoSequenciaList() {
+        return tbFluxoSequenciaList;
     }
 
-    public void setVisibilidadePublica(boolean visibilidadePublica) {
-        this.visibilidadePublica = visibilidadePublica;
+    public void setTbFluxoSequenciaList(List<TbFluxoSequencia> tbFluxoSequenciaList) {
+        this.tbFluxoSequenciaList = tbFluxoSequenciaList;
+    }
+
+    public TbTipoAtividade getIdTipoAtv() {
+        return idTipoAtv;
+    }
+
+    public void setIdTipoAtv(TbTipoAtividade idTipoAtv) {
+        this.idTipoAtv = idTipoAtv;
     }
 
     @Override

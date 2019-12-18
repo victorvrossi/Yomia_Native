@@ -15,7 +15,7 @@ public abstract class JsonResponse {
 
     public abstract JsonResponse converteParaJson(Object atividade)throws FalhaGenerica;
 
-    public String formarJsonComLista(ArrayList<JsonResponse> user) {
+    public String formarJsonComLista(ArrayList<JsonResponse> user) throws FalhaGenerica {
         String userJSONString = "";
         try {
             validaLista(user);
@@ -24,8 +24,7 @@ public abstract class JsonResponse {
             }.getType();
             userJSONString = gson.toJson(user, listType);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Falha ao formar JSON:" + e);
+            throw new FalhaGenerica("Falha ao construir Json").lancarError("Falha", "Falhaou", "Ouhu");
         }
 
         return userJSONString;
@@ -59,9 +58,9 @@ public abstract class JsonResponse {
         return JSONString;
     }
 
-    private void validaLista(ArrayList<JsonResponse> lista) {
+    private void validaLista(ArrayList<JsonResponse> lista) throws FalhaGenerica {
         if (lista == null | lista.size() < 1) {
-            throw new NullPointerException("Sem dados para formar JSON");
+            throw new FalhaGenerica("Sem dados para formar JSON");
         }
     }
 

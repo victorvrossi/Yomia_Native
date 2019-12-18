@@ -44,7 +44,6 @@ public class SaidaDeError {
         try (PrintWriter out = response.getWriter()) {
             response.getWriter().flush();
             System.out.println("Erro Gerado:"+e.getErroGerado().gerarJson());
-            e.printStackTrace();
             out.println(e.getErroGerado().gerarJson());
         } catch (IOException ex) {
             ex.printStackTrace();

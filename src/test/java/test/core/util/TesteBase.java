@@ -26,12 +26,12 @@ public class TesteBase {
 
     @Before
     public void setUp() {
-        new UtilHarnessDatabase().limpaTodasOsDados();
+        new UtilHarnessDatabase().limpaTodasOsDados();;
     }
 
     @After
     public void tearDown() {
-        new UtilHarnessDatabase().limpaTodasOsDados();
+        new UtilHarnessDatabase().limpaTodasOsDados();;
     }
 
 }

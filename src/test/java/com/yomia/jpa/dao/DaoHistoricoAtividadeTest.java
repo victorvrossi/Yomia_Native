@@ -11,27 +11,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import test.core.util.CoreUtil;
+import test.core.util.TesteBase;
 
-public class DaoHistoricoAtividadeTest {
-    
-    public DaoHistoricoAtividadeTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+public class DaoHistoricoAtividadeTest extends TesteBase{
 
     /**
      * Test of registrarHistorico method, of class DaoHistoricoAtividade.

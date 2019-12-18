@@ -7,6 +7,7 @@ import com.yomia.jpa.entidade.TbAtividade;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.modulo.falhas.FalhaGenerica;
 import com.yomia.modulo.falhas.FalhaOperacaoDeBD;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +20,11 @@ public class DaoProjeto extends DaoGenerico<TbProjeto>  {
         TbProjeto tbProjeto = new TbProjeto();
         tbProjeto.setSigla(sigla);
         tbProjeto.setTitulo(titulo);
+        tbProjeto.setTbAtividadeList(null);
         try {
             salvar(tbProjeto);
         } catch (Exception ex) {
-            Logger.getLogger(DaoProjeto.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return tbProjeto;
     }

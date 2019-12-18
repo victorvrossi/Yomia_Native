@@ -21,7 +21,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-    <a class="nav-link" href="index.jsp">
+    <a class="nav-link" href="/yomia/operacao/index.jsp">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>

@@ -49,7 +49,7 @@ public class DaoAtividadeTest  extends TesteBase{
         new CoreUtil().novaAtividade();
         DaoAtividade instance = new DaoAtividade();
         List<BaseEntidade> result = instance.carregarListaDoBanco();
-        assertTrue(result.size() == 1);
+        assertEquals(1,result.size());
     }
 
     /**

@@ -2,7 +2,9 @@ package com.yomia.jpa.entidade;
 
 import com.yomia.jpa.controler.BaseEntidade;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "tb_status")
@@ -22,6 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TbStatus.findById", query = "SELECT t FROM TbStatus t WHERE t.id = :id"),
     @NamedQuery(name = "TbStatus.findByTitulo", query = "SELECT t FROM TbStatus t WHERE t.titulo = :titulo")})
 public class TbStatus implements BaseEntidade {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    private List<TbFluxoSequencia> tbFluxoSequenciaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -79,6 +86,15 @@ public class TbStatus implements BaseEntidade {
     @Override
     public String toString() {
         return "com.yomia.jpa.entidade.TbStatus[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public List<TbFluxoSequencia> getTbFluxoSequenciaList() {
+        return tbFluxoSequenciaList;
+    }
+
+    public void setTbFluxoSequenciaList(List<TbFluxoSequencia> tbFluxoSequenciaList) {
+        this.tbFluxoSequenciaList = tbFluxoSequenciaList;
     }
 
 }

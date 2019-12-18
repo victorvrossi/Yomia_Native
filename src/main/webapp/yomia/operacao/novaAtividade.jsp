@@ -90,7 +90,7 @@
                                                 <div class="form-group">
                                                     <div class="col-md-12 p-3">
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-6 mb-1">
                                                                 <div class="btn btn-primary btn-block" id="btn_salvar">Confirmar e Salvar</div>
                                                             </div>
                                                             <div class="col-md-6">

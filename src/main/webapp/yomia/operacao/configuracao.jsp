@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="row mb-1">
                                                 <div class="col-md">
-                                                    <a class="btn btn-primary btn-block"  href="config/gerenciarStatus.jsp">Fluxo de Atividade</a>
+                                                    <a class="btn btn-primary btn-block"  href="config/gerenciarFluxoAtividade.jsp">Fluxo de Atividade</a>
                                                 </div>
                                             </div>
                                             <div class="row mb-1">

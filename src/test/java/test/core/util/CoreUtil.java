@@ -11,6 +11,7 @@ import com.yomia.jpa.entidade.TbFuncionario;
 import com.yomia.jpa.entidade.TbProjeto;
 import com.yomia.jpa.entidade.TbStatus;
 import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.modulo.falhas.FalhaGenerica;
 import static org.junit.Assert.assertNotNull;
 
 public class CoreUtil {
@@ -44,13 +45,9 @@ public class CoreUtil {
         assertNotNull(novoFuncionario.getId());
         return novoFuncionario;
     }
-
-    public TbTipoAtividade novoTipoAtividade() {
-        TbFluxoAtividade fluxo = new TbFluxoAtividade();
-        fluxo.setTitulo("Fluxo Teste");
-        fluxo.setVisibilidadePublica(true);
-
-        TbTipoAtividade novoTipoAtividade = new DaoTipoAtividade().novoTipoAtividade("Tipo", fluxo);
+    
+    public TbTipoAtividade novoTipoAtividade() throws FalhaGenerica {
+        TbTipoAtividade novoTipoAtividade = new DaoTipoAtividade().novoTipoAtividade("Tipo");
         assertNotNull(novoTipoAtividade.getId());
         return novoTipoAtividade;
     }

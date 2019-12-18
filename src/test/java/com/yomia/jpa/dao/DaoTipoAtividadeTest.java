@@ -3,6 +3,7 @@ package com.yomia.jpa.dao;
 
 import com.yomia.jpa.entidade.TbFluxoAtividade;
 import com.yomia.jpa.entidade.TbTipoAtividade;
+import com.yomia.modulo.falhas.FalhaGenerica;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,17 +17,17 @@ import test.core.util.TesteBase;
 public class DaoTipoAtividadeTest extends TesteBase{
   
     @Test
-    public void testNovoTipoAtividade() {
+    public void testNovoTipoAtividade() throws FalhaGenerica {
         System.out.println("novoTipoAtividade");
         String titulo = "tipoatv";
         TbFluxoAtividade idFluxoAtividade = null;
         DaoTipoAtividade instance = new DaoTipoAtividade();
-        TbTipoAtividade result = instance.novoTipoAtividade(titulo, idFluxoAtividade);
+        TbTipoAtividade result = instance.novoTipoAtividade(titulo);
         assertNotNull(result.getId());
     }
 
     @Test
-    public void testCarregaTipoAtividade() {
+    public void testCarregaTipoAtividade() throws FalhaGenerica {
         System.out.println("carregaTipoAtividade");
         DaoTipoAtividade instance = new DaoTipoAtividade();
         TbTipoAtividade expResult = new CoreUtil().novoTipoAtividade();
@@ -37,7 +38,7 @@ public class DaoTipoAtividadeTest extends TesteBase{
     }
 
     @Test
-    public void testCarregaTipoAtividadePorTitulo() {
+    public void testCarregaTipoAtividadePorTitulo() throws FalhaGenerica {
         System.out.println("carregaTipoAtividadePorTitulo");
         String titulo = "Tipo";
         DaoTipoAtividade instance = new DaoTipoAtividade();

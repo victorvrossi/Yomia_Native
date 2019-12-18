@@ -4,8 +4,9 @@ import com.yomia.jpa.entidade.TbFuncionario;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import test.core.util.TesteBase;
 
-public class DaoFuncionarioTest{
+public class DaoFuncionarioTest extends TesteBase{
     
     
 
