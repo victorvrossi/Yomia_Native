@@ -34,7 +34,8 @@ public class DaoFluxoAtividadeTest extends TesteBase{
         List<TbFluxoSequencia> tbFluxoSequenciaList = null;
         DaoFluxoAtividade instance = new DaoFluxoAtividade();
         TbFluxoAtividade l =instance.cadastrarNovoFluxo(titulo, idTipoAtv, tbFluxoSequenciaList);
-        assertNotNull(l.getId());        
+        assertNotNull(l.getId());
+        assertEquals(0, l.getTbFluxoSequenciaList().size());
     }
 
     /**

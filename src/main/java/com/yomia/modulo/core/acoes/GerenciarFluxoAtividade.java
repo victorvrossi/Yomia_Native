@@ -15,12 +15,11 @@ public class GerenciarFluxoAtividade implements GerenciarSistema{
     
     public TbFluxoAtividade novoFluxoParaAtividade(String titulo,TipoAtividade tipoAtividade,List<Status> listaStatus) throws FalhaGenerica{
         TbTipoAtividade tipo = buscarTipoAtividade(tipoAtividade);        
+        List<TbFluxoSequencia> listaTbStatus =  carregaListaFluxoSequencia(listaStatus);
         DaoFluxoAtividade fluxo = new DaoFluxoAtividade();
-        List<TbFluxoSequencia> listaSequencia =  carregaListaFluxoSequencia(listaStatus);
-        
         FluxoAtividade flx = new FluxoAtividade();
         
-       return fluxo.cadastrarNovoFluxo(titulo, tipo, listaSequencia);
+       return fluxo.cadastrarNovoFluxo(titulo, tipo, listaTbStatus);
     }
 
     private List<TbFluxoSequencia> carregaListaFluxoSequencia(List<Status> listaStatus) {

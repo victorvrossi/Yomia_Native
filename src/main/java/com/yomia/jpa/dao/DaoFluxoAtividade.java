@@ -17,8 +17,14 @@ public class DaoFluxoAtividade extends DaoGenerico<TbFluxoAtividade> {
         TbFluxoAtividade fluxo = new TbFluxoAtividade();
         fluxo.setTitulo(titulo);
         fluxo.setIdTipoAtv(idTipoAtv);
-        fluxo.setTbFluxoSequenciaList(tbFluxoSequenciaList);
         salvar(fluxo);
+        if (tbFluxoSequenciaList != null) {
+            for (TbFluxoSequencia seq : tbFluxoSequenciaList) {
+                seq.setIdFluxo(fluxo);
+            }
+            fluxo.setTbFluxoSequenciaList(tbFluxoSequenciaList);
+            salvar(fluxo);
+        }
         return fluxo;
     }
 
@@ -34,7 +40,7 @@ public class DaoFluxoAtividade extends DaoGenerico<TbFluxoAtividade> {
             Query createNamedQuery = manager.createNamedQuery("TbFluxoAtividade.findAll");
             return createNamedQuery.getResultList();
         } catch (Throwable e) {
-            throw new FalhaOperacaoDeBD("Falha ao Carregar todas as atividades:"+e.toString());
+            throw new FalhaOperacaoDeBD("Falha ao Carregar todas as atividades:" + e.toString());
         } finally {
             manager.close();
         }
