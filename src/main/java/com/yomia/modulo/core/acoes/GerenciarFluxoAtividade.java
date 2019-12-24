@@ -18,8 +18,9 @@ public class GerenciarFluxoAtividade implements GerenciarSistema{
         List<TbFluxoSequencia> listaTbStatus =  carregaListaFluxoSequencia(listaStatus);
         DaoFluxoAtividade fluxo = new DaoFluxoAtividade();
         FluxoAtividade flx = new FluxoAtividade();
-        
-       return fluxo.cadastrarNovoFluxo(titulo, tipo, listaTbStatus);
+        final TbFluxoAtividade cadastrarNovoFluxo = fluxo.cadastrarNovoFluxo(titulo, tipo, listaTbStatus);
+        flx.converteTabelaParaObjeto(cadastrarNovoFluxo);
+       return cadastrarNovoFluxo;
     }
 
     private List<TbFluxoSequencia> carregaListaFluxoSequencia(List<Status> listaStatus) {
